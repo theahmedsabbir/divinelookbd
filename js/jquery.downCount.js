@@ -6,9 +6,8 @@
 (function ($) {
 
     $.fn.downCount = function (options, callback) {
-        console.log('hid');
         var settings = $.extend({
-            date: '04/30/2022',
+            date: null,
             offset: null
         }, options);
 
@@ -46,7 +45,6 @@
          * Main downCount function that calculates everything
          */
         function countdown() {
-
             var target_date = new Date(settings.date), // set target date
                 current_date = currentDate(); // get fixed current date
 
