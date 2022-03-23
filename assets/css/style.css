@@ -1,5 +1,5 @@
 /*--------------------------/*
-Tempale name : Stelina
+Tempale name : Devinlook
 
 /*--------------------------/*
 
@@ -9199,7 +9199,7 @@ iframe {
 /*       FOOTER         */
 /* -------------------- */
 .footer {
-	background: #f3f3f3;
+	background: #212529;
 }
 .footer .container-wapper {
 	padding-top: 60px;
@@ -9246,6 +9246,12 @@ iframe {
 .footer .menu .menu-item > a > span {
 	padding-right: 5px;
 	color: #1D043E;
+}
+
+.footer-custome-font-size{
+	font-size: 25px;
+    font-weight: 500;
+    color: white;
 }
 .stelina-newsletter.style1 {
 	margin-bottom: 10px;
@@ -11159,4 +11165,84 @@ a:hover, a:focus, a:active,
 
 section.px-0.py-3.br-top {
     padding: 23px 0;
+}
+
+.main {
+	width: 450px;
+	margin-top: 10px;
+	text-align: center;
+}
+form {
+	width: 250px;
+	height: 50px;
+	position: relative;
+}
+form input {
+	width: 100%;
+	height: 100%;
+	padding: 0 50px 0 20px;
+	border: none;
+	outline: none;
+	box-sizing: border-box;
+	font-size: 16px;
+}
+a.search-button {
+	width: 50px;
+	height: 50px;
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	overflow: hidden;
+	text-decoration: none;
+}
+a.search-button .icon {
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	top: 14px;
+	left: 14px;
+	background-color: #eff4f6;
+	border: 2px solid #607d8b;
+	transition: all 0.6s ease;
+}
+a.search-button .icon:after {
+	width: 12px;
+	height: 2px;
+	display: block;
+	content: "";
+	position: absolute;
+	bottom: -5px;
+	right: -8px;
+	background-color: #607d8b;
+	transform: rotate(45deg);
+	transition: all 0.6s ease;
+}
+a.search-button .icon .clear {
+	width: 100%;
+	height: 100%;
+	line-height: 12px;
+	display: block;
+	text-align: center;
+	color: #607d8b;
+	font-size: 0;
+	transition: all 0.6s ease;
+}
+a.search-button.typed .icon {
+	width: 60px;
+	height: 60px;
+	border-radius: 50px;
+	border-width: 6px;
+	top: -11px;
+	left: -11px;
+}
+a.search-button.typed .icon:after {
+	width: 52px;
+	height: 8px;
+	bottom: -20px;
+	right: -30px;
+}
+a.search-button.typed .icon .clear {
+	line-height: 58px;
+	font-size: 22px;
 }
