@@ -1,5 +1,5 @@
 
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/divitppf/beta.divinelookbd.com/
+    - export DEPLOYPATH=/home/divitppf/public_html/beta/
     - /bin/cp -R . $DEPLOYPATH
