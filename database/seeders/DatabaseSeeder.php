@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use DB;
+use Illuminate\Support\Facades\DB;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -13,10 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement("DELETE FROM admins");
         DB::table('admins')->insert([
             'name' => 'Admin',
-            'email' => 'admin@divinlook.com',
-            'password' => bcrypt('12345678'),
+            'email' => 'admin@divinlookbd.com',
+            'password' => bcrypt('11'),
         ]);
     }
 }

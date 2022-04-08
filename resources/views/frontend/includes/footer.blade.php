@@ -1,3 +1,6 @@
+
+
+
 <footer class="footer style7">
     <div class="container">
         <div class="container-wapper">
