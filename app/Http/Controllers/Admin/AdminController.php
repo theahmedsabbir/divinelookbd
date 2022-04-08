@@ -19,15 +19,8 @@ class AdminController extends Controller
         return view('backend.dashboard');
     }
 
-    public function login(Request $request)
+    public function login(AdminLoginRequest $request)
     {
-        $request->validate(
-        [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
-        // dd('yes');
         $admin = Admin::where('email', $request->email)->first();
         if (!$admin){
             return redirect()->back()->withError('Sorry your email not register our record.');

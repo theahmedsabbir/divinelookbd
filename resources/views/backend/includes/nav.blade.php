@@ -22,7 +22,7 @@
               <ul class="list-unstyled user-profile-nav">
                 <li><a href="{{ url('/') }}"><i class="icon ion-ios-folder"></i> Go to Website</a></li>
                 <li><a href="#logout" onclick="event.preventDefault();document.getElementById('logout').submit()"><i class="icon ion-power"></i> Sign Out</a></li>
-                <form id="logout" action="{{ url('admin/logout') }}" method="post">
+                <form id="logout" action="{{ url('admin/logout') }}" method="get">
                   @csrf
                 </form>
               </ul>

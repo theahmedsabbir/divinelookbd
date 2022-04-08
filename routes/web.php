@@ -25,15 +25,15 @@ Route::get('cache', function() {
 
 Route::get('/flush', function() {
     session()->flush();
-    \Artisan::call('cache:clear');
-    \Artisan::call('config:clear');
-    \Artisan::call('config:cache');
-    \Artisan::call('view:clear');
-    \Artisan::call('optimize');
+//    \Artisan::call('cache:clear');
+//    \Artisan::call('config:clear');
+//    \Artisan::call('config:cache');
+//    \Artisan::call('view:clear');
+//    \Artisan::call('optimize');
     // Session::forget('admin_id');
     // Session::forget('admin_name');
-    dd(session()->all());
-    return "flushed!";
+    //dd(session()->all());
+    return redirect('/');
 });
 
 Route::get('/', function () {
