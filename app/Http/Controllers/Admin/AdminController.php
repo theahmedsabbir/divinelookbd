@@ -14,20 +14,27 @@ class AdminController extends Controller
         return view('backend.login');
     }
 
-    public function deshboard()
+    public function dashboard()
     {
         return view('backend.dashboard');
     }
 
-    public function login(AdminLoginRequest $request)
+    public function login(Request $request)
     {
+        $request->validate(
+        [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        // dd('yes');
         $admin = Admin::where('email', $request->email)->first();
         if (!$admin){
             return redirect()->back()->withError('Sorry your email not register our record.');
         }
         if ($admin){
             if (password_verify($request->password, $admin->password)){
-                Session::put('id', $admin->id);
+                Session::put('admin_id', $admin->id);
                 Session::put('admin_name', $admin->name);
                 return redirect('/admin/dashboard');
             }else{
@@ -36,5 +43,11 @@ class AdminController extends Controller
         }else{
             return redirect()->back()->with('error', 'E-mail dose not match');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Session()->flush();
+        return redirect('admin/login');
     }
 }

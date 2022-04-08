@@ -22,13 +22,32 @@ Route::get('cache', function() {
     return "Cleared!";
 });
 
+
+Route::get('/flush', function() {
+    session()->flush();
+    \Artisan::call('cache:clear');
+    \Artisan::call('config:clear');
+    \Artisan::call('config:cache');
+    \Artisan::call('view:clear');
+    \Artisan::call('optimize');
+    // Session::forget('admin_id');
+    // Session::forget('admin_name');
+    dd(session()->all());
+    return "flushed!";
+});
+
 Route::get('/', function () {
     return view('frontend.home.index');
 });
 
 Route::get('/admin/login', [\App\Http\Controllers\Admin\AdminController::class, 'adminLogin']);
 Route::post('/admin/login', [\App\Http\Controllers\Admin\AdminController::class, 'login']);
-Route::get('/admin/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'deshboard']);
+
+
+Route::group(['middleware' => ['admin']], function(){
+	Route::get('/admin/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard']);
+	Route::get('/admin/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
+});
 
 Auth::routes();
 

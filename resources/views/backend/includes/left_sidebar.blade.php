@@ -1,5 +1,5 @@
 
-    <div class="br-logo"><a href="{{ url('admin/dashboard') }}"><span>[</span><i>Divinlook</i><span>]</span></a></div>
+    <div class="br-logo"><a href="{{ url('admin/dashboard') }}"><span>[</span><i>DivineLook</i><span>]</span>BD</a></div>
     <div class="br-sideleft sideleft-scrollbar">
       <label class="sidebar-label pd-x-10 mg-t-20 op-3">Navigation</label>
       <ul class="br-sideleft-menu">

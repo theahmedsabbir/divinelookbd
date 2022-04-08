@@ -9,7 +9,7 @@
   <p class="mg-b-0">Welcome Admin, You can manage all the tasks from dashboard.</p>
 </div>
 </div>
-
+{{-- @dd(Session::all()) --}}
 <div class="br-pagebody">
 <div class="row row-sm">
   <div class="col-sm-6 col-xl-3">

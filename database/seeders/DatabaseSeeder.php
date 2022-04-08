@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         DB::statement("DELETE FROM admins");
         DB::table('admins')->insert([
             'name' => 'Admin',
-            'email' => 'admin@divinlookbd.com',
+            'email' => 'admin@divinelookbd.com',
             'password' => bcrypt('11'),
         ]);
     }
