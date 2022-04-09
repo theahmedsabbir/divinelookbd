@@ -20,10 +20,10 @@
             <ul class="br-menu-sub" style="{{ Request::is('admin/department*') ? 'display: block;' : 'display: none;'}}">
 
               <li class="sub-item">
-                <a href="{{ url('admin/department/index') }}" class="sub-link {{ Request::is('admin/category/index') ? 'active' : ''}}">Manage</a>
+                <a href="{{ url('admin/categories') }}" class="sub-link {{ Request::is('admin/categories') ? 'active' : ''}}">Manage</a>
               </li>
               <li class="sub-item">
-                <a href="{{ url('admin/department/create') }}" class="sub-link {{ Request::is('admin/category/create') ? 'active' : ''}}">Add</a>
+                <a href="{{ url('admin/category/create') }}" class="sub-link {{ Request::is('admin/category/create') ? 'active' : ''}}">Add</a>
               </li>
             </ul>
           </li>

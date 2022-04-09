@@ -25,14 +25,6 @@ Route::get('cache', function() {
 
 Route::get('/flush', function() {
     session()->flush();
-//    \Artisan::call('cache:clear');
-//    \Artisan::call('config:clear');
-//    \Artisan::call('config:cache');
-//    \Artisan::call('view:clear');
-//    \Artisan::call('optimize');
-    // Session::forget('admin_id');
-    // Session::forget('admin_name');
-    //dd(session()->all());
     return redirect('/');
 });
 
@@ -42,11 +34,12 @@ Route::get('/', function () {
 
 Route::get('/admin/login', [\App\Http\Controllers\Admin\AdminController::class, 'adminLogin']);
 Route::post('/admin/login', [\App\Http\Controllers\Admin\AdminController::class, 'login']);
-
-
 Route::group(['middleware' => ['admin']], function(){
 	Route::get('/admin/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard']);
 	Route::get('/admin/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
+	Route::get('/admin/categories', [\App\Http\Controllers\Admin\CategoryController::class, 'index']);
+	Route::get('/admin/category/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create']);
+	Route::post('/admin/category/store', [\App\Http\Controllers\Admin\CategoryController::class, 'store']);
 });
 
 Auth::routes();
