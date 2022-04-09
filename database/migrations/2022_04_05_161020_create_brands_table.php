@@ -17,6 +17,7 @@ class CreateBrandsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('cat_id');
             $table->string('name');
+            $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->timestamps();
         });

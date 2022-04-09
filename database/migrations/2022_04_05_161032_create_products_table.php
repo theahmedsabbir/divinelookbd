@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('cat_id');
             $table->unsignedBigInteger('brand_id');
             $table->string('name');
+            $table->string('slug');
             $table->float('price', 8, 2);
             $table->float('discount_price', 8, 2)->nullable();
             $table->unsignedBigInteger('stock');

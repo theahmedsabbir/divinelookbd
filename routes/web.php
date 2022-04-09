@@ -40,6 +40,9 @@ Route::group(['middleware' => ['admin']], function(){
 	Route::get('/admin/categories', [\App\Http\Controllers\Admin\CategoryController::class, 'index']);
 	Route::get('/admin/category/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create']);
 	Route::post('/admin/category/store', [\App\Http\Controllers\Admin\CategoryController::class, 'store']);
+	Route::get('/admin/category/edit/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'edit']);
+	Route::post('/admin/category/update/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'update']);
+	Route::get('/admin/category/delete/{slug}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
 });
 
 Auth::routes();
