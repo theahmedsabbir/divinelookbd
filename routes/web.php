@@ -28,18 +28,21 @@ Route::get('/flush', function() {
     return redirect('/');
 });
 Route::get('/', [\App\Http\Controllers\Frontend\FrontendController::class, 'index']);
-Route::get('/admin/login', [\App\Http\Controllers\Admin\AdminController::class, 'adminLogin']);
-Route::post('/admin/login', [\App\Http\Controllers\Admin\AdminController::class, 'login']);
-Route::group(['middleware' => ['admin']], function(){
-	Route::get('/admin/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard']);
-	Route::get('/admin/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
-	Route::get('/admin/categories', [\App\Http\Controllers\Admin\CategoryController::class, 'index']);
-	Route::get('/admin/category/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create']);
-	Route::post('/admin/category/store', [\App\Http\Controllers\Admin\CategoryController::class, 'store']);
-	Route::get('/admin/category/edit/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'edit']);
-	Route::post('/admin/category/update/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'update']);
-	Route::get('/admin/category/delete/{slug}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
-	Route::post('/admin/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
+
+Route::group(['prefix' => 'admin'], function (){
+    Route::get('/login', [\App\Http\Controllers\Admin\AdminController::class, 'adminLogin']);
+    Route::post('/login', [\App\Http\Controllers\Admin\AdminController::class, 'login']);
+    Route::group(['middleware' => ['admin']], function(){
+        Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard']);
+        Route::get('/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
+        Route::get('/categories', [\App\Http\Controllers\Admin\CategoryController::class, 'index']);
+        Route::get('/category/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create']);
+        Route::post('/category/store', [\App\Http\Controllers\Admin\CategoryController::class, 'store']);
+        Route::get('/category/edit/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'edit']);
+        Route::post('/category/update/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'update']);
+        Route::get('/category/delete/{slug}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
+        Route::post('/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
+    });
 });
 
 Auth::routes();
