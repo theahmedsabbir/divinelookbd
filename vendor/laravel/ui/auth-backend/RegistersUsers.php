@@ -18,7 +18,7 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        return view('frontend.home.loginRegister');
     }
 
     /**
@@ -29,7 +29,9 @@ trait RegistersUsers
      */
     public function register(Request $request)
     {
+        return $request->all();
         $this->validator($request->all())->validate();
+
 
         event(new Registered($user = $this->create($request->all())));
 

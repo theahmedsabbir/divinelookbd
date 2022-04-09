@@ -30,7 +30,18 @@
                 <ul class="header-user-links">
                     <li>
                         <span class="pipe">|</span>
-                        <a href="login.html">Login /Register</a>
+                        @if (!Auth::check())
+                            <a href="{{ url('/login') }}">Login /Register</a>
+
+                        @else
+                            <a style="cursor: pointer;" onclick="document.querySelector('#logout').submit()">Log Out</a>
+
+                            <form action="{{ url('logout') }}" id="logout" method="POST" class="d-none">
+                                @csrf
+                                
+                            </form>
+
+                        @endif
                     </li>
                 </ul>
             </div>
@@ -41,7 +52,7 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-4 col-md-3 col-xs-7 col-ts-12 header-element">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{ url('/') }}">
                             <img src="{{ asset('/frontend/') }}/assets/images/logo.png" alt="img">
                         </a>
                     </div>

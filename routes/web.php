@@ -46,7 +46,7 @@ Route::post('/admin/login', [\App\Http\Controllers\Admin\AdminController::class,
 
 Route::group(['middleware' => ['admin']], function(){
 	Route::get('/admin/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard']);
-	Route::get('/admin/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
+	Route::post('/admin/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
 });
 
 Auth::routes();
