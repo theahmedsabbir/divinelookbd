@@ -17,13 +17,7 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        // dd(Session::has('admin_id'));
-        // $request->session()->flush();
-        // Session::forget('admin_id');
-        // Session::forget('admin_name');
-        //dd(session()->all() );
-        // dd(session()->get('admin_name') );
-        if(Session::get('admin_id')){
+        if(Session::has('admin_id')){
             return $next($request);
         }
 

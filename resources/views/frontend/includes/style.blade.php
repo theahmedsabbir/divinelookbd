@@ -12,6 +12,10 @@
 <link rel="stylesheet" href="{{ asset('/frontend/') }}/assets/css/magnific-popup.min.css">
 <link rel="stylesheet" href="{{ asset('/frontend/') }}/assets/css/lightbox.min.css">
 <link rel="stylesheet" href="{{ asset('/frontend/') }}/assets/js/fancybox/source/jquery.fancybox.css">
+
+{{-- toastr --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <link rel="stylesheet" href="{{ asset('/frontend/') }}/assets/css/jquery.scrollbar.min.css">
 <link rel="stylesheet" href="{{ asset('/frontend/') }}/assets/css/mobile-menu.css">
 <link rel="stylesheet" href="{{ asset('/frontend/') }}/assets/fonts/flaticon/flaticon.css">

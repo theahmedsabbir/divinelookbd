@@ -86,7 +86,7 @@
 @stack('script')
 <script>
     $(window).on('load',function(){
-        $('#myModal').modal('show');
+        // $('#myModal').modal('show');
     });
 </script>
 </body>

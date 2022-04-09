@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -29,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -41,6 +43,48 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
+
+    public function register(Request $request)
+    {
+        // validate
+        $request->validate([
+
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'phone' => 'required|string|max:255|unique:users,phone',
+            'password' => 'required|string|min:8|confirmed',
+            'avatar' => 'mimes:jpg,jpeg,png,bmp,tiff|max:4096',
+
+        ]);
+
+        // save this user
+        $user = new User;
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->password = Hash::make($request->password);
+
+
+        // upload image
+        if($request->avatar){
+            $avatar = $request->avatar;
+            $avatarName = Str::slug($request->name) . time().'_'.'.'. $avatar->extension();
+            $avatar->move('users', $avatarName );
+
+            $user->avatar = $avatarName;
+        }
+
+
+        $user->save();
+
+
+        return redirect()->back()->with('Success', 'Thank you for registering. Please Login');
+    }
+
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -49,10 +93,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // dd($data);
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'phone' => ['required', 'string', 'max:255', 'unique:users,phone'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'avatar' => ['mimes:jpg,jpeg,png,bmp,tiff ','max:4096'],
         ]);
     }
 

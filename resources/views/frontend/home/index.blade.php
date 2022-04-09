@@ -1,6 +1,7 @@
 @extends('frontend.master')
 
 @section('content')
+{{-- @dd(Auth::check()) --}}
     <div class="header-device-mobile">
         <div class="wapper">
             <div class="item mobile-logo">
