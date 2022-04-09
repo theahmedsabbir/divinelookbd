@@ -27,11 +27,7 @@ Route::get('/flush', function() {
     session()->flush();
     return redirect('/');
 });
-
-Route::get('/', function () {
-    return view('frontend.home.index');
-});
-
+Route::get('/', [\App\Http\Controllers\Frontend\FrontendController::class, 'index']);
 Route::get('/admin/login', [\App\Http\Controllers\Admin\AdminController::class, 'adminLogin']);
 Route::post('/admin/login', [\App\Http\Controllers\Admin\AdminController::class, 'login']);
 Route::group(['middleware' => ['admin']], function(){

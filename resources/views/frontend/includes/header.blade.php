@@ -51,14 +51,10 @@
                         <form class="form-search form-search-width-category">
                             <div class="form-content">
                                 <div class="category">
-                                    <select title="cate" data-placeholder="All Categories" class="chosen-select"
-                                            tabindex="1">
-                                        <option value="United States">Accessories</option>
-                                        <option value="United Kingdom">Accents</option>
-                                        <option value="Afghanistan">Desks</option>
-                                        <option value="Aland Islands">Sofas</option>
-                                        <option value="Albania">New Arrivals</option>
-                                        <option value="Algeria">Bedroom</option>
+                                    <select title="cate" data-placeholder="All Categories" class="chosen-select" tabindex="1">
+                                        @foreach($categories as $category)
+                                        <option value="United States">{{ $category->name ?? 'No Category' }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="inner">
@@ -272,48 +268,11 @@
                     </div>
                     <div class="block-content verticalmenu-content">
                         <ul class="stelina-nav-vertical vertical-menu stelina-clone-mobile-menu">
+                            @foreach($categories as $category)
                             <li class="menu-item">
-                                <a href="#" class="stelina-menu-item-title" title="New Arrivals">New Arrivals</a>
+                                <a href="#" class="stelina-menu-item-title" title="New Arrivals">{{ $category->name ?? '#' }}</a>
                             </li>
-                            <li class="menu-item">
-                                <a title="Hot Sale" href="#" class="stelina-menu-item-title">Hot Sale</a>
-                            </li>
-                            <li class="menu-item menu-item-has-children">
-                                <a title="Accessories" href="#" class="stelina-menu-item-title">Accessories</a>
-                                <span class="toggle-submenu"></span>
-                                <ul role="menu" class=" submenu">
-                                    <li class="menu-item">
-                                        <a title="Living" href="#" class="stelina-item-title">Living</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Accents" href="#" class="stelina-item-title">Accents</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="New Arrivals" href="#" class="stelina-item-title">New Arrivals</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Accessories" href="#" class="stelina-item-title">Accessories</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a title="Bedroom" href="#" class="stelina-item-title">Bedroom</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item">
-                                <a title="Accents" href="#" class="stelina-menu-item-title">Accents</a>
-                            </li>
-                            <li class="menu-item">
-                                <a title="Tables" href="#" class="stelina-menu-item-title">Tables</a>
-                            </li>
-                            <li class="menu-item">
-                                <a title="Dining" href="#" class="stelina-menu-item-title">Dining</a>
-                            </li>
-                            <li class="menu-item">
-                                <a title="Lighting" href="#" class="stelina-menu-item-title">Lighting</a>
-                            </li>
-                            <li class="menu-item">
-                                <a title="Office" href="#" class="stelina-menu-item-title">Office</a>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
