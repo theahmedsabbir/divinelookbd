@@ -11,19 +11,39 @@
         </li><!-- br-menu-item -->
 
         <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Manage</label>
+
+          {{-- category --}}
           <li class="br-menu-item">
-            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/admin*') ? 'show-sub' : ''}}">
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/category*') ? 'show-sub' : ''}}">
               <i class="menu-item-icon icon ion-android-list tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
               <span class="menu-item-label">Category</span>
             </a><!-- br-menu-link -->
-            <ul class="br-menu-sub" style="{{ Request::is('admin/department*') ? 'display: block;' : 'display: none;'}}">
+            <ul class="br-menu-sub" style="{{ Request::is('admin/category*') ? 'display: block;' : 'display: none;'}}">
 
               <li class="sub-item">
-                <a href="{{ url('admin/categories') }}" class="sub-link {{ Request::is('admin/categories') ? 'active' : ''}}">Manage</a>
+                <a href="{{ url('admin/category/index') }}" class="sub-link {{ Request::is('admin/category/index') ? 'active' : ''}}">Manage</a>
               </li>
               <li class="sub-item">
                 <a href="{{ url('admin/category/create') }}" class="sub-link {{ Request::is('admin/category/create') ? 'active' : ''}}">Add</a>
+              </li>
+            </ul>
+          </li>
+
+          {{-- brand --}}
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/brand*') ? 'show-sub' : ''}}">
+              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
+              <span class="menu-item-label">Brand</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub" style="{{ Request::is('admin/brand*') ? 'display: block;' : 'display: none;'}}">
+
+              <li class="sub-item">
+                <a href="{{ url('admin/brand/index') }}" class="sub-link {{ Request::is('admin/brand/index') ? 'active' : ''}}">Manage</a>
+              </li>
+              <li class="sub-item">
+                <a href="{{ url('admin/brand/create') }}" class="sub-link {{ Request::is('admin/brand/create') ? 'active' : ''}}">Add</a>
               </li>
             </ul>
           </li>

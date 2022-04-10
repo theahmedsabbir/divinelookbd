@@ -76,6 +76,9 @@ class CategoryController extends Controller
     public function destroy($slug)
     {
         $category = Category::where('slug', $slug)->first();
+        if ($category->image && file_exists('category/'.$category->image)){
+            unlink('category/'.$category->image);
+        }
         $category->delete();
         return redirect()->back()->withError('Category has been successfully deleted.');
     }

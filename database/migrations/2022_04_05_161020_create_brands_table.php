@@ -15,7 +15,6 @@ class CreateBrandsTable extends Migration
     {
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('cat_id');
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('image')->nullable();

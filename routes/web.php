@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,24 +32,35 @@ Route::get('/flush', function() {
     session()->flush();
     return redirect('/');
 });
-Route::get('/', [\App\Http\Controllers\Frontend\FrontendController::class, 'index']);
+Route::get('/', [FrontendController::class, 'index']);
 
 Route::group(['prefix' => 'admin'], function (){
-    Route::get('/login', [\App\Http\Controllers\Admin\AdminController::class, 'adminLogin']);
-    Route::post('/login', [\App\Http\Controllers\Admin\AdminController::class, 'login']);
+    Route::get('/login', [AdminController::class, 'adminLogin']);
+    Route::post('/login', [AdminController::class, 'login']);
     Route::group(['middleware' => ['admin']], function(){
-        Route::get('/dashboard', [\App\Http\Controllers\Admin\AdminController::class, 'dashboard']);
-        Route::get('/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
-        Route::get('/categories', [\App\Http\Controllers\Admin\CategoryController::class, 'index']);
-        Route::get('/category/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create']);
-        Route::post('/category/store', [\App\Http\Controllers\Admin\CategoryController::class, 'store']);
-        Route::get('/category/edit/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'edit']);
-        Route::post('/category/update/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'update']);
-        Route::get('/category/delete/{slug}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
-        Route::post('/logout', [\App\Http\Controllers\Admin\AdminController::class, 'logout']);
+
+        // ======================= Admin routes ======================= //
+        Route::get('/dashboard', [AdminController::class, 'dashboard']);
+        Route::post('/logout', [AdminController::class, 'logout']);
+
+        // ======================= Category routes ======================= //
+        Route::get('/category/index', [CategoryController::class, 'index']);
+        Route::get('/category/create', [CategoryController::class, 'create']);
+        Route::post('/category/store', [CategoryController::class, 'store']);
+        Route::get('/category/edit/{id}', [CategoryController::class, 'edit']);
+        Route::post('/category/update/{id}', [CategoryController::class, 'update']);
+        Route::get('/category/delete/{slug}', [CategoryController::class, 'destroy']);
+
+        // ======================= Brand routes ======================= //
+        Route::get('/brand/index', [BrandController::class, 'index']);
+        Route::get('/brand/create', [BrandController::class, 'create']);
+        Route::post('/brand/store', [BrandController::class, 'store']);
+        Route::get('/brand/edit/{id}', [BrandController::class, 'edit']);
+        Route::post('/brand/update/{id}', [BrandController::class, 'update']);
+        Route::get('/brand/delete/{slug}', [BrandController::class, 'destroy']);
     });
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
