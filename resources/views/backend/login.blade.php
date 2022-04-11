@@ -47,8 +47,9 @@
       </div><!-- col -->
       <div class="col-md-6 bg-br-primary d-flex align-items-center justify-content-center">
         <div class="wd-250 wd-xl-450 mg-y-30">
-          <div class="signin-logo tx-28 tx-bold tx-white"><span class="tx-normal">[</span> Divinlook <span class="tx-info">E-commerce organisation</span> <span class="tx-normal">]</span></div>
-          <div class="tx-white mg-b-60">The Admin Panel For Divinlook</div>
+          <div class="signin-logo tx-28 tx-bold tx-white"><span class="tx-normal">[</span> Divinlook <span class="tx-info">BD</span> <span class="tx-normal">]</span></div>
+          <div class="tx-white mg-b-60 text-capitalize">Best E-commerce organisation from bangladesh</div>
+          <div class="tx-white mg-b-60">The Admin Panel For Divinlook BD</div>
 
           <a href="{{ url('/') }}" class="btn btn-outline-light bd bd-white bd-2 tx-white pd-x-25 tx-uppercase tx-12 tx-spacing-2 tx-medium">Home</a>
         </div><!-- wd-500 -->
