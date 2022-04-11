@@ -49,12 +49,12 @@
           </li>
 
           <li class="br-menu-item">
-            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/admin*') ? 'show-sub' : ''}}">
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/product*') ? 'show-sub' : ''}}">
               <i class="menu-item-icon icon ion-android-person tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
               <span class="menu-item-label">Product</span>
             </a><!-- br-menu-link -->
-            <ul class="br-menu-sub" style="{{ Request::is('admin/teacher*') ? 'display: block;' : 'display: none;'}}">
+            <ul class="br-menu-sub" style="{{ Request::is('admin/product*') ? 'display: block;' : 'display: none;'}}">
 
               <li class="sub-item">
                 <a href="{{ url('admin/product/index') }}" class="sub-link {{ Request::is('admin/product/index') ? 'active' : ''}}">Manage</a>

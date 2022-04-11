@@ -17,18 +17,19 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('cat_id');
             $table->unsignedBigInteger('brand_id');
+            $table->string('image');
             $table->string('name');
             $table->string('slug');
-            $table->float('price', 8, 2);
-            $table->float('discount_price', 8, 2)->nullable();
-            $table->unsignedBigInteger('stock');
-            $table->unsignedBigInteger('qty');
             $table->string('sku');
-            $table->text('short_description');
-            $table->longText('long_description');
-            $table->longText('information');
-            $table->string('type');
-            $table->string('image');
+            $table->float('discount_price', 8, 2)->nullable();
+            $table->float('price', 8, 2);
+            $table->unsignedBigInteger('qty');
+            $table->text('short_description')->nullable();
+            $table->longText('long_description')->nullable();
+            $table->longText('information')->nullable();
+            $table->string('type')->nullable();
+            $table->text('features')->nullable();
+            $table->float('avg_rating', 8, 2)->nullable();
             $table->timestamps();
         });
     }

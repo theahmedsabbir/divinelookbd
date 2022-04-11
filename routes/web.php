@@ -66,7 +66,7 @@ Route::group(['prefix' => 'admin'], function (){
         Route::post('/product/store', [ProductController::class, 'store']);
         Route::get('/product/edit/{id}', [ProductController::class, 'edit']);
         Route::post('/product/update/{id}', [ProductController::class, 'update']);
-        Route::get('/product/delete/{slug}', [ProductController::class, 'destroy']);
+        Route::get('/product/delete/{id}', [ProductController::class, 'destroy']);
     });
 });
 
