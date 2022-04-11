@@ -72,7 +72,7 @@
         var editor = new MediumEditor('.editable');
 
         // Summernote editor
-        $('#summernote').summernote({
+        $('.summernote').summernote({
           height: 150,
           tooltip: false
         })

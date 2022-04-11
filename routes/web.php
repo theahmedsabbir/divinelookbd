@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,14 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('/brand/edit/{id}', [BrandController::class, 'edit']);
         Route::post('/brand/update/{id}', [BrandController::class, 'update']);
         Route::get('/brand/delete/{slug}', [BrandController::class, 'destroy']);
+
+        // ======================= Product routes ======================= //
+        Route::get('/product/index', [ProductController::class, 'index']);
+        Route::get('/product/create', [ProductController::class, 'create']);
+        Route::post('/product/store', [ProductController::class, 'store']);
+        Route::get('/product/edit/{id}', [ProductController::class, 'edit']);
+        Route::post('/product/update/{id}', [ProductController::class, 'update']);
+        Route::get('/product/delete/{slug}', [ProductController::class, 'destroy']);
     });
 });
 
