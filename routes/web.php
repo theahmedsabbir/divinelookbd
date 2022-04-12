@@ -34,6 +34,7 @@ Route::get('/flush', function() {
     return redirect('/');
 });
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/product/details/{id}/{slug}', [FrontendController::class, 'details']);
 
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/login', [AdminController::class, 'adminLogin']);

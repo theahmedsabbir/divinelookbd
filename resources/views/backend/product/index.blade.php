@@ -37,8 +37,8 @@
                             <td>{{ $product->category->name ?? '' }}</td>
                             <td>{{ $product->brand->name ?? '' }}</td>
                             <td>{{ $product->price ?? '' }}</td>
-                            <td>                                
-                                <a href="{{ url('/admin/product/view/'. encrypt($product->id)) }}" class="btn btn-sm btn-success">View</a>                           
+                            <td>
+                                <a href="{{ url('/admin/product/view/'. encrypt($product->id)) }}" class="btn btn-sm btn-success">View</a>
                                 <a href="{{ url('/admin/product/edit/'.encrypt($product->id)) }}" class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{ url('/admin/product/delete/'.encrypt($product->id)) }}" onclick="return confirm('Are you sure permanently this category ?')" class="btn btn-sm btn-danger">Delete</a>
                             </td>

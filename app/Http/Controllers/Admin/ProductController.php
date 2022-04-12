@@ -26,8 +26,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        // return $request->all();
-
         // image extension check
         $request->validate([
             'cat_id'   => 'required',
@@ -81,7 +79,7 @@ class ProductController extends Controller
     }
     public function view($id)
     {
-        $product = Product::find(decrypt($id));
+        $product = Product::with('category', 'brand')->find(decrypt($id));
         if($product == null){
             return redirect()->back()->withError('Product not found');
         }
@@ -117,7 +115,7 @@ class ProductController extends Controller
             'brand_id.required' => 'Brand field is required',
         ]);
 
-        // update product data        
+        // update product data
         $product = Product::find($id);
         if($product == null){
             return redirect()->back()->withError('Product not found');
@@ -138,7 +136,7 @@ class ProductController extends Controller
         $product->features = $request->features;
 
 
-        if ($request->file('image')){            
+        if ($request->file('image')){
             if ($product->image && file_exists('product/'.$product->image)){
                 unlink('product/'.$product->image);
             }
@@ -152,9 +150,9 @@ class ProductController extends Controller
         $product->save();
 
         if($request->images && count($request->images) > 0){
-            // delete old images and images data 
+            // delete old images and images data
             foreach ($product->images as $old_image) {
-                          
+
                 if ($old_image && file_exists('product/'.$old_image->image)){
                     unlink('product/'.$old_image->image);
                 }
@@ -163,7 +161,7 @@ class ProductController extends Controller
             }
 
             // upload product images
-            foreach ($request->images as $key => $p_image) { 
+            foreach ($request->images as $key => $p_image) {
 
 
 
@@ -181,16 +179,16 @@ class ProductController extends Controller
     }
 
     public function destroy($id){
-        
+
         // find product
         $product = Product::find(decrypt($id));
         if($product == null){
             return redirect()->back()->withError('Product not found');
         }
 
-        // delete old images and images data 
+        // delete old images and images data
         foreach ($product->images as $old_image) {
-                      
+
             if ($old_image && file_exists('product/'.$old_image->image)){
                 unlink('product/'.$old_image->image);
             }
@@ -198,7 +196,7 @@ class ProductController extends Controller
             $old_image->delete();
         }
 
-        // delete product single image           
+        // delete product single image
         if ($product->image && file_exists('product/'.$product->image)){
             unlink('product/'.$product->image);
         }
