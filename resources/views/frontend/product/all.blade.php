@@ -5,6 +5,27 @@
 form.filter-choice.select-form {
     text-align: right !important;
 }
+
+input.from {
+    display: inline-block;
+    font-size: 15px;
+    color: #0a0a0a;
+    border: 1px solid #eeeeee;
+    padding: 4px 10px;
+    font-weight: 600;
+    border-radius: 0;
+    -moz-appearance: textfield;  
+    width:47%
+}
+
+input.from::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input.from:focus{
+    border-color: #e6e6e6 !important;
+}
 </style>
 @endpush
 
@@ -134,12 +155,14 @@ form.filter-choice.select-form {
                                 Price
                             </h4>
                             <div class="price-slider-wrapper">
-                                <div data-label-reasult="Range:" data-min="0" data-max="3000" data-unit="$"
-                                     class="slider-range-price " data-value-min="0" data-value-max="1000">
+                                <div data-label-reasult="Range:" data-min="0" data-max="100" data-unit="৳"
+                                     class="slider-range-price " data-value-min="50" data-value-max="100">
                                 </div>
                                 <div class="price-slider-amount">
-                                    <span class="from">$45</span>
-                                    <span class="to">$215</span>
+                                	<input type="number" value="50" oninput="update_slider()" min="0" max="100" class="from" id="from" placeholder="min">
+                                	<input type="number" value="100" oninput="update_slider()" min="0" max="100" class="from" id="to" placeholder="max">
+{{--                                     <span class="from">৳45</span>
+                                    <span class="to">৳215</span> --}}
                                 </div>
                             </div>
                         </div>
@@ -266,5 +289,79 @@ form.filter-choice.select-form {
 
 
 @push('script')
+<script>
+	
+    //---------------------------Price filter----------------------
+    // load initially
+    $('.slider-range-price').each(function () {
+        var min = $(this).data('min'); //min 
+        var max = $(this).data('max'); //max
+        // var unit = $(this).data('unit'); 
+        var value_min = $(this).data('value-min'); //slider min
+        var value_max = $(this).data('value-max'); //slider max
+        var label_result = $(this).data('label-result');
+        var t = $(this);
+        $(this).slider({
+            range: true,
+            min: min,
+            max: max,
+            values: [value_min, value_max], 
+            slide: function (event, ui) {
+                var result = `
 
+
+
+                	<input type="number" value="${ui.values[0]}" oninput="update_slider()" min="${min}" max="${max}" class="from" id="from" placeholder="min">
+                	<input type="number" value="${ui.values[1]}" oninput="update_slider()" min="${min}" max="${max}" class="from" id="to" placeholder="max">
+                `;
+                // var result = ' <span>' + unit + ui.values[0] + 
+            				// ' </span>  <span> ' + unit + ui.values[1] + 
+            				// '</span>'
+            				// ;
+                // var result = label_result + " <span>" + unit + ui.values[0] + ' </span>  <span> ' + unit + ui.values[1] + '</span>';
+                t.closest('.price-slider-wrapper').find('.price-slider-amount').html(result);
+            }
+        });
+    });
+
+    // update slider based on input
+    let update_slider = () => {
+
+    	//load again
+	    $('.slider-range-price').each(function () {
+
+        	var min = $(this).data('min'); //min 
+        	var max = $(this).data('max'); //max
+
+	    	let from = $('#from').val();
+	    	let to = $('#to').val();
+
+	        var value_min = from != '' ? parseInt($('#from').val()) : 0; //slider min
+	        var value_max = to != '' ? parseInt($('#to').val()) : 0; //slider max
+
+	        console.log(value_min)
+	        console.log(value_max)
+
+	        // validations
+	        if(value_min > value_max) return; //stop if min is grater than max
+	        if(value_min < 0 || value_max < 0) return; 
+	        if(value_min < 0 || value_max < 0) return; 
+	        if(value_min > max || value_max > max) return; 
+
+	        var t = $(this);
+	        $(this).slider({
+	            range: true,
+	            values: [value_min, value_max], 
+	            slide: function (event, ui) {
+	                var result = `
+	                	<input type="number" value="${ui.values[0]}" oninput="update_slider()" min="${min}" max="${max}" class="from" id="from" placeholder="min">
+	                	<input type="number" value="${ui.values[1]}" oninput="update_slider()" min="${min}" max="${max}" class="from" id="to" placeholder="max">
+	                `;
+	                t.closest('.price-slider-wrapper').find('.price-slider-amount').html(result);
+	            }
+	        });
+
+	    });
+    }
+</script>
 @endpush
