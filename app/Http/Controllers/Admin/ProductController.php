@@ -79,9 +79,20 @@ class ProductController extends Controller
 
         return redirect('admin/product/index')->withSuccess('Product uploaded successfully.');
     }
+    public function view($id)
+    {
+        $product = Product::find(decrypt($id));
+        if($product == null){
+            return redirect()->back()->withError('Product not found');
+        }
+
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        return view('backend.product.view', compact('brands', 'categories', 'product'));
+    }
     public function edit($id)
     {
-        $product = Product::find($id);
+        $product = Product::find(decrypt($id));
         if($product == null){
             return redirect()->back()->withError('Product not found');
         }
@@ -172,7 +183,7 @@ class ProductController extends Controller
     public function destroy($id){
         
         // find product
-        $product = Product::find($id);
+        $product = Product::find(decrypt($id));
         if($product == null){
             return redirect()->back()->withError('Product not found');
         }
