@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Frontend\FrontProductController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,6 @@ Route::get('/flush', function() {
     session()->flush();
     return redirect('/');
 });
-Route::get('/', [FrontendController::class, 'index']);
 
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/login', [AdminController::class, 'adminLogin']);
@@ -72,5 +72,12 @@ Route::group(['prefix' => 'admin'], function (){
 });
 
 Auth::routes();
+
+// ======================= Frontend routes ======================= //
+Route::get('/', [FrontendController::class, 'index']);
+
+
+// ======================= Frontend Product routes ======================= //
+Route::get('/product/all', [FrontProductController::class, 'all']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\ColorSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 class DatabaseSeeder extends Seeder
@@ -13,11 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement("DELETE FROM admins");
-        DB::table('admins')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@divinelookbd.com',
-            'password' => bcrypt('11'),
+        $this->call([
+            // AdminSeeder::class,
+            ColorSeeder::class,
         ]);
     }
 }

@@ -3,33 +3,33 @@
     <script src="{{ asset('backend/lib/jquery-ui/ui/widgets/datepicker.js') }}"></script>
     <script src="{{ asset('backend/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('backend/lib/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-    {{-- <script src="{{ asset('admin/lib/datatables.net/js/jquery.dataTables.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/datatables.net-dt/js/dataTables.dataTables.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/datatables.net/js/jquery.dataTables.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/datatables.net-dt/js/dataTables.dataTables.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js') }}"></script> --}}
     <script src="{{ asset('backend/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('backend/lib/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('backend/lib/medium-editor/js/medium-editor.min.js') }}"></script>
 
     <script src="{{ asset('backend/lib/moment/min/moment.min.js') }}"></script>
-    {{-- <script src="{{ asset('admin/lib/peity/jquery.peity.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/rickshaw/vendor/d3.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/rickshaw/vendor/d3.layout.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/rickshaw/rickshaw.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/jquery.flot/jquery.flot.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/jquery.flot/jquery.flot.resize.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/flot-spline/js/jquery.flot.spline.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/jquery-sparkline/jquery.sparkline.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/echarts/echarts.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/select2/js/select2.full.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/peity/jquery.peity.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/rickshaw/vendor/d3.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/rickshaw/vendor/d3.layout.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/rickshaw/rickshaw.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/jquery.flot/jquery.flot.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/jquery.flot/jquery.flot.resize.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/flot-spline/js/jquery.flot.spline.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/jquery-sparkline/jquery.sparkline.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/echarts/echarts.min.js') }}"></script> --}}
+    <script src="{{ asset('backend/lib/select2/js/select2.full.min.js') }}"></script>
     {{-- <script src="http://maps.google.com/maps/api/js?key=AIzaSyAq8o5-8Y5pudbJMJtDFzb8aHiWJufa5fg"></script> --}}
-    {{-- <script src="{{ asset('admin/lib/gmaps/gmaps.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/lib/gmaps/gmaps.min.js') }}"></script> --}}
 
     <script src="{{ asset('backend/js/bracket.js') }}"></script>
     <script src="{{ asset('backend/js/tooltip-colored.js') }}"></script>
     <script src="{{ asset('backend/js/popover-colored.js') }}"></script>
-    {{-- <script src="{{ asset('admin/js/map.shiftworker.js') }}"></script> --}}
-    {{-- <script src="{{ asset('admin/js/ResizeSensor.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/js/map.shiftworker.js') }}"></script> --}}
+    {{-- <script src="{{ asset('backend/js/ResizeSensor.js') }}"></script> --}}
     <script src="{{ asset('backend/js/dashboard.js') }}"></script>
     <script src="{{ asset('backend/js/toastr.min.js') }}"></script>
 
@@ -166,3 +166,28 @@
     $( "#datepicker" ).datepicker({dateFormat: 'yy'});
 });
     </script>
+
+
+    {{-- select2 --}}
+    <script>     
+
+      // Select2 Initialize
+      // Select2 without the search
+      if($().select2) {
+        $('.select2').select2({
+          minimumResultsForSearch: Infinity,
+          placeholder: 'Choose one'
+        });
+
+        // Select2 by showing the search
+        $('.select2-show-search').select2({
+          minimumResultsForSearch: ''
+        });
+
+        // Select2 with tagging support
+        $('.select2-tag').select2({
+          tags: true,
+          tokenSeparators: [',', ' ']
+        });
+      }
+  </script>

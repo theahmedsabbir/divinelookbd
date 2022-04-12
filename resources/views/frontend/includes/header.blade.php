@@ -304,7 +304,7 @@
                                 <span class="toggle-submenu"></span>
                                 <ul class="submenu">
                                     <li class="menu-item">
-                                        <a href="gridproducts_leftsidebar.html">Product List</a>
+                                        <a href="{{ url('/product/all') }}">Product List</a>
                                     </li>
                                 </ul>
                             </li>

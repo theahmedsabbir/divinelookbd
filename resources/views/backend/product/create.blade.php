@@ -72,9 +72,27 @@
                             <label for="discount_price">Discount Price ( <small class="text-danger">Optional</small> )</label>
                             <input type="number" min="0" step="0.01" class="form-control" name="discount_price" id="discount_price" placeholder="Enter discount price" />
                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
                         <div class="col">
                             <label for="qty">Qty</label>
                             <input type="number" class="form-control" name="qty" id="qty" placeholder="Enter product qty" />
+                        </div>
+                        <div class="col">
+                            <label for="colors">Color Family</label>
+                            <select class="form-control select2" name="colors[]" id="colors" multiple>
+                                <option selected disabled>Select a color family</option>
+                                @foreach(App\Models\Color::all() as $color)
+                                    <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                @endforeach
+                            </select>
+
+                            @if ($errors->has('colors'))
+                                <p class="text-danger">{{ $errors->first('colors') }}</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -162,10 +180,14 @@
 @endsection
 
 @push('script')
+    
+
+
+
 @endpush
-<script>
+{{-- <script>
     import Buttonbar from "../../../../public/backend/lib/jquery-ui/demos/datepicker/buttonbar.html";
     export default {
         components: {Buttonbar}
     }
-</script>
+</script> --}}

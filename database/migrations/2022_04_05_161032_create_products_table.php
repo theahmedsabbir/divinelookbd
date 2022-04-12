@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('sku');
+            $table->text('colors')->nullable();
             $table->float('discount_price', 8, 2)->nullable();
             $table->float('price', 8, 2);
             $table->unsignedBigInteger('qty');
