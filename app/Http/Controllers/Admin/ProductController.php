@@ -45,6 +45,9 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->slug = Str::slug($request->name);
         $product->sku = $request->sku;
+        if ($request->colors) {
+            $product->colors = json_encode($request->colors);
+        }
         $product->discount_price = $request->discount_price;
         $product->price = $request->price;
         $product->qty = $request->qty;
@@ -126,6 +129,11 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->slug = Str::slug($request->name);
         $product->sku = $request->sku;
+        if ($request->colors) {
+            $product->colors = json_encode($request->colors);
+        }else{
+           $product->colors = null; 
+        }
         $product->discount_price = $request->discount_price;
         $product->price = $request->price;
         $product->qty = $request->qty;

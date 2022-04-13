@@ -85,9 +85,37 @@
                             <label for="discount_price">Discount Price ( <small class="text-danger">Optional</small> )</label>
                             <input type="number" min="0" step="0.01" class="form-control" name="discount_price" id="discount_price" value="{{ $product->discount_price }}" placeholder="Enter discount price" />
                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
                         <div class="col">
                             <label for="qty">Qty</label>
                             <input type="number" class="form-control" name="qty" id="qty" value="{{ $product->qty }}" placeholder="Enter product qty" />
+                        </div>
+                        <div class="col">
+                            <label for="colors">Color Family</label>
+                            <select class="form-control select2" name="colors[]" id="colors" multiple>
+                                <option disabled>Select a color family</option>
+                                @php
+                                    $colors = [];
+                                    if($product->colors){
+                                        $colors = json_decode($product->colors);
+                                    }
+                                @endphp
+                                @foreach(App\Models\Color::all() as $color)
+                                    <option value="{{ $color->id }}"
+                                        @if (in_array($color->id, $colors))
+                                            selected
+                                        @endif
+                                    >{{ $color->name }}</option>
+                                @endforeach
+                            </select>
+
+                            @if ($errors->has('colors'))
+                                <p class="text-danger">{{ $errors->first('colors') }}</p>
+                            @endif
                         </div>
                     </div>
                 </div>

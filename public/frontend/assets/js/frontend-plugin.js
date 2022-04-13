@@ -378,26 +378,26 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
     });
     //---------------------------Price filter----------------------
-    $('.slider-range-price').each(function () {
-        var min = $(this).data('min');
-        var max = $(this).data('max');
-        var unit = $(this).data('unit');
-        var value_min = $(this).data('value-min');
-        var value_max = $(this).data('value-max');
-        var label_result = $(this).data('label-result');
-        var t = $(this);
-        $(this).slider({
-            range: true,
-            min: min,
-            max: max,
-            values: [value_min, value_max],
-            slide: function (event, ui) {
-                var result = ' <span>' + unit + ui.values[0] + ' </span>  <span> ' + unit + ui.values[1] + '</span>';
-                // var result = label_result + " <span>" + unit + ui.values[0] + ' </span>  <span> ' + unit + ui.values[1] + '</span>';
-                t.closest('.price-slider-wrapper').find('.price-slider-amount').html(result);
-            }
-        });
-    });
+    // $('.slider-range-price').each(function () {
+    //     var min = $(this).data('min');
+    //     var max = $(this).data('max');
+    //     var unit = $(this).data('unit');
+    //     var value_min = $(this).data('value-min');
+    //     var value_max = $(this).data('value-max');
+    //     var label_result = $(this).data('label-result');
+    //     var t = $(this);
+    //     $(this).slider({
+    //         range: true,
+    //         min: min,
+    //         max: max,
+    //         values: [value_min, value_max],
+    //         slide: function (event, ui) {
+    //             var result = ' <span>' + unit + ui.values[0] + ' </span>  <span> ' + unit + ui.values[1] + '</span>';
+    //             // var result = label_result + " <span>" + unit + ui.values[0] + ' </span>  <span> ' + unit + ui.values[1] + '</span>';
+    //             t.closest('.price-slider-wrapper').find('.price-slider-amount').html(result);
+    //         }
+    //     });
+    // });
     //----------------Woocommerce plus and minius-------------------------
     $(document).on('click', '.quantity .quantity-plus, .quantity .quantity-minus', function (e) {
         // Get values

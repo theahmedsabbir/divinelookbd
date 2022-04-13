@@ -15,10 +15,4 @@ class FrontendController extends Controller
         $signal_products = count($products) > 0 ? array_chunk( $products, ceil(count($products)/4) ) : [];
         return view('frontend.home.index', compact('signal_products'));
     }
-
-    public function details($id, $slug)
-    {
-        $product = Product::with('category', 'brand', 'images')->find($id);
-        return view('frontend.home.product-details', compact('product'));
-    }
 }
