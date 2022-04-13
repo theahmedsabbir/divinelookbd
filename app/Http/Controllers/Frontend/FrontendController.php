@@ -13,6 +13,7 @@ class FrontendController extends Controller
     {
         $products = Product::with('category', 'brand')->get()->toArray();
         $signal_products = count($products) > 0 ? array_chunk( $products, ceil(count($products)/4) ) : [];
+//        $feature_products = Product::with('category', 'brand')->where('features', 'featured')->get();
         return view('frontend.home.index', compact('signal_products'));
     }
 }

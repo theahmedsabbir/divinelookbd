@@ -20,3 +20,5 @@
 <link rel="stylesheet" href="{{ asset('/frontend/') }}/assets/css/mobile-menu.css">
 <link rel="stylesheet" href="{{ asset('/frontend/') }}/assets/fonts/flaticon/flaticon.css">
 <link rel="stylesheet" href="{{ asset('/frontend/') }}/assets/css/style.css">
+
+<link href="{{ asset('backend/css/toastr.min.css') }}" rel="stylesheet">

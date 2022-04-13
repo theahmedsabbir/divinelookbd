@@ -31,8 +31,8 @@
 
 
     {{-- toastr --}}
-    <script type="text/javascript">    
-    @if (Session::has('Success'))
+    <script type="text/javascript">
+    @if (Session::has('success'))
         toastr.options = {
           "closeButton": true,
           "debug": false,
@@ -49,10 +49,10 @@
           "hideEasing": "linear",
           "showMethod": "fadeIn",
           "hideMethod": "fadeOut"
-        }   
-       toastr.success('{{Session::get('Success')}}');
+        }
+       toastr.success('{{Session::get('success')}}');
     @endif
-    @if (Session::has('Error'))
+    @if (Session::has('error'))
         toastr.options = {
           "closeButton": true,
           "debug": false,
@@ -69,8 +69,8 @@
           "hideEasing": "linear",
           "showMethod": "fadeIn",
           "hideMethod": "fadeOut"
-        }   
-       toastr.error('{{Session::get('Error')}}');
+        }
+       toastr.error('{{Session::get('error')}}');
     @endif
     </script>
 
