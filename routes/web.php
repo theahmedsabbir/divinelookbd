@@ -79,5 +79,6 @@ Route::get('/', [FrontendController::class, 'index']);
 
 // ======================= Frontend Product routes ======================= //
 Route::get('/product/all', [FrontProductController::class, 'all']);
+Route::get('/product/details/{id}/{slug}', [FrontProductController::class, 'details']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

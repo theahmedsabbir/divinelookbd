@@ -15,4 +15,10 @@ class FrontProductController extends Controller
     					->get();
         return view('frontend.product.all', compact('products'));
     }
+
+    public function details($id, $slug)
+    {
+        $product = Product::with('category', 'brand')->find($id);
+        return view('frontend.home.product-details', compact('product'));
+    }
 }

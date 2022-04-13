@@ -339,9 +339,6 @@ input.from:focus{
 	        var value_min = from != '' ? parseInt($('#from').val()) : 0; //slider min
 	        var value_max = to != '' ? parseInt($('#to').val()) : 0; //slider max
 
-	        console.log(value_min)
-	        console.log(value_max)
-
 	        // validations
 	        if(value_min > value_max) return; //stop if min is grater than max
 	        if(value_min < 0 || value_max < 0) return; 
