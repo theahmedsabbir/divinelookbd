@@ -28,18 +28,22 @@
                         <div class="details-product">
                             <div class="details-thumd">
                                 <div class="image-preview-container image-thick-box image_preview_container">
-                                    <img id="img_zoom{{ $product->id }}" data-zoom-image="{{ asset('/product/'.$product->image) }}"
+                                    <img id="img_zoom" data-zoom-image="{{ asset('/product/'.$product->image) }}"
                                          src="{{ asset('/product/'.$product->image) }}" alt="img">
                                     <a href="#" class="btn-zoom open_qv"><i class="fa fa-search" aria-hidden="true"></i></a>
                                 </div>
-
                                 <div class="product-preview image-small product_preview">
                                     <div id="thumbnails" class="thumbnails_carousel owl-carousel" data-nav="true"
                                          data-autoplay="false" data-dots="false" data-loop="false" data-margin="10"
                                          data-responsive='{"0":{"items":3},"480":{"items":3},"600":{"items":3},"1000":{"items":3}}'>
+                                        <a href="#" data-image="{{ asset('/product/'.$product->image) }}"
+                                           data-zoom-image="{{ asset('/product/'.$product->image) }}" class="active">
+                                            <img src="{{ asset('/product/'.$product->image) }}"
+                                                 data-large-image="{{ asset('/product/'.$product->image) }}" alt="img">
+                                        </a>
                                         @foreach($product->images as $image)
-                                            <a href="{{ $image->image }}" data-image="{{ asset('/product/'.$image->image) }}"
-                                               data-zoom-image="{{ asset('/product/'.$image->image) }}" class="active">
+                                            <a href="#" data-image="{{ asset('/product/'.$image->image) }}"
+                                               data-zoom-image="{{ asset('/product/'.$image->image) }}">
                                                 <img src="{{ asset('/product/'.$image->image) }}"
                                                      data-large-image="{{ asset('/product/'.$image->image) }}" alt="img">
                                             </a>
@@ -49,7 +53,7 @@
                             </div>
                             <div class="details-infor">
                                 <h1 class="product-title">
-                                    Glorious Eau
+                                    {{ $product->name ?? '' }}
                                 </h1>
                                 <div class="stars-rating">
                                     <div class="star-rating">
@@ -64,13 +68,11 @@
                                     <a href="#">in Stock</a>
                                 </div>
                                 <div class="price">
-                                    <span>BDT 1000</span>
+                                    <span>BDT {{ $product->price ?? '' }}</span>
                                 </div>
                                 <div class="product-details-description">
                                     <ul>
-                                        <li>Vestibulum tortor quam</li>
-                                        <li>Imported</li>
-                                        <li>Art.No. 06-7680</li>
+                                        <li>{{ $product->short_description ?? '' }}</li>
                                     </ul>
                                 </div>
                                 <div class="variations">

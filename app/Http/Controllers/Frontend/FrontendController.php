@@ -18,7 +18,7 @@ class FrontendController extends Controller
 
     public function details($id, $slug)
     {
-        $product = Product::with('category', 'brand')->find($id);
+        $product = Product::with('category', 'brand', 'images')->find($id);
         return view('frontend.home.product-details', compact('product'));
     }
 }
