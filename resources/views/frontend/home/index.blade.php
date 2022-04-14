@@ -13,9 +13,9 @@
             </div>
             <div class="item item mobile-search-box has-sub">
                 <a href="#">
-						<span class="icon">
-							<i class="fa fa-search" aria-hidden="true"></i>
-						</span>
+                    <span class="icon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
                 </a>
                 <div class="block-sub">
                     <a href="#" class="close">
@@ -223,7 +223,16 @@
                                                                 </div>
                                                                 <a href="{{ url('/product/details/'.$product['id'].'/'.$product['slug']) }}" class="button quick-wiew-button">Quick View</a>
                                                                 <div class="loop-form-add-to-cart">
-                                                                    <button class="single_add_to_cart_button button">Add to cart</button>
+                                                                    <form action="{{ url('/add/to/card') }}" method="post" enctype="multipart/form-data">
+                                                                        @csrf
+                                                                        <input type="hidden" name="product_id" value="{{ $product['id'] }}" />
+                                                                        @if($product['discount_price'])
+                                                                            <input type="hidden" name="discount_price" value="{{ $product['discount_price'] }}" />
+                                                                        @else
+                                                                            <input type="hidden" name="price" value="{{ $product['price'] }}" />
+                                                                        @endif
+                                                                        <button type="submit" class="single_add_to_cart_button button">Add to cart</button>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -337,6 +346,7 @@
                     </h3>
                     <div class="stelina-product style3">
                         <ul class="row list-products auto-clear equal-container product-grid">
+                            @foreach($feature_products as $feature_product)
                             <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-3">
                                 <div class="product-inner equal-element">
                                     <div class="product-thumb">
@@ -344,7 +354,7 @@
                                             <div class="flash">
                                                 <span class="onnew">
                                                     <span class="text">
-                                                        new
+                                                        {{ $feature_product->type }}
                                                     </span>
                                                 </span>
                                             </div>
@@ -356,14 +366,14 @@
                                         </div>
                                         <div class="thumb-inner">
                                             <a href="#" tabindex="0">
-                                                <img src="{{ asset('/frontend/') }}/assets/images/product-item-black-7.jpg" alt="img">
+                                                <img src="{{ asset('/product/'.$feature_product->image) }}" alt="img">
                                             </a>
                                         </div>
                                         <a href="#" class="button quick-wiew-button" tabindex="0">Quick View</a>
                                     </div>
                                     <div class="product-info">
                                         <h5 class="product-name product_title">
-                                            <a href="#" tabindex="0">Suction Return</a>
+                                            <a href="#" tabindex="0">{{ $feature_product->name ?? '' }}</a>
                                         </h5>
                                         <div class="group-info">
                                             <div class="stars-rating">
@@ -375,7 +385,7 @@
                                                 </div>
                                             </div>
                                             <div class="price">
-                                                <span>BDT 375</span>
+                                                <span>BDT {{ $feature_product->price ?? '' }}</span>
                                             </div>
                                         </div>
                                         <div class="group-buttons">
@@ -392,479 +402,11 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="product-item style-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12">
-                                <div class="product-inner equal-element">
-                                    <div class="product-thumb">
-                                        <div class="product-top">
-                                            <div class="flash">
-                                                <span class="onnew">
-                                                    <span class="text">
-                                                        new
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button">
-                                                    <a href="#" tabindex="0">Add to Wishlist</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="thumb-inner">
-                                            <a href="#" tabindex="0">
-                                                <img src="{{ asset('/frontend/') }}/assets/images/product-item-black-2.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <a href="#" class="button quick-wiew-button" tabindex="0">Quick View</a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name product_title">
-                                            <a href="#" tabindex="0">Blowoff Valve Kit</a>
-                                        </h5>
-                                        <div class="group-info">
-                                            <div class="stars-rating">
-                                                <div class="star-rating">
-                                                    <span class="star-3"></span>
-                                                </div>
-                                                <div class="count-star">
-                                                    (3)
-                                                </div>
-                                            </div>
-                                            <div class="price">
-                                                <span>BDT 375</span>
-                                            </div>
-                                        </div>
-                                        <div class="group-buttons">
-                                            <div class="quantity">
-                                                <div class="control">
-                                                    <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                    <input type="text" data-step="1" data-min="0" value="1" title="Qty"
-                                                           class="input-qty qty" size="4">
-                                                    <a href="#" class="btn-number qtyplus quantity-plus">+</a>
-                                                </div>
-                                            </div>
-                                            <button class="add_to_cart_button button" tabindex="0">Shop now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item style-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12">
-                                <div class="product-inner equal-element">
-                                    <div class="product-thumb">
-                                        <div class="product-top">
-                                            <div class="flash">
-                                                <span class="onnew">
-                                                    <span class="text">
-                                                        new
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button">
-                                                    <a href="#" tabindex="0">Add to Wishlist</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="thumb-inner">
-                                            <a href="#" tabindex="0">
-                                                <img src="{{ asset('/frontend/') }}/assets/images/product-item-black-3.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <a href="#" class="button quick-wiew-button" tabindex="0">Quick View</a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name product_title">
-                                            <a href="#" tabindex="0">Attack Stage</a>
-                                        </h5>
-                                        <div class="group-info">
-                                            <div class="stars-rating">
-                                                <div class="star-rating">
-                                                    <span class="star-3"></span>
-                                                </div>
-                                                <div class="count-star">
-                                                    (3)
-                                                </div>
-                                            </div>
-                                            <div class="price">
-                                                <span>BDT 375</span>
-                                            </div>
-                                        </div>
-                                        <div class="group-buttons">
-                                            <div class="quantity">
-                                                <div class="control">
-                                                    <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                    <input type="text" data-step="1" data-min="0" value="1" title="Qty"
-                                                           class="input-qty qty" size="4">
-                                                    <a href="#" class="btn-number qtyplus quantity-plus">+</a>
-                                                </div>
-                                            </div>
-                                            <button class="add_to_cart_button button" tabindex="0">Shop now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-3">
-                                <div class="product-inner equal-element">
-                                    <div class="product-thumb">
-                                        <div class="product-top">
-                                            <div class="flash">
-                                                <span class="onnew">
-                                                    <span class="text">
-                                                        new
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button">
-                                                    <a href="#" tabindex="0">Add to Wishlist</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="thumb-inner">
-                                            <a href="#" tabindex="0">
-                                                <img src="{{ asset('/frontend/') }}/assets/images/product-item-black-4.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <a href="#" class="button quick-wiew-button" tabindex="0">Quick View</a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name product_title">
-                                            <a href="#" tabindex="0">Cold Intake System</a>
-                                        </h5>
-                                        <div class="group-info">
-                                            <div class="stars-rating">
-                                                <div class="star-rating">
-                                                    <span class="star-3"></span>
-                                                </div>
-                                                <div class="count-star">
-                                                    (3)
-                                                </div>
-                                            </div>
-                                            <div class="price">
-                                                <span>BDT 375</span>
-                                            </div>
-                                        </div>
-                                        <div class="group-buttons">
-                                            <div class="quantity">
-                                                <div class="control">
-                                                    <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                    <input type="text" data-step="1" data-min="0" value="1" title="Qty"
-                                                           class="input-qty qty" size="4">
-                                                    <a href="#" class="btn-number qtyplus quantity-plus">+</a>
-                                                </div>
-                                            </div>
-                                            <button class="add_to_cart_button button" tabindex="0">Shop now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item style-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12">
-                                <div class="product-inner equal-element">
-                                    <div class="product-thumb">
-                                        <div class="product-top">
-                                            <div class="flash">
-                                                <span class="onnew">
-                                                    <span class="text">
-                                                        new
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button">
-                                                    <a href="#" tabindex="0">Add to Wishlist</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="thumb-inner">
-                                            <a href="#" tabindex="0">
-                                                <img src="{{ asset('/frontend/') }}/assets/images/product-item-black-5.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <a href="#" class="button quick-wiew-button" tabindex="0">Quick View</a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name product_title">
-                                            <a href="#" tabindex="0">Bottle Melody Eau</a>
-                                        </h5>
-                                        <div class="group-info">
-                                            <div class="stars-rating">
-                                                <div class="star-rating">
-                                                    <span class="star-3"></span>
-                                                </div>
-                                                <div class="count-star">
-                                                    (3)
-                                                </div>
-                                            </div>
-                                            <div class="price">
-                                                <span>BDT 375</span>
-                                            </div>
-                                        </div>
-                                        <div class="group-buttons">
-                                            <div class="quantity">
-                                                <div class="control">
-                                                    <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                    <input type="text" data-step="1" data-min="0" value="1" title="Qty"
-                                                           class="input-qty qty" size="4">
-                                                    <a href="#" class="btn-number qtyplus quantity-plus">+</a>
-                                                </div>
-                                            </div>
-                                            <button class="add_to_cart_button button" tabindex="0">Shop now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="product-item style-3 col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12">
-                                <div class="product-inner equal-element">
-                                    <div class="product-thumb">
-                                        <div class="product-top">
-                                            <div class="flash">
-                                                <span class="onnew">
-                                                    <span class="text">
-                                                        new
-                                                    </span>
-                                                </span>
-                                            </div>
-                                            <div class="yith-wcwl-add-to-wishlist">
-                                                <div class="yith-wcwl-add-button">
-                                                    <a href="#" tabindex="0">Add to Wishlist</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="thumb-inner">
-                                            <a href="#" tabindex="0">
-                                                <img src="{{ asset('/frontend/') }}/assets/images/product-item-black-6.jpg" alt="img">
-                                            </a>
-                                        </div>
-                                        <a href="#" class="button quick-wiew-button" tabindex="0">Quick View</a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-name product_title">
-                                            <a href="#" tabindex="0">Toyota Switchback</a>
-                                        </h5>
-                                        <div class="group-info">
-                                            <div class="stars-rating">
-                                                <div class="star-rating">
-                                                    <span class="star-3"></span>
-                                                </div>
-                                                <div class="count-star">
-                                                    (3)
-                                                </div>
-                                            </div>
-                                            <div class="price">
-                                                <span>BDT 375</span>
-                                            </div>
-                                        </div>
-                                        <div class="group-buttons">
-                                            <div class="quantity">
-                                                <div class="control">
-                                                    <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                    <input type="text" data-step="1" data-min="0" value="1" title="Qty"
-                                                           class="input-qty qty" size="4">
-                                                    <a href="#" class="btn-number qtyplus quantity-plus">+</a>
-                                                </div>
-                                            </div>
-                                            <button class="add_to_cart_button button" tabindex="0">Shop now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
-
-    <!-- ======================= Customer Features ======================== -->
-    <section class="px-0 py-3 br-top">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="d-flex align-items-center justify-content-start py-2">
-                        <div class="d_ico">
-                            <i class="fa fa-shopping-basket"></i>
-                        </div>
-                        <div class="d_capt">
-                            <h5 class="mb-0">Free Shipping</h5>
-                            <span class="text-muted">Capped at $10 per order</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="d-flex align-items-center justify-content-start py-2">
-                        <div class="d_ico">
-                            <i class="fa fa-credit-card"></i>
-                        </div>
-                        <div class="d_capt">
-                            <h5 class="mb-0">Secure Payments</h5>
-                            <span class="text-muted">Up to 6 months installments</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="d-flex align-items-center justify-content-start py-2">
-                        <div class="d_ico">
-                            <i class="fa fa-shield"></i>
-                        </div>
-                        <div class="d_capt">
-                            <h5 class="mb-0">15-Days Returns</h5>
-                            <span class="text-muted">Shop with fully confidence</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="d-flex align-items-center justify-content-start py-2">
-                        <div class="d_ico">
-                            <i class="fa fa-headphones"></i>
-                        </div>
-                        <div class="d_capt">
-                            <h5 class="mb-0">24x7 Fully Support</h5>
-                            <span class="text-muted">Get friendly support</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- ======================= Customer Features ======================== -->
-
-    <div class="instagram-wrapp">
-        <div>
-            <h3 class="custommenu-title-blog">
-                <i class="flaticon-instagram" aria-hidden="true"></i>
-                Instagram Feed
-            </h3>
-            <div class="stelina-instagram">
-                <div class="instagram owl-slick equal-container"
-                     data-slick='{"autoplay":false, "autoplaySpeed":1000, "arrows":false, "dots":false, "infinite":true, "speed":800, "rows":1}'
-                     data-responsive='[{"breakpoint":"2000","settings":{"slidesToShow":8}},{"breakpoint":"1200","settings":{"slidesToShow":4}},{"breakpoint":"992","settings":{"slidesToShow":3}},{"breakpoint":"768","settings":{"slidesToShow":2}},{"breakpoint":"481","settings":{"slidesToShow":2}}]'>
-                    <div class="item-instagram">
-                        <a href="#">
-                            <img src="{{ asset('/frontend/') }}/assets/images/item-instagram-1.jpg" alt="img">
-                        </a>
-                        <span class="text">
-                        <i class="icon flaticon-instagram" aria-hidden="true"></i>
-			        </span>
-                    </div>
-                    <div class="item-instagram">
-                        <a href="#">
-                            <img src="{{ asset('/frontend/') }}/assets/images/item-instagram-2.jpg" alt="img">
-                        </a>
-                        <span class="text">
-                        <i class="icon flaticon-instagram" aria-hidden="true"></i>
-			        </span>
-                    </div>
-                    <div class="item-instagram">
-                        <a href="#">
-                            <img src="{{ asset('/frontend/') }}/assets/images/item-instagram-3.jpg" alt="img">
-                        </a>
-                        <span class="text">
-                        <i class="icon flaticon-instagram" aria-hidden="true"></i>
-			        </span>
-                    </div>
-                    <div class="item-instagram">
-                        <a href="#">
-                            <img src="{{ asset('/frontend/') }}/assets/images/item-instagram-4.jpg" alt="img">
-                        </a>
-                        <span class="text">
-                        <i class="icon flaticon-instagram" aria-hidden="true"></i>
-			        </span>
-                    </div>
-                    <div class="item-instagram">
-                        <a href="#">
-                            <img src="{{ asset('/frontend/') }}/assets/images/item-instagram-5.jpg" alt="img">
-                        </a>
-                        <span class="text">
-                        <i class="icon flaticon-instagram" aria-hidden="true"></i>
-			        </span>
-                    </div>
-                    <div class="item-instagram">
-                        <a href="#">
-                            <img src="{{ asset('/frontend/') }}/assets/images/item-instagram-1.jpg" alt="img">
-                        </a>
-                        <span class="text">
-                        <i class="icon flaticon-instagram" aria-hidden="true"></i>
-                    </span>
-                    </div>        <div class="item-instagram">
-                        <a href="#">
-                            <img src="{{ asset('/frontend/') }}/assets/images/item-instagram-2.jpg" alt="img">
-                        </a>
-                        <span class="text">
-                        <i class="icon flaticon-instagram" aria-hidden="true"></i>
-                    </span>
-                    </div>        <div class="item-instagram">
-                        <a href="#">
-                            <img src="{{ asset('/frontend/') }}/assets/images/item-instagram-3.jpg" alt="img">
-                        </a>
-                        <span class="text">
-                        <i class="icon flaticon-instagram" aria-hidden="true"></i>
-                    </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ======================= Customer Features ======================== -->
-    <section class="px-0 py-3 br-top">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="d-flex align-items-center justify-content-start py-2">
-                        <div class="d_ico">
-                            <i class="fa fa-shopping-basket"></i>
-                        </div>
-                        <div class="d_capt">
-                            <h5 class="mb-0">Free Shipping</h5>
-                            <span class="text-muted">Capped at $10 per order</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="d-flex align-items-center justify-content-start py-2">
-                        <div class="d_ico">
-                            <i class="fa fa-credit-card"></i>
-                        </div>
-                        <div class="d_capt">
-                            <h5 class="mb-0">Secure Payments</h5>
-                            <span class="text-muted">Up to 6 months installments</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="d-flex align-items-center justify-content-start py-2">
-                        <div class="d_ico">
-                            <i class="fa fa-shield"></i>
-                        </div>
-                        <div class="d_capt">
-                            <h5 class="mb-0">15-Days Returns</h5>
-                            <span class="text-muted">Shop with fully confidence</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
-                    <div class="d-flex align-items-center justify-content-start py-2">
-                        <div class="d_ico">
-                            <i class="fa fa-headphones"></i>
-                        </div>
-                        <div class="d_capt">
-                            <h5 class="mb-0">24x7 Fully Support</h5>
-                            <span class="text-muted">Get friendly support</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 @endsection

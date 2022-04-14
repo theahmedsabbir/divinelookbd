@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
+use DB;
 class AdminSeeder extends Seeder
 {
     /**
@@ -12,7 +12,7 @@ class AdminSeeder extends Seeder
      * @return void
      */
     public function run()
-    {      
+    {
         DB::statement("DELETE FROM admins");
         DB::table('admins')->insert([
             'name' => 'Admin',

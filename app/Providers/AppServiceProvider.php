@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use View;
@@ -28,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         View::composer('*', function ($view){
             $view->with('categories', Category::orderBy('created_at', 'desc')->get());
+            $view->with('feature_products', Product::with('category', 'brand')->where('features', 'featured')->get());
         });
     }
 }
