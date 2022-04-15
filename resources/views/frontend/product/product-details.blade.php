@@ -68,7 +68,15 @@
                                     <a href="#">in Stock</a>
                                 </div>
                                 <div class="price">
-                                    <span>BDT {{ $product->price ?? '' }}</span>
+                                    @if($product->discount_price)
+                                        <del style="font-size: 13px;">
+                                            BDT {{ $product->price }}
+                                        </del>
+                                        <span>BDT {{ $product->discount_price ?? '' }}</span>
+                                    @endif
+                                    @if(!$product->discount_price)
+                                            <span>BDT {{ $product->price ?? '' }}</span>
+                                    @endif
                                 </div>
                                 <div class="product-details-description">
                                     <ul>
@@ -113,17 +121,26 @@
 {{--                                                Size Chart</a>--}}
 {{--                                        </div>--}}
 {{--                                    </div>--}}
-                                    <div class="quantity-add-to-cart">
-                                        <div class="quantity">
-                                            <div class="control">
-                                                <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                <input type="text" data-step="1" data-min="0" value="1" title="Qty"
-                                                       class="input-qty qty" size="4">
-                                                <a href="#" class="btn-number qtyplus quantity-plus">+</a>
+                                    <form action="{{ url('/add/to/card') }}" method="post" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="quantity-add-to-cart">
+                                            <div class="quantity">
+                                                <div class="control">
+                                                    <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                                                    <input type="text" data-step="1" data-min="0" value="1" name="qty" title="Qty"
+                                                           class="input-qty qty" size="4">
+                                                    <a href="#" class="btn-number qtyplus quantity-plus">+</a>
+                                                </div>
                                             </div>
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                                            @if($product->discount_price)
+                                                <input type="hidden" name="discount_price" value="{{ $product->discount_price }}" />
+                                            @else
+                                                <input type="hidden" name="price" value="{{ $product->price }}" />
+                                            @endif
+                                            <button class="single_add_to_cart_button button">Add to cart</button>
                                         </div>
-                                        <button class="single_add_to_cart_button button">Add to cart</button>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

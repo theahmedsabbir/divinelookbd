@@ -81,5 +81,6 @@ Route::get('/', [FrontendController::class, 'index']);
 Route::get('/product/all', [FrontProductController::class, 'all']);
 Route::get('/product/details/{id}/{slug}', [FrontProductController::class, 'details']);
 Route::post('/add/to/card', [FrontProductController::class, 'addToCart']);
+Route::get('/cart/product/delete/{id}', [FrontProductController::class, 'deleteCartProduct']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
