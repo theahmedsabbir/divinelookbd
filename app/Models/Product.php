@@ -23,4 +23,9 @@ class Product extends Model
     public function images(){
     	return $this->hasMany(ProductImage::class);
     }
+
+    public function getColorIdsAttribute()
+    {
+        return json_decode($this->colors);
+    }
 }

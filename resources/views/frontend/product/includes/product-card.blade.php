@@ -1,6 +1,7 @@
 
 <li class="product-item product-type-variable col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
     <div class="product-inner equal-element">
+        @if ($product->type)
         <div class="product-top">
             <div class="flash">
 					<span class="onnew">
@@ -10,6 +11,7 @@
 					</span>
             </div>
         </div>
+        @endif
         <div class="product-thumb">
             <div class="thumb-inner">
                 <a href="#">
@@ -31,7 +33,7 @@
         </div>
         <div class="product-info">
             <h5 class="product-name product_title">
-                <a href="#">{{ $product->title }}</a>
+                <a href="#">{{ $product->name }} {{ $product->colors }}</a>
             </h5>
             <div class="group-info">
                 <div class="stars-rating">

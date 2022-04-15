@@ -81,7 +81,7 @@ class RegisterController extends Controller
         $user->save();
 
 
-        return redirect()->back()->with('Success', 'Thank you for registering. Please Login');
+        return redirect()->back()->with('success', 'Thank you for registering. Please Login');
     }
 
 
