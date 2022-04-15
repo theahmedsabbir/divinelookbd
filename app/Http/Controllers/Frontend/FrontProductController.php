@@ -120,4 +120,20 @@ class FrontProductController extends Controller
         $cartProduct->delete();
         return redirect()->back()->withSuccess('Product has been removed form cart.');
     }
+
+    public function shoppingCart()
+    {
+        $cartProducts = Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
+            ->orWhere('ip_address', request()->ip())->get();
+        return view('frontend.product.cart', compact('cartProducts'));
+    }
+
+    public function shoppingCartUpdate(Request $request)
+    {
+        dd($request->all());
+        $cartUpdate = Cart::find($request->product_id);
+        $cartUpdate->qty = $request->qty;
+        $cartUpdate->save();
+        return redirect()->back()->withSuccess('Product qty has been updated.');
+    }
 }

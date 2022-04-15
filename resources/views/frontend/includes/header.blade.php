@@ -131,7 +131,7 @@
                                         </span>
                                     </div>
                                     <div class="actions">
-                                        <a class="button button-viewcart" href="#">
+                                        <a class="button button-viewcart" href="{{ url('/shopping/cart') }}">
                                             <span>View Bag</span>
                                         </a>
                                         <a href="#" class="button button-checkout">
