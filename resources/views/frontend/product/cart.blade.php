@@ -46,7 +46,7 @@
                                         </thead>
                                         <tbody>
                                         @foreach($cartProducts as $cartProduct)
-                                            <input type="text" name="cart_id" value="{{ $cartProduct->id }}" />
+                                            <input type="hidden" name="cart_id" value="{{ $cartProduct->id }}" />
                                         <tr class="cart_item">
                                             <td class="product-remove">
                                                 <a href="#" class="remove"></a>
