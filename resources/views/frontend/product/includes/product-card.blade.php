@@ -33,7 +33,7 @@
         </div>
         <div class="product-info">
             <h5 class="product-name product_title">
-                <a href="#">{{ $product->name }} {{ $product->colors }}</a>
+                <a href="#">{{ $product->name }}</a>
             </h5>
             <div class="group-info">
                 <div class="stars-rating">
