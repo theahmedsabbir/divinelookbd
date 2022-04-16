@@ -222,10 +222,11 @@
                         <ul class="stelina-nav-vertical vertical-menu stelina-clone-mobile-menu">
                             @foreach($categories as $category)
                             <li class="menu-item">
-                                <a href="#" class="stelina-menu-item-title" title="New Arrivals">{{ $category->name ?? '#' }}</a>
+                                <a href="#" class="stelina-menu-item-title" title="New Arrivals">{{ $category->name ?? '#' }}</a> 
                             </li>
                             @endforeach
                         </ul>
+                        
                     </div>
                 </div>
                 <div class="header-nav">
