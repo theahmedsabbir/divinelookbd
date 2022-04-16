@@ -31,78 +31,42 @@
                         </h3>
                         <div class="page-main-content">
                             <div class="shoppingcart-content">
-                                <form action="{{ url('/cart/update') }}" method="POST" class="cart-form">
-                                    @csrf
-                                    <table class="shop_table">
-                                        <thead>
+                                <div class="col-md-12">
+                                    <table class="table">
                                         <tr>
-                                            <th class="product-remove"></th>
-                                            <th class="product-thumbnail"></th>
-                                            <th class="product-name"></th>
-                                            <th class="product-price"></th>
-                                            <th class="product-quantity"></th>
-                                            <th class="product-subtotal"></th>
+                                            <th width="5%">SL</th>
+                                            <th width="15%">Image</th>
+                                            <th>Name</th>
+                                            <th width="15%">Qty</th>
+                                            <th width="10%">Price</th>
+                                            <th width="10%">Total Price</th>
+                                            <th width="10%">Action</th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($cartProducts as $cartProduct)
-                                            <input type="hidden" name="cart_id" value="{{ $cartProduct->id }}" />
-                                        <tr class="cart_item">
-                                            <td class="product-remove">
-                                                <a href="#" class="remove"></a>
-                                            </td>
-                                            <td class="product-thumbnail">
-                                                <a href="#">
-                                                    <img src="{{ asset('/product/'.$cartProduct->products->image) }}" alt="img"
-                                                         class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image">
-                                                </a>
-                                            </td>
-                                            <td class="product-name" data-title="Product">
-                                                <a href="#" class="title">{{ $cartProduct->products->name ?? '' }}</a>
-                                                <span class="attributes-select attributes-color">Black,</span>
-                                                <span class="attributes-select attributes-size">XXL</span>
-                                            </td>
-                                            <td class="product-quantity" data-title="Quantity">
-                                                <div class="quantity">
-                                                    <div class="control">
-                                                        <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                        <input type="text" data-step="1" data-min="0" value="{{ $cartProduct->qty }}" name="qty" title="Qty"
-                                                               class="input-qty qty" size="4">
-                                                        <a href="#" class="btn-number qtyplus quantity-plus">+</a>
-                                                        <input type="submit" name="btn" class="btn btn-sm btn-success" value="Update" />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="product-price" data-title="Price">
-													<span class="woocommerce-Price-amount amount">
-														<span class="woocommerce-Price-currencySymbol">
-															BDT
-														</span>
-														{{ $cartProduct->price }}
-													</span>
-                                            </td>
-                                        </tr>
-                                        @endforeach
                                         <tr>
-                                            <td class="actions">
-                                                <div class="coupon">
-                                                    <label class="coupon_code">Coupon Code:</label>
-                                                    <input type="text" class="input-text" placeholder="Promotion code here">
-                                                    <a href="#" class="button"></a>
-                                                </div>
-                                                <div class="order-total">
-														<span class="title">
-															Total Price:
-														</span>
-                                                    <span class="total-price">
-															$95
-														</span>
-                                                </div>
+                                            <td>SL</td>
+                                            <td>Image</td>
+                                            <td>Name</td>
+                                            <td>
+                                                <form action="" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="input-group">
+                                                                <input type="number" class="form-control" placeholder="qty...">
+                                                                <span class="input-group-btn">
+                                                                    <button class="btn btn-success" type="submit">Go!</button>
+                                                                </span>
+                                                            </div><!-- /input-group -->
+                                                        </div><!-- /.col-lg-6 -->
+                                                    </div><!-- /.row -->
+                                                </form>
                                             </td>
+                                            <td>Price</td>
+                                            <td>Total Price</td>
+                                            <td>Action</td>
                                         </tr>
-                                        </tbody>
                                     </table>
-                                </form>
+                                </div>
                                 <div class="control-cart">
                                     <button class="button btn-continue-shopping">
                                         Continue Shopping

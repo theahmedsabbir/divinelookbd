@@ -126,7 +126,7 @@
                                         <span class="total-title">Subtotal: </span>
                                         <span class="total-price">
                                             <span class="Price-amount">
-                                                BDT {{ $subtotal }}
+                                                BDT {{ $subtotal ?? '00' }}
                                             </span>
                                         </span>
                                     </div>
