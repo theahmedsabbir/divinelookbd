@@ -31,6 +31,26 @@ class FrontProductController extends Controller
 			}
 		}
 
+		
+
+		// search
+		if($request->search){
+			$search = $request->search;
+
+			// name search 
+			$productQuery->where('name', 'LIKE' ,  '%' . $search . '%');
+
+			// category search
+			$productQuery->orWhereHas('category', function($category) use($search){
+			    			$category->where('name', 'LIKE' , '%'. $search . '%');
+			    		});
+
+			// brand search
+			$productQuery->orWhereHas('brand', function($brand) use($search){
+			    			$brand->where('name', 'LIKE' , '%'. $search . '%');
+			    		});
+		}
+
 		// cat_ids
 		if($request->cat_ids && count($request->cat_ids) > 0){
 			$productQuery->whereIn('cat_id', $request->cat_ids);

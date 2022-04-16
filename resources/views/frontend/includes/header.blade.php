@@ -56,17 +56,17 @@
                 </div>
                 <div class="col-lg-7 col-sm-8 col-md-6 col-xs-5 col-ts-12">
                     <div class="block-search-block">
-                        <form class="form-search form-search-width-category">
+                        <form action="{{ url('product/all') }}" class="form-search form-search-width-category">
                             <div class="form-content">
-                                <div class="category">
+{{--                                 <div class="category">
                                     <select title="cate" data-placeholder="All Categories" class="chosen-select" tabindex="1">
                                         @foreach($categories as $category)
                                         <option value="United States">{{ $category->name ?? 'No Category' }}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="inner">
-                                    <input type="text" class="input" name="s" value="" placeholder="Search here">
+                                    <input type="text" class="input" name="search" value="{{ Request::get('search') }}" placeholder="Search here">
                                 </div>
                                 <button class="btn-search" type="submit">
                                     <span class="icon-search"></span>
@@ -119,6 +119,7 @@
                                             @php
                                                 $subtotal = \App\Models\Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
                                                             ->orWhere('ip_address', request()->ip())->sum('price');
+
                                             @endphp
                                         @endforeach
                                     </ul>
@@ -126,7 +127,7 @@
                                         <span class="total-title">Subtotal: </span>
                                         <span class="total-price">
                                             <span class="Price-amount">
-                                                BDT {{ $subtotal }}
+{{--                                                 BDT {{ $subtotal }} --}}
                                             </span>
                                         </span>
                                     </div>
@@ -240,7 +241,7 @@
                                 </ul>
                             </li>
                             <li class="menu-item menu-item-has-children">
-                                <a href="gridproducts_leftsidebar.html" class="stelina-menu-item-title" title="Shop">Shop</a>
+                                <a href="{{ url('product/all') }}" class="stelina-menu-item-title" title="Shop">Shop</a>
                                 <span class="toggle-submenu"></span>
                                 <ul class="submenu">
                                     <li class="menu-item">
@@ -280,7 +281,7 @@
                                                 <h2 class="widgettitle">Product</h2>
                                                 <ul class="menu">
                                                     <li class="menu-item">
-                                                        <a href="productdetails-leftsidebar.html">Product List</a>
+                                                        <a href="{{ url('product/all') }}">Product List</a>
                                                     </li>
                                                 </ul>
                                             </div>

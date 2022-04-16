@@ -164,6 +164,9 @@
                 </ul>
             </div>
         </div>
+        @if (Request::filled('search'))
+        	<input type="hidden" name="search" value="{{ Request::get('search') }}">
+        @endif
         <div class="widget">
             <button type="submit" class="button submit-newsletter">Filter</button>
             <button type="button" 
