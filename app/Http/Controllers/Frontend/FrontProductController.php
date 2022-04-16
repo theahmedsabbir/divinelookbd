@@ -11,7 +11,7 @@ class FrontProductController extends Controller
 {
     public function all(Request $request)
     {
-    	// make query based on request fields 
+    	// make query based on request fields
 		$productQuery = Product::orderBy('id', 'desc');
 
 
@@ -29,7 +29,7 @@ class FrontProductController extends Controller
 			if($request->order_by == "id_desc"){
 				$productQuery = Product::orderBy('id', 'desc');
 			}
-		} 
+		}
 
 		// cat_ids
 		if($request->cat_ids && count($request->cat_ids) > 0){
@@ -37,8 +37,8 @@ class FrontProductController extends Controller
 		}
 
 		// price
-		if(isset($request->min_price) && 
-			isset($request->max_price) && 
+		if(isset($request->min_price) &&
+			isset($request->max_price) &&
 			($request->min_price < $request->max_price)
 		){
 			$productQuery->where('price', '>=', $request->min_price)
@@ -72,7 +72,7 @@ class FrontProductController extends Controller
 		}else{
 			$products = $productQuery->paginate(12);
 		}
-    		
+
         return view('frontend.product.all', compact('products'));
     }
 
@@ -82,7 +82,7 @@ class FrontProductController extends Controller
         $related= Product::where('cat_id', '=', $product->category ? $product->category->id: '')
 		            ->where('id', '!=', $product->id)
 		            ->get();
-        return view('frontend.home.product-details', compact('product', 'related'));
+        return view('frontend.product.product-details', compact('product', 'related'));
     }
 
     //================== Add to cart =====================//
@@ -100,13 +100,40 @@ class FrontProductController extends Controller
         }else{
             $cart->price = $request->price;
         }
-        $cart->qty = 1;
-        if ($request->discount_price){
-            $cart->total_price = 1*$request->discount_price;
+        if ($request->qty){
+            $cart->qty = $request->qty;
         }else{
-            $cart->total_price = 1*$request->price;
+            $cart->qty = 1;
+        }
+        if ($request->discount_price){
+            $cart->total_price = $request->qty ? $request->qty * $request->discount_price : 1*$request->discount_price;
+        }else{
+            $cart->total_price = $request->qty ? $request->qty * $request->price : 1*$request->price;
         }
         $cart->save();
         return redirect()->back()->withSuccess('Product added to cart');
+    }
+
+    public function deleteCartProduct($id)
+    {
+        $cartProduct = Cart::find($id);
+        $cartProduct->delete();
+        return redirect()->back()->withSuccess('Product has been removed form cart.');
+    }
+
+    public function shoppingCart()
+    {
+        $cartProducts = Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
+            ->orWhere('ip_address', request()->ip())->get();
+        return view('frontend.product.cart', compact('cartProducts'));
+    }
+
+    public function shoppingCartUpdate(Request $request)
+    {
+        dd($request->all());
+        $cartUpdate = Cart::find($request->product_id);
+        $cartUpdate->qty = $request->qty;
+        $cartUpdate->save();
+        return redirect()->back()->withSuccess('Product qty has been updated.');
     }
 }

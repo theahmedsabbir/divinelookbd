@@ -32,13 +32,10 @@
                         <span class="pipe">|</span>
                         @if (!Auth::check())
                             <a href="{{ url('/login') }}">Login /Register</a>
-
                         @else
                             <a style="cursor: pointer;" onclick="document.querySelector('#logout').submit()">Log Out</a>
-
                             <form action="{{ url('logout') }}" id="logout" method="POST" class="d-none">
                                 @csrf
-                                
                             </form>
 
                         @endif
@@ -84,117 +81,60 @@
                             <a href="javascript:void(0);" class="shopcart-icon" data-stelina="stelina-dropdown">
                                 Cart
                                 <span class="count">
-										0
-										</span>
+									{{ count($productCount) }}
+								</span>
                             </a>
                             <div class="shopcart-description stelina-submenu">
                                 <div class="content-wrap">
                                     <h3 class="title">Shopping Cart</h3>
                                     <ul class="minicart-items">
-                                        <li class="product-cart mini_cart_item">
-                                            <a href="#" class="product-media">
-                                                <img src="{{ asset('/frontend/') }}/assets/images/item-minicart-1.jpg" alt="img">
-                                            </a>
-                                            <div class="product-details">
-                                                <h5 class="product-name">
-                                                    <a href="#">Bibliotheque</a>
-                                                </h5>
-                                                <div class="variations">
-															<span class="attribute_color">
-																<a href="#">Black</a>
-															</span>
-                                                    ,
-                                                    <span class="attribute_size">
-																<a href="#">300ml</a>
-															</span>
+                                        @foreach($productCount as $product)
+                                            <li class="product-cart mini_cart_item">
+                                                <a href="#" class="product-media">
+                                                    <img src="{{ asset('/product/'.$product->products->image) }}" alt="img">
+                                                </a>
+                                                <div class="product-details">
+                                                    <h5 class="product-name">
+                                                        <a href="#">{{ $product->name ?? '' }}</a>
+                                                    </h5>
+                                                    <div class="variations">
+                                                        <span class="attribute_color">
+                                                            <a href="#">Black</a>
+                                                        </span>
+                                                        <span class="attribute_size">
+                                                            <a href="#">300ml</a>
+                                                        </span>
+                                                    </div>
+                                                    <span class="product-price">
+                                                        <span>BDT {{ $product->price ?? '' }}</span>
+                                                    </span>
+                                                    <span class="product-quantity">
+                                                        ({{ $product->qty ?? '' }})
+                                                    </span>
+                                                    <div class="product-remove">
+                                                        <a href="{{ url('/cart/product/delete/'.$product->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    </div>
                                                 </div>
-                                                <span class="product-price">
-															<span class="price">
-																<span>BDT 45</span>
-															</span>
-														</span>
-                                                <span class="product-quantity">
-															(x1)
-														</span>
-                                                <div class="product-remove">
-                                                    <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="product-cart mini_cart_item">
-                                            <a href="#" class="product-media">
-                                                <img src="{{ asset('/frontend/') }}/assets/images/item-minicart-2.jpg" alt="img">
-                                            </a>
-                                            <div class="product-details">
-                                                <h5 class="product-name">
-                                                    <a href="#">Soap Dining Solutions</a>
-                                                </h5>
-                                                <div class="variations">
-															<span class="attribute_color">
-																<a href="#">Black</a>
-															</span>
-                                                    ,
-                                                    <span class="attribute_size">
-																<a href="#">300ml</a>
-															</span>
-                                                </div>
-                                                <span class="product-price">
-															<span class="price">
-																<span>BDT 45</span>
-															</span>
-														</span>
-                                                <span class="product-quantity">
-															(x1)
-														</span>
-                                                <div class="product-remove">
-                                                    <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="product-cart mini_cart_item">
-                                            <a href="#" class="product-media">
-                                                <img src="{{ asset('/frontend/') }}/assets/images/item-minicart-3.jpg" alt="img">
-                                            </a>
-                                            <div class="product-details">
-                                                <h5 class="product-name">
-                                                    <a href="#">Dining Solutions Soap</a>
-                                                </h5>
-                                                <div class="variations">
-															<span class="attribute_color">
-																<a href="#">Black</a>
-															</span>
-                                                    ,
-                                                    <span class="attribute_size">
-																<a href="#">300ml</a>
-															</span>
-                                                </div>
-                                                <span class="product-price">
-															<span class="price">
-																<span>BDT 45</span>
-															</span>
-														</span>
-                                                <span class="product-quantity">
-															(x1)
-														</span>
-                                                <div class="product-remove">
-                                                    <a href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                            @php
+                                                $subtotal = \App\Models\Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
+                                                            ->orWhere('ip_address', request()->ip())->sum('price');
+                                            @endphp
+                                        @endforeach
                                     </ul>
                                     <div class="subtotal">
                                         <span class="total-title">Subtotal: </span>
                                         <span class="total-price">
-													<span class="Price-amount">
-														BDT 135
-													</span>
-												</span>
+                                            <span class="Price-amount">
+                                                BDT {{ $subtotal }}
+                                            </span>
+                                        </span>
                                     </div>
                                     <div class="actions">
-                                        <a class="button button-viewcart" href="shoppingcart.html">
+                                        <a class="button button-viewcart" href="{{ url('/shopping/cart') }}">
                                             <span>View Bag</span>
                                         </a>
-                                        <a href="checkout.html" class="button button-checkout">
+                                        <a href="#" class="button button-checkout">
                                             <span>Checkout</span>
                                         </a>
                                     </div>

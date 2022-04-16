@@ -365,7 +365,7 @@
                                             </div>
                                         </div>
                                         <div class="thumb-inner">
-                                            <a href="#" tabindex="0">
+                                            <a href="{{ url('/product/details/'.$feature_product->id.'/'.$feature_product->slug) }}" tabindex="0">
                                                 <img src="{{ asset('/product/'.$feature_product->image) }}" alt="img">
                                             </a>
                                         </div>
@@ -373,7 +373,7 @@
                                     </div>
                                     <div class="product-info">
                                         <h5 class="product-name product_title">
-                                            <a href="#" tabindex="0">{{ $feature_product->name ?? '' }}</a>
+                                            <a href="{{ url('/product/details/'.$feature_product->id.'/'.$feature_product->slug) }}" tabindex="0">{{ $feature_product->name ?? '' }}</a>
                                         </h5>
                                         <div class="group-info">
                                             <div class="stars-rating">
@@ -397,7 +397,16 @@
                                                     <a href="#" class="btn-number qtyplus quantity-plus">+</a>
                                                 </div>
                                             </div>
-                                            <button class="add_to_cart_button button" tabindex="0">Shop now</button>
+                                            <form action="{{ url('/add/to/card') }}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $feature_product->id }}" />
+                                                @if($feature_product->discount_price)
+                                                    <input type="hidden" name="discount_price" value="{{ $feature_product->discount_price }}" />
+                                                @else
+                                                    <input type="hidden" name="price" value="{{ $feature_product->price }}" />
+                                                @endif
+                                                <button class="add_to_cart_button button" tabindex="0" type="submit">Shop now</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
