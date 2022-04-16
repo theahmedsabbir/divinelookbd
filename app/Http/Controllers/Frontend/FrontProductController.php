@@ -128,10 +128,10 @@ class FrontProductController extends Controller
         return view('frontend.product.cart', compact('cartProducts'));
     }
 
-    public function shoppingCartUpdate(Request $request)
+    public function shoppingCartUpdate(Request $request, $id)
     {
-        dd($request->all());
-        $cartUpdate = Cart::find($request->product_id);
+        //dd($id);
+        $cartUpdate = Cart::find($id);
         $cartUpdate->qty = $request->qty;
         $cartUpdate->save();
         return redirect()->back()->withSuccess('Product qty has been updated.');

@@ -83,6 +83,6 @@ Route::get('/product/details/{id}/{slug}', [FrontProductController::class, 'deta
 Route::post('/add/to/card', [FrontProductController::class, 'addToCart']);
 Route::get('/cart/product/delete/{id}', [FrontProductController::class, 'deleteCartProduct']);
 Route::get('/shopping/cart', [FrontProductController::class, 'shoppingCart']);
-Route::post('/cart/update', [FrontProductController::class, 'shoppingCartUpdate']);
+Route::post('/cart/update/{id}', [FrontProductController::class, 'shoppingCartUpdate']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
