@@ -80,8 +80,12 @@ Route::get('/', [FrontendController::class, 'index']);
 // ======================= Frontend Product routes ======================= //
 Route::get('/product/all', [FrontProductController::class, 'all']);
 Route::get('/product/details/{id}/{slug}', [FrontProductController::class, 'details']);
-Route::post('/add/to/card', [FrontProductController::class, 'addToCart']);
+Route::get('/product/wishlist/add/{slug}', [FrontProductController::class, 'wishlistAdd']);
+Route::get('/product/wishlist/remove/{slug}', [FrontProductController::class, 'wishlistRemove']);
+Route::get('/product/wishlist', [FrontProductController::class, 'wishlist']);
+
 Route::get('/cart/product/delete/{id}', [FrontProductController::class, 'deleteCartProduct']);
+Route::post('/add/to/card', [FrontProductController::class, 'addToCart']);
 Route::get('/shopping/cart', [FrontProductController::class, 'shoppingCart']);
 Route::post('/cart/update', [FrontProductController::class, 'shoppingCartUpdate']);
 

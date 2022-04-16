@@ -54,7 +54,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-7 col-sm-8 col-md-6 col-xs-5 col-ts-12">
+                <div class="col-lg-6 col-sm-8 col-md-5 col-xs-5 col-ts-12">
                     <div class="block-search-block">
                         <form action="{{ url('product/all') }}" class="form-search form-search-width-category">
                             <div class="form-content">
@@ -75,14 +75,86 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-2 col-sm-12 col-md-3 col-xs-12 col-ts-12">
+                <div class="col-lg-3 col-sm-12 col-md-4 col-xs-12 col-ts-12">
                     <div class="header-control">
+                        <div class="block-minicart stelina-mini-cart block-header stelina-dropdown">
+                            <a href="{{ url('product/wishlist') }}" class="shopcart-icon love-icon" data-stelina="stelina-dropdown">
+                                Wishlist
+                                <span class="count">
+									@if (Auth::check())
+                                        {{ Auth::user()->wishlists->count() }}
+                                    @else
+                                        0
+                                    @endif
+								</span>
+                            </a>
+                            <div class="shopcart-description stelina-submenu">
+                                <div class="content-wrap">
+                                    @if (Auth::check())
+                                        <h3 class="title">Wishlist</h3>
+                                        <ul class="minicart-items">
+                                            @foreach(Auth::user()->wishlists as $wishlist)
+                                                @php
+                                                    $wishlistProduct = $wishlist->product;
+                                                    if($wishlistProduct == null) continue;
+                                                @endphp
+                                                <li class="product-cart mini_cart_item">
+                                                    <a href="#" class="product-media">
+                                                        <img src="{{ asset('/product/'.$wishlistProduct->image) }}" alt="img">
+                                                    </a>
+                                                    <div class="product-details">
+
+                                                        <div class="product-remove">
+                                                            <a 
+                                                                href="{{ url('product/wishlist/remove/' . $wishlistProduct->slug) }}"
+                                                            ><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        </div>
+                                                        <h5 class="product-name">
+                                                            <a href="#">{{ $wishlistProduct->name ?? '' }}</a>
+                                                        </h5>
+
+                                                        <div class="variations text-capitalize">
+                                                            <span class="attribute_size">
+                                                                <a href="#">{{ $wishlistProduct->brand->name ?? '' }}</a>
+                                                            </span>
+                                                        </div>
+                                                        <span class="product-price">
+                                                            <span>BDT {{ $wishlistProduct->price ?? '' }}</span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+{{--                                         <div class="subtotal">
+                                            <span class="total-title">Go to wishlist</span>
+                                        </div> --}}
+                                        <br>
+                                        <div class="actions">
+                                            <a class="button button-viewcart wishlist-login" href="{{ url('product/wishlist') }}">
+                                                <span>Go To Wishlist</span>
+                                            </a>
+                                        </div>                                    
+
+                                    @else
+                                        <h3 class="title">Wishlist</h3>
+                                        <div class="subtotal">
+                                            <span class="total-title">Please login to see your wishlist</span>
+                                        </div>
+                                        <div class="actions">
+                                            <a class="button button-viewcart wishlist-login" href="{{ url('/login') }}">
+                                                <span>Login</span>
+                                            </a>
+                                        </div>     
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                         <div class="block-minicart stelina-mini-cart block-header stelina-dropdown">
                             <a href="javascript:void(0);" class="shopcart-icon" data-stelina="stelina-dropdown">
                                 Cart
                                 <span class="count">
-									{{ count($productCount) }}
-								</span>
+                                    {{ count($productCount) }}
+                                </span>
                             </a>
                             <div class="shopcart-description stelina-submenu">
                                 <div class="content-wrap">
