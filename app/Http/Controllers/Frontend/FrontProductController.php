@@ -11,6 +11,7 @@ class FrontProductController extends Controller
 {
     public function all(Request $request)
     {
+    	// return $request->all();
     	// make query based on request fields
 		$productQuery = Product::orderBy('id', 'desc');
 
@@ -31,7 +32,7 @@ class FrontProductController extends Controller
 			}
 		}
 
-		
+
 
 		// search
 		if($request->search){

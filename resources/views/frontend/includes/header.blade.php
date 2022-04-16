@@ -222,11 +222,20 @@
                         <ul class="stelina-nav-vertical vertical-menu stelina-clone-mobile-menu">
                             @foreach($categories as $category)
                             <li class="menu-item">
-                                <a href="#" class="stelina-menu-item-title" title="New Arrivals">{{ $category->name ?? '#' }}</a> 
+                                <a 
+                                    onclick="document.querySelector('#search' + {{ $category->id }} ).submit()" 
+                                    class="stelina-menu-item-title" title="{{ $category->name ?? '#' }}"
+                                    style="cursor: pointer;" 
+                                >
+                                    {{ $category->name ?? '#' }}
+                                </a> 
+                                <form action="{{ url('product/all') }}" id="search{{ $category->id }}" class="d-none">
+                                    <input type="hidden" name="cat_ids[]" value="{{ $category->id }}">
+                                </form>
                             </li>
                             @endforeach
                         </ul>
-                        
+
                     </div>
                 </div>
                 <div class="header-nav">
