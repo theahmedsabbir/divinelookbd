@@ -30,18 +30,20 @@ input.from:focus{
 label{
     text-transform: capitalize;
 }
+a.wishlist-remove:before {
+	content: "\f014" !important;
+}
 </style>
 @endpush
 
 
 @section('content')
-	
 
 <!----Product list page---->
 
 <div class="main-content main-content-product left-sidebar">
 
-    <form action="{{ url('product/all') }}">
+    <form action="{{ url('product/wishlist') }}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -51,17 +53,17 @@ label{
                                 <a href="index.html">Home</a>
                             </li>
                             <li class="trail-item trail-end active">
-                                List Products
+                                My Wishlist
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="content-area shop-grid-content no-banner col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div class="content-area shop-grid-content no-banner col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="site-main">
                         <h3 class="custom_blog_title">
-                            List Products
+                            My Wishlist
                         </h3>
                         <div class="shop-top-control">
                             <div class="select-item select-form">
@@ -92,6 +94,16 @@ label{
                                             selected
                                         @endif
                                     >6 Products/Page</option>
+                                    <option value="1" 
+                                        @if (Request::get('per_page') == 1) 
+                                            selected
+                                        @endif
+                                    >1 Products/Page</option>
+                                    <option value="2" 
+                                        @if (Request::get('per_page') == 2) 
+                                            selected
+                                        @endif
+                                    >2 Products/Page</option>
                                 </select>
                             </div>
                             <div class="filter-choice select-form">
@@ -124,6 +136,12 @@ label{
                                     >Old Products</option>
                                 </select>
                             </div>
+                            <div class="filter-choice select-form">
+                            	<button style="background-color: #EE1C47" 
+                            		type="submit" 
+                            	>Go</button>
+                                {{-- <span class="title">Filter</span> --}}
+                            </div>
                             {{-- grid mode --}}
     {{--                         <div class="grid-view-mode">
                                 <div class="inner">
@@ -142,16 +160,15 @@ label{
                         </div>
                         <ul class="row list-products auto-clear equal-container product-grid">
                         	@foreach ($products as $product)
-
-                                <li class="product-item product-type-variable col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-1">
-                        		  @include('frontend.product.includes.product-card', ['product' => $product])
-                                </li>
+                        		<li class="product-item  col-lg-3 col-md-4 col-sm-6 col-xs-6 col-ts-12 style-1">
+                        			@include('frontend.product.includes.product-card', ['product' => $product])
+                        		</li>
                         	@endforeach
                         </ul>
                         {{ $products->withQueryString()->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
-                @include('frontend.product.includes.filter', ['products' => $products])
+                {{-- @include('frontend.product.includes.filter', ['products' => $products]) --}}
             </div>
         </div>
     </form>

@@ -5,12 +5,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\RatingWishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontProductController extends Controller
 {
     public function all(Request $request)
     {
+    	// return $request->all();
     	// make query based on request fields
 		$productQuery = Product::orderBy('id', 'desc');
 
@@ -29,6 +32,26 @@ class FrontProductController extends Controller
 			if($request->order_by == "id_desc"){
 				$productQuery = Product::orderBy('id', 'desc');
 			}
+		}
+
+
+
+		// search
+		if($request->search){
+			$search = $request->search;
+
+			// name search 
+			$productQuery->where('name', 'LIKE' ,  '%' . $search . '%');
+
+			// category search
+			$productQuery->orWhereHas('category', function($category) use($search){
+			    			$category->where('name', 'LIKE' , '%'. $search . '%');
+			    		});
+
+			// brand search
+			$productQuery->orWhereHas('brand', function($brand) use($search){
+			    			$brand->where('name', 'LIKE' , '%'. $search . '%');
+			    		});
 		}
 
 		// cat_ids
@@ -83,6 +106,97 @@ class FrontProductController extends Controller
 		            ->where('id', '!=', $product->id)
 		            ->get();
         return view('frontend.product.product-details', compact('product', 'related'));
+    }
+
+    public function wishlistAdd($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+        if(!Auth::check()){ return redirect('/login')->withError('Product Login First'); }
+        if($product == null){ return redirect()->back()->withError('Product not found. Please try again'); }
+        
+        // if product already in wishlist?? return back
+        $thisUserWishlistProduct = Auth::user()->wishlists->where('product_id', $product->id);
+        if(count($thisUserWishlistProduct) > 0){ 
+        	return redirect()->back()->withError('Product already added to wishlist'); 
+        }
+
+        $RatingWishlist = new RatingWishlist;
+
+        $RatingWishlist->user_id = Auth::user()->id;
+        $RatingWishlist->product_id = $product->id;
+        $RatingWishlist->type = 'wishlist';
+        $RatingWishlist->save();
+
+        return redirect()->back()->withSuccess('Product Added To Wishlist');
+    }
+
+    public function wishlistRemove($slug)
+    {
+        $product = Product::where('slug', $slug)->first();
+        if(!Auth::check()){ return redirect('/login')->withError('Product Login First'); }
+        if($product == null){ return redirect()->back()->withError('Product not found. Please try again'); }
+        
+        // if product is not already in wishlist?? return back
+        $thisUserWishlistProduct = Auth::user()->wishlists->where('product_id', $product->id)->first();
+        if($thisUserWishlistProduct == null){ 
+        	return redirect()->back()->withError('Product not found in wishlist'); 
+        }
+        
+        $thisUserWishlistProduct->delete();
+
+        $thisUserWishlist = RatingWishlist::where('user_id', Auth::user()->id)->get();
+        if($thisUserWishlist->count() == 0){
+        	return redirect('product/all')->withSuccess('Product removed from wishlist');
+        }
+
+        return redirect()->back()->withSuccess('Product Removed From Wishlist');
+    }
+
+    public function wishlist(Request $request)
+    {
+        if(!Auth::check()){ return redirect('/login')->withError('Product Login First'); }
+
+        
+        $thisUserWishlist = RatingWishlist::where('user_id', Auth::user()->id)->get();
+        if($thisUserWishlist->count() == 0){
+        	return redirect('product/all')->withError('Your wishlist is empty');
+        }
+
+        $user = Auth::user();
+
+        // return $request->all();
+
+        $productQuery = Product::with('wishlist')
+	        					->whereHas('wishlist', function($wishlist) use($user){
+						        	$wishlist->where('user_id', $user->id);
+						        });	
+
+
+		// order_by
+		if($request->order_by && $request->order_by != 'default'){
+			if($request->order_by == "price_asc"){
+				$productQuery->orderBy('price', 'asc');
+			}
+			if($request->order_by == "price_desc"){
+				$productQuery->orderBy('price', 'desc');
+			}
+			if($request->order_by == "id_asc"){
+				$productQuery->orderBy('id', 'asc');
+			}
+			if($request->order_by == "id_desc"){
+				$productQuery->orderBy('id', 'desc');
+			}
+		}
+
+
+		// per page products
+		if($request->per_page){
+			$products = $productQuery->paginate($request->per_page);
+		}else{
+			$products = $productQuery->paginate(12);
+		}	
+
+        return view('frontend.product.wishlist', compact('products'));
     }
 
     //================== Add to cart =====================//

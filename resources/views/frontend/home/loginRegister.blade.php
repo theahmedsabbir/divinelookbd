@@ -52,10 +52,18 @@
 										<p class="form-row form-row-wide">
 											<label class="text">Email</label>
 											<input title="email" type="email" name="email" class="input-text" required>
+
+											@if ($errors->has('email') && Request::url() == url('/login'))
+												<p class="text-danger text-right text-capitalize">{{ $errors->first('email') }}</p>
+											@endif
 										</p>
 										<p class="form-row form-row-wide">
 											<label class="text">Password</label>
 											<input title="password" type="password" name="password" class="input-text" required>
+
+											@if ($errors->has('password') && Request::url() == url('/login'))
+												<p class="text-danger text-right text-capitalize">{{ $errors->first('password') }}</p>
+											@endif
 										</p>
 										<p class="lost_password">
 											<span class="inline">
@@ -90,7 +98,7 @@
 											<label class="text">Your email</label>
 											<input title="email" type="email" name="email" class="input-text" required>
 
-											@if ($errors->has('email'))
+											@if ($errors->has('email') && Request::url() == url('/register'))
 												<p class="text-danger text-right text-capitalize">{{ $errors->first('email') }}</p>
 											@endif
 										</p>
