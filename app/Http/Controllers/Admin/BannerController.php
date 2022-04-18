@@ -43,6 +43,20 @@ class BannerController extends Controller
         	}
         }
 
+        // validation for mid-banner
+        if ($bannerType == 'mid-banner') {
+        	if (Banner::where('type', 'mid-banner')->count() >= 2) {
+        		return redirect()->back()->withError('You have already uploaded 2 mid banner. Please delete one.');
+        	}
+        }
+
+        // validation for full-banner
+        if ($bannerType == 'full-banner') {
+        	if (Banner::where('type', 'full-banner')->count() >= 1) {
+        		return redirect()->back()->withError('You have already uploaded 1 full banner. Please delete one.');
+        	}
+        }
+
 
         if ($request->file('image')){
             $image = Str::slug($banner->title) . time().'.'. $request->image->extension();
