@@ -10,7 +10,25 @@
           </a><!-- br-menu-link -->
         </li><!-- br-menu-item -->
 
-        <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Manage</label>
+        <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Manage Users</label>
+
+        {{-- user --}}
+        <li class="br-menu-item">
+          <a href="#" class="br-menu-link with-sub {{ Request::is('admin/user*') ? 'show-sub' : ''}}">
+            <i class="menu-item-icon icon ion-android-list tx-24"></i>
+            {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
+            <span class="menu-item-label">Users</span>
+          </a><!-- br-menu-link -->
+          <ul class="br-menu-sub" style="{{ Request::is('admin/user*') ? 'display: block;' : 'display: none;'}}">
+
+            <li class="sub-item">
+              <a href="{{ url('admin/user/index') }}" class="sub-link {{ Request::is('admin/user/index') ? 'active' : ''}}">Manage</a>
+            </li>
+          </ul>
+        </li>
+
+
+        <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Manage Products</label>
 
           {{-- category --}}
           <li class="br-menu-item">
@@ -64,66 +82,77 @@
               </li>
             </ul>
           </li>
+
+          <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Settings</label>
+
+          {{-- banner/slider --}}
           <li class="br-menu-item">
-            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/admin*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-android-person tx-24"></i>
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/slider*') ? 'show-sub' : ''}}">
+              <i class="menu-item-icon icon ion-android-list tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
-              <span class="menu-item-label">Stuff</span>
+              <span class="menu-item-label">Sliders</span>
             </a><!-- br-menu-link -->
-            <ul class="br-menu-sub" style="{{ Request::is('admin/stuff*') ? 'display: block;' : 'display: none;'}}">
+            <ul class="br-menu-sub" style="{{ Request::is('admin/banner/slider*') ? 'display: block;' : 'display: none;'}}">
 
               <li class="sub-item">
-                <a href="{{ url('admin/stuff/index') }}" class="sub-link {{ Request::is('admin/stuff/index') ? 'active' : ''}}">Manage</a>
+                <a href="{{ url('admin/banner/slider/index') }}" class="sub-link {{ Request::is('admin/banner/slider/index') ? 'active' : ''}}">Manage</a>
               </li>
               <li class="sub-item">
-                <a href="{{ url('admin/stuff/create') }}" class="sub-link {{ Request::is('admin/stuff/create') ? 'active' : ''}}">Add</a>
-              </li>
-            </ul>
-          </li>
-          <li class="br-menu-item">
-            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/admin*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-android-person tx-24"></i>
-              {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
-              <span class="menu-item-label">Student</span>
-            </a><!-- br-menu-link -->
-            <ul class="br-menu-sub" style="{{ Request::is('admin/student*') ? 'display: block;' : 'display: none;'}}">
-
-              <li class="sub-item">
-                <a href="{{ url('admin/student/index') }}" class="sub-link {{ Request::is('admin/student/index') ? 'active' : ''}}">Manage</a>
-              </li>
-
-              <li class="sub-item">
-                <a href="{{ url('admin/student/create') }}" class="sub-link {{ Request::is('admin/student/create') ? 'active' : ''}}">Add</a>
-              </li>
-            </ul>
-          </li>
-          <li class="br-menu-item">
-            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/admin*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-compose tx-24"></i>
-              {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
-              <span class="menu-item-label">Post</span>
-            </a><!-- br-menu-link -->
-            <ul class="br-menu-sub" style="{{ Request::is('admin/post*') ? 'display: block;' : 'display: none;'}}">
-
-              <li class="sub-item">
-                <a href="{{ url('admin/post/index') }}" class="sub-link {{ Request::is('admin/post/index') ? 'active' : ''}}">Manage</a>
-              </li>
-              <li class="sub-item">
-                <a href="{{ url('admin/post/create') }}" class="sub-link {{ Request::is('admin/post/create') ? 'active' : ''}}">Add</a>
+                <a href="{{ url('admin/banner/slider/create') }}" class="sub-link {{ Request::is('admin/banner/slider/create') ? 'active' : ''}}">Add</a>
               </li>
             </ul>
           </li>
 
+          {{-- banner/side-banner --}}
           <li class="br-menu-item">
-            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/account*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-ios-list-outline tx-24"></i>
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/side-banner*') ? 'show-sub' : ''}}">
+              <i class="menu-item-icon icon ion-android-list tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
-              <span class="menu-item-label">Accounts</span>
+              <span class="menu-item-label">Side Banners</span>
             </a><!-- br-menu-link -->
-            <ul class="br-menu-sub" style="{{ Request::is('admin/account*') ? 'display: block;' : 'display: none;'}}">
+            <ul class="br-menu-sub" style="{{ Request::is('admin/banner/side-banner*') ? 'display: block;' : 'display: none;'}}">
 
               <li class="sub-item">
-                <a href="{{ url('admin/account/index') }}" class="sub-link {{ Request::is('admin/account/index') ? 'active' : ''}}">Manage</a>
+                <a href="{{ url('admin/banner/side-banner/index') }}" class="sub-link {{ Request::is('admin/banner/side-banner/index') ? 'active' : ''}}">Manage</a>
+              </li>
+              <li class="sub-item">
+                <a href="{{ url('admin/banner/side-banner/create') }}" class="sub-link {{ Request::is('admin/banner/side-banner/create') ? 'active' : ''}}">Add</a>
+              </li>
+            </ul>
+          </li>
+
+          {{-- banner/mid-banner --}}
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/mid-banner*') ? 'show-sub' : ''}}">
+              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
+              <span class="menu-item-label">Mid Banners</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub" style="{{ Request::is('admin/banner/mid-banner*') ? 'display: block;' : 'display: none;'}}">
+
+              <li class="sub-item">
+                <a href="{{ url('admin/banner/mid-banner/index') }}" class="sub-link {{ Request::is('admin/banner/mid-banner/index') ? 'active' : ''}}">Manage</a>
+              </li>
+              <li class="sub-item">
+                <a href="{{ url('admin/banner/mid-banner/create') }}" class="sub-link {{ Request::is('admin/banner/mid-banner/create') ? 'active' : ''}}">Add</a>
+              </li>
+            </ul>
+          </li>
+
+          {{-- banner/full-banner --}}
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/full-banner*') ? 'show-sub' : ''}}">
+              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
+              <span class="menu-item-label">Full Banners</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub" style="{{ Request::is('admin/banner/full-banner*') ? 'display: block;' : 'display: none;'}}">
+
+              <li class="sub-item">
+                <a href="{{ url('admin/banner/full-banner/index') }}" class="sub-link {{ Request::is('admin/banner/full-banner/index') ? 'active' : ''}}">Manage</a>
+              </li>
+              <li class="sub-item">
+                <a href="{{ url('admin/banner/full-banner/create') }}" class="sub-link {{ Request::is('admin/banner/full-banner/create') ? 'active' : ''}}">Add</a>
               </li>
             </ul>
           </li>

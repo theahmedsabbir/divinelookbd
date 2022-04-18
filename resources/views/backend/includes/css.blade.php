@@ -25,7 +25,7 @@
 	#datatable3 th{
 		padding-right: 30px;
 	}
-	label,th{
+	label,th,option{
 		text-transform: capitalize;
 	}
 </style>
