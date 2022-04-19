@@ -33,7 +33,11 @@
                     </div>
                 </div>
 
-                @if ($bannerType != 'side-banner')
+
+                @if (
+                    $bannerType != 'side-banner' &&
+                    $bannerType != 'popup'
+                )
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-12">
@@ -74,6 +78,10 @@
                     </div>
                 </div>
 
+
+                @if (
+                    $bannerType != 'popup' 
+                )
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
@@ -94,6 +102,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <div class="form-group">
                     <div class="row">

@@ -20,13 +20,15 @@
                         <th>#</th>
                         <th>image</th>
 
-                        @if ($bannerType != 'side-banner')
+                        @if ($bannerType != 'side-banner' && $bannerType != 'popup')
                         <th>info</th>
                         @endif
                         <th>title</th>
                         <th>sub title</th>
+                        @if ($bannerType != 'popup')
                         <th>button text</th>
                         <th>link</th>
+                        @endif
                         <th>priority</th>
                         <th>action</th>
                     </tr>
@@ -38,13 +40,15 @@
                             <td>
                                 <img src="{{ asset('banner/' . $banner->image) }}" width="30" alt="">
                             </td>
-                            @if ($bannerType != 'side-banner')
+                            @if ($bannerType != 'side-banner' && $bannerType != 'popup')
                             <td>{{ $banner->info }}</td>
                             @endif
                             <td>{{ $banner->title }}</td>
                             <td>{{ $banner->sub_title }}</td>
+                            @if ($bannerType != 'popup')
                             <td>{{ $banner->button_text }}</td>
                             <td>{{ $banner->link }}</td>
+                            @endif
                             <td>{{ $banner->priority }}</td>
                             <td>
 {{--                                 <a href="{{ url('/admin/banner/'. $bannerType .'/view/'. encrypt($banner->id)) }}" class="btn btn-sm btn-success">View</a> --}}

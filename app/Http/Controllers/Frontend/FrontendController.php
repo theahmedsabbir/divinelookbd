@@ -7,13 +7,26 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class FrontendController extends Controller
 {
     public function index()
     {
+    	// dd(session()->all());
         $products = Product::with('category', 'brand')->get()->toArray();
         $signal_products = count($products) > 0 ? array_chunk( $products, ceil(count($products)/4) ) : [];
         return view('frontend.home.index', compact('signal_products'));
+    }
+    public function modalSetVisibility($value)
+    {
+    	if ($value == $value) {
+    		Session::forget('modal-visibility');
+    		Session::put('modal-visibility', $value);
+    	}
+    	return response()->json([
+    		'value' => $value,
+    		'modal-visibility' => Session::get('modal-visibility')
+    	]);
     }
 }

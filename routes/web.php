@@ -34,7 +34,7 @@ Route::get('cache', function() {
 
 Route::get('/flush', function() {
     session()->flush();
-    return redirect('/');
+    return session()->all();
 });
 
 Route::group(['prefix' => 'admin'], function (){
@@ -92,6 +92,7 @@ Auth::routes();
 
 // ======================= Frontend routes ======================= //
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/modal/set-visibility/{value}', [FrontendController::class, 'modalSetVisibility']);
 
 
 // ======================= Frontend Product routes ======================= //

@@ -75,4 +75,31 @@
     </script>
 
 
+{{-- modal --}}
+<script>
+    @if (
+      Session::get('modal-visibility') == 'off' 
+    )  
+
+    @else
+
+      $(window).on('load',function(){
+          $('#myModal').modal('show');
+      });
+    @endif
+
+    $('#myModal').on('hidden.bs.modal', function () {
+      // set show_popup false in session
+
+
+      fetch('{{ url('/modal/set-visibility/off') }}',
+          {
+              method: 'GET',
+          })
+          .then(data => data.json())
+          .then(response => console.log(response))
+          .catch(error => console.log('Request failed: ' + error.message));
+    });
+
+</script>
 

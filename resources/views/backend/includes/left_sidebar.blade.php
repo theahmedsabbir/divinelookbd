@@ -157,6 +157,24 @@
             </ul>
           </li>
 
+          {{-- banner/popup --}}
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/popup*') ? 'show-sub' : ''}}">
+              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
+              <span class="menu-item-label">Popups</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub" style="{{ Request::is('admin/banner/popup*') ? 'display: block;' : 'display: none;'}}">
+
+              <li class="sub-item">
+                <a href="{{ url('admin/banner/popup/index') }}" class="sub-link {{ Request::is('admin/banner/popup/index') ? 'active' : ''}}">Manage</a>
+              </li>
+              <li class="sub-item">
+                <a href="{{ url('admin/banner/popup/create') }}" class="sub-link {{ Request::is('admin/banner/popup/create') ? 'active' : ''}}">Add</a>
+              </li>
+            </ul>
+          </li>
+
       </ul><!-- br-sideleft-menu -->
       <br>
     </div><!-- br-sideleft -->
