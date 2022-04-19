@@ -222,7 +222,13 @@
                                 <div class="header-user-form-tabs">
                                     <ul class="tab-link">
                                         <li class="active">
-                                            <a data-toggle="tab" aria-expanded="true" href="#header-tab-login">Login</a>
+                                            @if (!Auth::check())                                                    
+                                                <a data-toggle="tab" aria-expanded="true" href="#header-tab-login">Login</a>
+                                            @else
+                                                <img src="{{ asset('users/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" class="img-fluid" style="padding-bottom: 10px;">
+                                                <a data-toggle="tab" aria-expanded="true" href="#header-tab-login">{{ Auth::user()->name }}</a><br>
+                                                <a data-toggle="tab" aria-expanded="true" href="#header-tab-login" style="text-transform: lowercase;">{{ Auth::user()->email }}</a>
+                                            @endif
                                         </li>
 {{--                                         <li>
                                             <a data-toggle="tab" aria-expanded="true" href="#header-tab-rigister">Register</a>
@@ -230,40 +236,55 @@
                                     </ul>
                                     <div class="tab-container">
                                         <div id="header-tab-login" class="tab-panel active">
-                                            <form method="POST" action="{{ url('/login') }}" class="login form-login">
-                                                @csrf
-                                                
-                                                <p class="form-row form-row-wide">
-                                                    <input type="email" type="email" name="email"
-                                                        required placeholder="Email" class="input-text">
+                                            @if (!Auth::check())
+                                                    
+                                                <form method="POST" action="{{ url('/login') }}" class="login form-login">
+                                                    @csrf
+                                                    
+                                                    <p class="form-row form-row-wide">
+                                                        <input type="email" type="email" name="email"
+                                                            required placeholder="Email" class="input-text">
 
-                                                    @if ($errors->has('email'))
-                                                        <p class="text-danger" style="font-size: 14px;">{{ $errors->first('email') }}</p>
-                                                    @endif
-                                                </p>
-                                                <p class="form-row form-row-wide">
-                                                    <input type="password" name="password" class="input-text" placeholder="Password" required>
+                                                        @if ($errors->has('email'))
+                                                            <p class="text-danger" style="font-size: 14px;">{{ $errors->first('email') }}</p>
+                                                        @endif
+                                                    </p>
+                                                    <p class="form-row form-row-wide">
+                                                        <input type="password" name="password" class="input-text" placeholder="Password" required>
 
-                                                    @if ($errors->has('password'))
-                                                        <p class="text-danger" style="font-size: 14px;">{{ $errors->first('password') }}</p>
-                                                    @endif
-                                                </p>
-                                                <p class="form-row">
-                                                    <label class="form-checkbox">
-                                                        <input type="checkbox" class="input-checkbox">
-                                                        <span>
-																	Remember me
-																</span>
-                                                    </label>
-                                                    <input type="submit" class="button" value="Login">
-                                                </p>
-                                                <p class="lost_password">
-                                                    <a href="{{ url('password/reset') }}">Lost your password?</a>
-                                                </p>
-                                                <p class="lost_password">
-                                                    <a href="{{ url('register') }}">Register here</a>
-                                                </p>
-                                            </form>
+                                                        @if ($errors->has('password'))
+                                                            <p class="text-danger" style="font-size: 14px;">{{ $errors->first('password') }}</p>
+                                                        @endif
+                                                    </p>
+                                                    <p class="form-row">
+                                                        <label class="form-checkbox">
+                                                            <input type="checkbox" class="input-checkbox">
+                                                            <span>
+                                                                        Remember me
+                                                                    </span>
+                                                        </label>
+                                                        <input type="submit" class="button" value="Login">
+                                                    </p>
+                                                    <p class="lost_password">
+                                                        <a href="{{ url('password/reset') }}">Lost your password?</a>
+                                                    </p>
+                                                    <p class="lost_password">
+                                                        <a href="{{ url('register') }}" class="">Register here</a>
+                                                    </p>
+                                                </form>
+
+                                            @else
+                                                <div class="actions logged_in_box">
+                                                    <a class="button button-viewcart" href="{{ url('profile') }}">
+                                                        <span>Account</span>
+                                                    </a>
+                                                    <a  onclick="document.querySelector('#logout').submit()" style="cursor: pointer;" class="button button-checkout">
+                                                        <span>Logout</span>
+                                                    </a>
+
+
+                                                </div>
+                                            @endif
                                         </div>
                                         <div id="header-tab-rigister" class="tab-panel">
                                             <form method="post" class="register form-register">

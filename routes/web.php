@@ -94,6 +94,10 @@ Auth::routes();
 Route::get('/', [FrontendController::class, 'index']);
 Route::get('/modal/set-visibility/{value}', [FrontendController::class, 'modalSetVisibility']);
 
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('/profile', [FrontendController::class, 'profile']);
+    Route::post('/profile/update', [FrontendController::class, 'profileUpdate']);
+});
 
 // ======================= Frontend Product routes ======================= //
 Route::get('/product/all', [FrontProductController::class, 'all']);

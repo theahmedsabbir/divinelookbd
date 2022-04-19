@@ -11292,3 +11292,8 @@ li.list-inline-item {
     color: unset !important;
 }
 /*a.button.button-viewcart.wishlist-login:hover {background: #EE1C47 !important;}*/
+.actions.logged_in_box {/* padding-left: 14px; */padding: 13px 18px;}
+
+.actions.logged_in_box a:hover {color: white;}
+
+a.button.button-viewcart a {background: transparent !important;}
