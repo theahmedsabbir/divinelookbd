@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2022 at 04:00 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.7
+-- Generation Time: Apr 19, 2022 at 11:10 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `divinelookbd`
+-- Database: `divinlook`
 --
 
 -- --------------------------------------------------------
@@ -118,15 +118,6 @@ CREATE TABLE `carts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `carts`
---
-
-INSERT INTO `carts` (`id`, `user_id`, `ip_address`, `product_id`, `qty`, `price`, `total_price`, `created_at`, `updated_at`) VALUES
-(2, NULL, '127.0.0.1', 9, 1, 614.00, 614.00, '2022-04-16 08:46:06', '2022-04-16 08:46:06'),
-(3, NULL, '127.0.0.1', 9, 1, 614.00, 614.00, '2022-04-16 08:46:58', '2022-04-16 08:46:58'),
-(4, 1, NULL, 8, 1, 911.00, 911.00, '2022-04-16 11:14:56', '2022-04-16 11:14:56');
 
 -- --------------------------------------------------------
 
@@ -242,6 +233,7 @@ CREATE TABLE `orders` (
   `total_qty` bigint(20) UNSIGNED NOT NULL,
   `total_price` double(8,2) NOT NULL,
   `payment_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `transaction_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -403,6 +395,13 @@ CREATE TABLE `shippings` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `shippings`
+--
+
+INSERT INTO `shippings` (`id`, `user_id`, `address`, `created_at`, `updated_at`) VALUES
+(1, 7, 'Et ut eveniet ducim', '2022-04-19 09:37:55', '2022-04-19 09:37:55');
+
 -- --------------------------------------------------------
 
 --
@@ -443,7 +442,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `avatar`, `name`, `email`, `phone`, `address`, `status`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(6, 'gage-mayer1650292814_.jpg', 'Gage Mayer', 'dygyxe@mailinator.com', '+1 (742) 394-5412', 'Quia autem cupiditat', 0, NULL, '$2y$10$VzwQ2daHC/Gzr5vsyZ2keeAeWT1aHc5aAqXno6IFTJoZiC0ixmqLS', NULL, '2022-04-18 08:40:14', '2022-04-18 08:40:14');
+(6, 'gage-mayer1650292814_.jpg', 'Gage Mayer', 'dygyxe@mailinator.com', '+1 (742) 394-5412', 'Quia autem cupiditat', 0, NULL, '$2y$10$VzwQ2daHC/Gzr5vsyZ2keeAeWT1aHc5aAqXno6IFTJoZiC0ixmqLS', NULL, '2022-04-18 08:40:14', '2022-04-18 08:40:14'),
+(7, 'stone-hood1650382368_.jpg', 'Stone Hood', 'test@info.com', '+1 (597) 799-5072', 'Cillum commodo dicta', 0, NULL, '$2y$10$QMpykrCp.wvH3uktbJsh5OrNutHeGPUO13be/KWvhIxdoC38i1ABW', NULL, '2022-04-19 09:32:48', '2022-04-19 09:32:48');
 
 --
 -- Indexes for dumped tables
@@ -593,7 +593,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -623,13 +623,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -659,7 +659,7 @@ ALTER TABLE `rating_wishlists`
 -- AUTO_INCREMENT for table `shippings`
 --
 ALTER TABLE `shippings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sizes`
@@ -671,7 +671,7 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
