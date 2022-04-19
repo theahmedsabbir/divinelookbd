@@ -42,6 +42,9 @@
                                             <th width="10%">Total Price</th>
                                             <th width="5%">Action</th>
                                         </tr>
+                                        @php
+                                            $sum = 0;
+                                        @endphp
                                         @foreach($cartProducts as $cartProduct)
                                         <tr>
                                             <td>{{ $loop->index+1 }}</td>
@@ -65,13 +68,16 @@
                                                 </form>
                                             </td>
                                             <td>৳ {{ $cartProduct->price }}</td>
-                                            <td>৳ {{ $cartProduct->price*$cartProduct->qty }}</td>
+                                            <td>৳ {{ $total = $cartProduct->price*$cartProduct->qty }}</td>
                                             <td>
-                                                <a href="" class="btn btn-sm btn-danger text-center">
+                                                <a href="{{ url('/cart/product/delete/'.$cartProduct->id) }}" class="btn btn-sm btn-danger text-center">
                                                     <i class="glyphicon glyphicon-trash"></i>
                                                 </a>
                                             </td>
                                         </tr>
+                                            @php
+                                                $sum = $sum+=$total;
+                                            @endphp
                                         @endforeach
                                     </table>
                                     <div class="col-md-12">
@@ -89,7 +95,7 @@
                                                         Total Price:
                                                     </span>
                                                     <span class="total-price">
-															$95
+															৳ {{ number_format($sum,2) ?? '00' }}
 													</span>
                                                 </div>
                                             </div>
@@ -97,12 +103,18 @@
                                     </div>
                                 </div>
                                 <div class="control-cart">
-                                    <button class="button btn-continue-shopping">
+                                    <a href="{{ url('/') }}" class="button btn-continue-shopping">
                                         Continue Shopping
-                                    </button>
-                                    <button class="button btn-cart-to-checkout">
-                                        Checkout
-                                    </button>
+                                    </a>
+                                    @if(auth()->check())
+                                        <a href="{{ url('/shipping') }}" class="button btn-cart-to-checkout">
+                                            Checkout
+                                        </a>
+                                    @else
+                                        <a href="{{ url('/login') }}" class="button btn-cart-to-checkout">
+                                            Checkout
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

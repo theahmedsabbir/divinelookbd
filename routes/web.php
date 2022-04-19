@@ -84,9 +84,14 @@ Route::get('/product/wishlist/add/{slug}', [FrontProductController::class, 'wish
 Route::get('/product/wishlist/remove/{slug}', [FrontProductController::class, 'wishlistRemove']);
 Route::get('/product/wishlist', [FrontProductController::class, 'wishlist']);
 
-Route::get('/cart/product/delete/{id}', [FrontProductController::class, 'deleteCartProduct']);
-Route::post('/add/to/card', [FrontProductController::class, 'addToCart']);
-Route::get('/shopping/cart', [FrontProductController::class, 'shoppingCart']);
-Route::post('/cart/update/{id}', [FrontProductController::class, 'shoppingCartUpdate']);
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('/cart/product/delete/{id}', [FrontProductController::class, 'deleteCartProduct']);
+    Route::post('/add/to/card', [FrontProductController::class, 'addToCart']);
+    Route::get('/shopping/cart', [FrontProductController::class, 'shoppingCart']);
+    Route::post('/cart/update/{id}', [FrontProductController::class, 'shoppingCartUpdate']);
+    Route::get('/shipping', [FrontProductController::class, 'shipping']);
+    Route::post('/shipping/store', [FrontProductController::class, 'shippingStore']);
+    Route::get('/payment', [FrontProductController::class, 'payment']);
+});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
