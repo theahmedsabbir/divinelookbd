@@ -38,7 +38,7 @@
 									<form method="POST" action="{{ url('profile/update') }}" class="register" enctype="multipart/form-data">
 
 										@csrf
-										
+
 
 										<p class="form-row form-row-wide">
 											<label class="text">Your name</label>
@@ -95,8 +95,7 @@
 										<p class="form-row form-row-wide">
 											<label class="text">Your photo</label>
 											<input title="avatar" type="file" name="avatar" class="input-text">
-
-
+                                             <img src="{{ asset('users/'.auth()->user()->avatar) }}" height="100" width="100" />
 											@if ($errors->has('avatar'))
 												<p class="text-danger">{{ $errors->first('avatar') }}</p>
 											@endif

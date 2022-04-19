@@ -207,7 +207,7 @@
                                         <a class="button button-viewcart" href="{{ url('/shopping/cart') }}">
                                             <span>View Bag</span>
                                         </a>
-                                        <a href="#" class="button button-checkout">
+                                        <a href="{{ url('/shipping') }}" class="button button-checkout">
                                             <span>Checkout</span>
                                         </a>
                                     </div>
@@ -222,7 +222,7 @@
                                 <div class="header-user-form-tabs">
                                     <ul class="tab-link">
                                         <li class="active">
-                                            @if (!Auth::check())                                                    
+                                            @if (!Auth::check())
                                                 <a data-toggle="tab" aria-expanded="true" href="#header-tab-login">Login</a>
                                             @else
                                                 <img src="{{ asset('users/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" class="img-fluid" style="padding-bottom: 10px;">
@@ -237,10 +237,10 @@
                                     <div class="tab-container">
                                         <div id="header-tab-login" class="tab-panel active">
                                             @if (!Auth::check())
-                                                    
+
                                                 <form method="POST" action="{{ url('/login') }}" class="login form-login">
                                                     @csrf
-                                                    
+
                                                     <p class="form-row form-row-wide">
                                                         <input type="email" type="email" name="email"
                                                             required placeholder="Email" class="input-text">

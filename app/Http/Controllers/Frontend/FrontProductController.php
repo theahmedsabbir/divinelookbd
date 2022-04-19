@@ -298,11 +298,6 @@ class FrontProductController extends Controller
             $orderDetails->price = $cartProduct->price;
             $orderDetails->save();
         }
-        //============== Empty cart ================//
-        $cartProductsEmpty = Cart::where('user_id', auth()->user()->id)->orWhere('ip_address', request()->ip())->get();
-        foreach ($cartProductsEmpty as $cartEmpty){
-            $cartEmpty->delete();
-        }
 
         return redirect('/complete')->with('success', 'Your order has been completed.');
     }
@@ -310,5 +305,23 @@ class FrontProductController extends Controller
     public function complete()
     {
         return view('frontend.product.complete');
+    }
+
+    public function rating(Request $request)
+    {
+        //============== Empty cart ================//
+        $cartProductsEmpty = Cart::where('user_id', auth()->user()->id)->orWhere('ip_address', request()->ip())->get();
+        foreach ($cartProductsEmpty as $cartEmpty){
+            $rating = new RatingWishlist();
+            $rating->user_id = auth()->check() ? auth()->user()->id : 0;
+            $rating->product_id = $cartEmpty->product_id;
+            $rating->rating = $request->rating;
+            $rating->message = $request->message;
+            $rating->type = 'rating';
+            $rating->save();
+
+            $cartEmpty->delete();
+        }
+        return redirect('/complete')->with('success', 'Your order has been completed.');
     }
 }

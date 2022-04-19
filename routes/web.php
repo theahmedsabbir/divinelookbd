@@ -121,6 +121,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/payment', [FrontProductController::class, 'payment']);
     Route::post('/order', [FrontProductController::class, 'order']);
     Route::get('/complete', [FrontProductController::class, 'complete']);
+    Route::post('/rating', [FrontProductController::class, 'rating'])->middleware('auth');
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
