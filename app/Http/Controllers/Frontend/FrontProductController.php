@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\RatingWishlist;
+use App\Models\Shipping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +41,7 @@ class FrontProductController extends Controller
 		if($request->search){
 			$search = $request->search;
 
-			// name search 
+			// name search
 			$productQuery->where('name', 'LIKE' ,  '%' . $search . '%');
 
 			// category search
@@ -113,11 +114,11 @@ class FrontProductController extends Controller
         $product = Product::where('slug', $slug)->first();
         if(!Auth::check()){ return redirect('/login')->withError('Product Login First'); }
         if($product == null){ return redirect()->back()->withError('Product not found. Please try again'); }
-        
+
         // if product already in wishlist?? return back
         $thisUserWishlistProduct = Auth::user()->wishlists->where('product_id', $product->id);
-        if(count($thisUserWishlistProduct) > 0){ 
-        	return redirect()->back()->withError('Product already added to wishlist'); 
+        if(count($thisUserWishlistProduct) > 0){
+        	return redirect()->back()->withError('Product already added to wishlist');
         }
 
         $RatingWishlist = new RatingWishlist;
@@ -135,13 +136,13 @@ class FrontProductController extends Controller
         $product = Product::where('slug', $slug)->first();
         if(!Auth::check()){ return redirect('/login')->withError('Product Login First'); }
         if($product == null){ return redirect()->back()->withError('Product not found. Please try again'); }
-        
+
         // if product is not already in wishlist?? return back
         $thisUserWishlistProduct = Auth::user()->wishlists->where('product_id', $product->id)->first();
-        if($thisUserWishlistProduct == null){ 
-        	return redirect()->back()->withError('Product not found in wishlist'); 
+        if($thisUserWishlistProduct == null){
+        	return redirect()->back()->withError('Product not found in wishlist');
         }
-        
+
         $thisUserWishlistProduct->delete();
 
         $thisUserWishlist = RatingWishlist::where('user_id', Auth::user()->id)->get();
@@ -156,7 +157,7 @@ class FrontProductController extends Controller
     {
         if(!Auth::check()){ return redirect('/login')->withError('Product Login First'); }
 
-        
+
         $thisUserWishlist = RatingWishlist::where('user_id', Auth::user()->id)->get();
         if($thisUserWishlist->count() == 0){
         	return redirect('product/all')->withError('Your wishlist is empty');
@@ -169,7 +170,7 @@ class FrontProductController extends Controller
         $productQuery = Product::with('wishlist')
 	        					->whereHas('wishlist', function($wishlist) use($user){
 						        	$wishlist->where('user_id', $user->id);
-						        });	
+						        });
 
 
 		// order_by
@@ -194,7 +195,7 @@ class FrontProductController extends Controller
 			$products = $productQuery->paginate($request->per_page);
 		}else{
 			$products = $productQuery->paginate(12);
-		}	
+		}
 
         return view('frontend.product.wishlist', compact('products'));
     }
@@ -249,5 +250,26 @@ class FrontProductController extends Controller
         $cartUpdate->qty = $request->qty;
         $cartUpdate->save();
         return redirect()->back()->withSuccess('Product qty has been updated.');
+    }
+
+    public function shipping()
+    {
+        $cartProducts = Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
+            ->orWhere('ip_address', request()->ip())->get();
+        return view('frontend.product.shipping', compact('cartProducts'));
+    }
+
+    public function shippingStore(Request $request)
+    {
+        $shipping = new Shipping();
+        $shipping->user_id = auth()->user()->id;
+        $shipping->address = $request->address;
+        $shipping->save();
+        return redirect('/payment')->withSuccess('Shipping has been inserted.');
+    }
+
+    public function payment()
+    {
+        return view('frontend.product.payment');
     }
 }
