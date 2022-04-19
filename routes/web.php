@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\FrontProductController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\HomeController;
@@ -32,7 +34,7 @@ Route::get('cache', function() {
 
 Route::get('/flush', function() {
     session()->flush();
-    return redirect('/');
+    return session()->all();
 });
 
 Route::group(['prefix' => 'admin'], function (){
@@ -43,6 +45,13 @@ Route::group(['prefix' => 'admin'], function (){
         // ======================= Admin routes ======================= //
         Route::get('/dashboard', [AdminController::class, 'dashboard']);
         Route::post('/logout', [AdminController::class, 'logout']);
+
+        // ======================= User routes ======================= //
+        Route::get('/user/index', [UserController::class, 'index']);
+        // Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+        // Route::post('/user/update/{id}', [UserController::class, 'update']);
+        Route::get('/user/status/edit/{id}/{status}', [UserController::class, 'statusEdit']);
+        Route::get('/user/delete/{slug}', [UserController::class, 'destroy']);
 
         // ======================= Category routes ======================= //
         Route::get('/category/index', [CategoryController::class, 'index']);
@@ -68,6 +77,14 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('/product/edit/{id}', [ProductController::class, 'edit']);
         Route::post('/product/update/{id}', [ProductController::class, 'update']);
         Route::get('/product/delete/{id}', [ProductController::class, 'destroy']);
+
+        // ======================= Product routes ======================= //
+        Route::get('banner/{bannerType}/index', [BannerController::class, 'index']);
+        Route::get('banner/{bannerType}/create', [BannerController::class, 'create']);
+        Route::post('banner/{bannerType}/store', [BannerController::class, 'store']);
+        Route::get('/banner/{bannerType}/edit/{id}', [BannerController::class, 'edit']);
+        Route::post('/banner/{bannerType}/update/{id}', [BannerController::class, 'update']);
+        Route::get('/banner/{bannerType}/delete/{id}', [BannerController::class, 'destroy']);
     });
 });
 
@@ -75,6 +92,7 @@ Auth::routes();
 
 // ======================= Frontend routes ======================= //
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/modal/set-visibility/{value}', [FrontendController::class, 'modalSetVisibility']);
 
 
 // ======================= Frontend Product routes ======================= //

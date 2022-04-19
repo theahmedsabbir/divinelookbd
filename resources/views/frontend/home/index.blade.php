@@ -90,94 +90,77 @@
                                 <div class="slider-owl owl-slick equal-container nav-center"
                                      data-slick='{"autoplay":true, "autoplaySpeed":9000, "arrows":false, "dots":true, "infinite":true, "speed":1000, "rows":1}'
                                      data-responsive='[{"breakpoint":"2000","settings":{"slidesToShow":1}}]'>
+
+                                    @foreach (App\Models\Banner::where('type', 'slider')
+                                                            ->orderBy('priority', 'asc')
+                                                            ->get()
+                                     as $slider)
+
+                                     {{-- @dd($slider) --}}
+
                                     <div class="slider-item style7">
-                                        <div class="slider-inner equal-element">
+                                        <div class="slider-inner equal-element" 
+                                            style="background-image: url({{ url('banner/' . $slider->image) }})"
+                                        > 
                                             <div class="slider-infor">
                                                 <h5 class="title-small">
-                                                    Sale up to 40% off!
+                                                    {!! $slider->info !!}
                                                 </h5>
                                                 <h3 class="title-big">
-                                                    Spring Summer <br/>Collection
+                                                    {!! $slider->title !!}
                                                 </h3>
                                                 <div class="price">
-                                                    New Price:
-                                                    <span class="number-price">
-														BDT 270.00
-													</span>
+                                                    {!! $slider->sub_title !!}
                                                 </div>
-                                                <a href="#" class="button btn-shop-the-look bgroud-style">Shop now</a>
+                                                <a href="{{ $slider->link }}" class="button btn-shop-the-look bgroud-style">{{ $slider->button_text}}</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="slider-item style8">
-                                        <div class="slider-inner equal-element">
-                                            <div class="slider-infor">
-                                                <h5 class="title-small">
-                                                    Take A perfume
-                                                </h5>
-                                                <h3 class="title-big">
-                                                    Up to 25% Off <br/>order now
-                                                </h3>
-                                                <div class="price">
-                                                    Save Price:
-                                                    <span class="number-price">
-														BDT 170.00
-													</span>
-                                                </div>
-                                                <a href="#" class="button btn-shop-product">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="slider-item style9">
-                                        <div class="slider-inner equal-element">
-                                            <div class="slider-infor">
-                                                <h5 class="title-small">
-                                                    DivineLook Best Collection
-                                                </h5>
-                                                <h3 class="title-big">
-                                                    A range of <br/>perfume
-                                                </h3>
-                                                <div class="price">
-                                                    New Price:
-                                                    <span class="number-price">
-														BDT 250.00
-													</span>
-                                                </div>
-                                                <a href="#" class="button btn-chekout">Shop now</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
+
+                        @php
+                            $sideBanners = App\Models\Banner::where('type', 'side-banner')
+                                                    ->orderBy('priority', 'asc')
+                                                    ->get();
+                        @endphp
+
+                        @if ($sideBanners->count() == 2)
                         <div class="col-lg-4 banner-wrapp">
+
+
+
+                            @foreach ($sideBanners as $key=> $sideBanner)
+
                             <div class="banner">
                                 <div class="item-banner style7">
-                                    <div class="inner">
+                                    <div class="inner"                                        
+                                            style="
+                                                background-image: url({{ url('banner/' . $sideBanner->image) }});
+                                                background-size: cover;
+
+                                            "
+                                    >
                                         <div class="banner-content">
-                                            <h3 class="title">Pick Your <br/>Items</h3>
+                                            <h3 class="title">{!! $sideBanner->title !!}</h3>
                                             <div class="description">
-                                                Adipiscing elit curabitur senectus sem
+                                                {!! $sideBanner->sub_title !!}
                                             </div>
-                                            <a href="#" class="button btn-lets-do-it">Shop now</a>
+                                            @if ($key== 1)
+                                                <br>
+                                            @endif
+                                            <a href="{{ $sideBanner->link }}" class="button btn-lets-do-it">{{ $sideBanner->button_text}}</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="banner">
-                                <div class="item-banner style8">
-                                    <div class="inner">
-                                        <div class="banner-content">
-                                            <h3 class="title">Best Of<br/>Products</h3>
-                                            <div class="description">
-                                                Cras pulvinar loresum dolor conse
-                                            </div>
-                                            <span class="price">BDT 379.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                            @endforeach
+
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -277,68 +260,78 @@
                     </div>
                 </div>
             </div>
+
+
+            @php
+                $midBanners = App\Models\Banner::where('type', 'mid-banner')
+                                        ->orderBy('priority', 'asc')
+                                        ->get();
+            @endphp
+
+            @if ($midBanners->count() == 2)
             <div class="banner-wrapp">
                 <div class="container">
                     <div class="row">
+                        @foreach ($midBanners as $key=> $midBanner)
                         <div class="col-lg-6 col-md-6 col-sm-12">
                             <div class="banner">
                                 <div class="item-banner style4">
-                                    <div class="inner">
+                                    <div class="inner"
+
+                                            style="
+                                                background-image: url({{ url('banner/' . $midBanner->image) }});
+                                                background-size: cover;
+
+                                            "
+                                    >
                                         <div class="banner-content">
-                                            <h4 class="stelina-subtitle">TOP STAFF PICK</h4>
-                                            <h3 class="title">Best Collection</h3>
+                                            <h4 class="stelina-subtitle">{!! $midBanner->info !!}</h4>
+                                            <h3 class="title">{!! $midBanner->title !!}</h3>
                                             <div class="description">
-                                                Proin interdum magna primis id consequat
+                                                {!! $midBanner->sub_title !!}
                                             </div>
-                                            <a href="#" class="button btn-shop-now">Shop now</a>
+                                            <a href="{{ $midBanner->link }}" class="button btn-shop-now">{{ $midBanner->button_text}}</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <div class="banner">
-                                <div class="item-banner style5">
-                                    <div class="inner">
-                                        <div class="banner-content">
-                                            <h3 class="title">Maybe You’ve <br/>Earned it</h3>
-                                            <span class="code">
-												Use code:
-												<span>
-													DIVINELOOK
-												</span>
-												Get 25% Off for all items!
-											</span>
-                                            <a href="#" class="button btn-shop-now">Shop now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
+            @endif
+
+
+            @php
+                $fullBanner = App\Models\Banner::where('type', 'full-banner')
+                                        ->first();
+            @endphp
+
+            @if ($fullBanner)
             <div class="banner-wrapp rows-space-65">
                 <div class="container">
                     <div class="banner">
                         <div class="item-banner style17">
                             <div class="inner">
                                 <div class="banner-content">
-                                    <h3 class="title">Collection Arrived</h3>
+                                    <h3 class="title">{!! $fullBanner->title !!}</h3>
                                     <div class="description">
-                                        You have no items & Are you <br/>ready to use? come & shop with us!
+                                        {!! $fullBanner->info !!}
                                     </div>
                                     <div class="banner-price">
-                                        Price from:
-                                        <span class="number-price">BDT 45.00</span>
+                                        {!! $fullBanner->sub_title !!}
                                     </div>
-                                    <a href="#" class="button btn-shop-now">Shop now</a>
+                                    <a href="{{ $fullBanner->link }}" class="button btn-shop-now">
+                                        {!! $fullBanner->button_text !!}
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endif
             <div class="product-in-stock-wrapp">
                 <div class="container">
                     <h3 class="custommenu-title-blog white">
