@@ -70,7 +70,7 @@
 												<input type="checkbox" id="cb1">
 												<label for="cb1" class="label-text">Remember me</label>
 											</span>
-											<a href="#" class="forgot-pw">Forgot password?</a>
+											<a href="{{ url('password/reset') }}" class="forgot-pw">Forgot password?</a>
 										</p>
 										<p class="form-row">
 											<input type="submit" class="button-submit" value="login">
