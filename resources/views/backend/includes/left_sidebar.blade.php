@@ -83,6 +83,20 @@
             </ul>
           </li>
 
+          <li class="br-menu-item">
+              <a href="#" class="br-menu-link with-sub {{ Request::is('admin/product*') ? 'show-sub' : ''}}">
+                  <i class="menu-item-icon icon ion-android-person tx-24"></i>
+                  {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
+                  <span class="menu-item-label">Order</span>
+              </a><!-- br-menu-link -->
+              <ul class="br-menu-sub" style="{{ Request::is('admin/product*') ? 'display: block;' : 'display: none;'}}">
+
+                  <li class="sub-item">
+                      <a href="{{ url('admin/product/order') }}" class="sub-link {{ Request::is('admin/product/order') ? 'active' : ''}}">Order</a>
+                  </li>
+              </ul>
+          </li>
+
           <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Settings</label>
 
           {{-- banner/slider --}}

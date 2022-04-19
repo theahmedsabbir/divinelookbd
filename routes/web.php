@@ -46,6 +46,11 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('/dashboard', [AdminController::class, 'dashboard']);
         Route::post('/logout', [AdminController::class, 'logout']);
 
+        //============= Product orders ======================//
+        Route::get('/product/order', [AdminController::class, 'orders']);
+        Route::get('/order/view/{id}', [AdminController::class, 'ordersView']);
+        Route::get('/order/delete/{id}', [AdminController::class, 'ordersDelete']);
+
         // ======================= User routes ======================= //
         Route::get('/user/index', [UserController::class, 'index']);
         // Route::get('/user/edit/{id}', [UserController::class, 'edit']);
@@ -110,6 +115,8 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/shipping', [FrontProductController::class, 'shipping']);
     Route::post('/shipping/store', [FrontProductController::class, 'shippingStore']);
     Route::get('/payment', [FrontProductController::class, 'payment']);
+    Route::post('/order', [FrontProductController::class, 'order']);
+    Route::get('/complete', [FrontProductController::class, 'complete']);
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

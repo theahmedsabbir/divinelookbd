@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminLoginRequest;
 use App\Models\Admin;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Session;
 class AdminController extends Controller
@@ -42,5 +44,29 @@ class AdminController extends Controller
     {
         Session()->flush();
         return redirect('admin/login');
+    }
+
+    //============= Orders ===============//
+    public function orders()
+    {
+        $orders = Order::with('orderDetails', 'user')->orderByDesc('created_at')->get();
+        return view('backend.order.index', compact('orders'));
+    }
+
+    public function ordersView($id)
+    {
+        $order = Order::with('orderDetails', 'user')->orderByDesc('created_at')->find($id);
+        return view('backend.order.view', compact('order'));
+    }
+
+    public function ordersDelete($id)
+    {
+        $orderDelete = Order::with('orderDetails')->find($id);
+        foreach ($orderDelete->orderDetails as $order){
+            $order->delete();
+        }
+        $orderDelete->delete();
+
+        return redirect()->back()->with('success', 'Order has been deleted.');
     }
 }

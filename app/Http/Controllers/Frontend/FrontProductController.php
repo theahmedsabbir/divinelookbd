@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\RatingWishlist;
 use App\Models\Shipping;
@@ -270,6 +272,43 @@ class FrontProductController extends Controller
 
     public function payment()
     {
-        return view('frontend.product.payment');
+        $cartProducts = Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
+            ->orWhere('ip_address', request()->ip())->get();
+        return view('frontend.product.payment', compact('cartProducts'));
+    }
+
+    public function order(Request $request)
+    {
+        $cartProducts = Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
+            ->orWhere('ip_address', request()->ip())->get();
+        $newOrder = new Order();
+        $newOrder->user_id = auth()->user()->id;
+        $newOrder->total_qty = $request->total_qty;
+        $newOrder->total_price = $request->total_price;
+        $newOrder->payment_type = 'Cash on delivery';
+        $newOrder->transaction_id = $request->transaction_id;
+        $newOrder->save();
+
+        //=============== Order details ================//
+        foreach ($cartProducts as $cartProduct){
+            $orderDetails = new OrderDetail();
+            $orderDetails->order_id = $newOrder->id;
+            $orderDetails->product_id = $cartProduct->product_id;
+            $orderDetails->qty = $cartProduct->qty;
+            $orderDetails->price = $cartProduct->price;
+            $orderDetails->save();
+        }
+        //============== Empty cart ================//
+        $cartProductsEmpty = Cart::where('user_id', auth()->user()->id)->orWhere('ip_address', request()->ip())->get();
+        foreach ($cartProductsEmpty as $cartEmpty){
+            $cartEmpty->delete();
+        }
+
+        return redirect('/complete')->with('success', 'Your order has been completed.');
+    }
+
+    public function complete()
+    {
+        return view('frontend.product.complete');
     }
 }

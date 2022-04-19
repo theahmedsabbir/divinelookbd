@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('total_qty');
             $table->float('total_price', 8, 2);
             $table->string('payment_type');
+            $table->string('transaction_id');
             $table->timestamps();
         });
     }
