@@ -164,106 +164,39 @@
                     </div>
                 </div>
             </div>
+
+            {{-- product with filter --}}
+            @if ($all_category_products->count() > 0)
             <div class="stelina-tabs  default rows-space-40">
                 <div class="container">
                     <div class="tab-head">
                         <ul class="tab-link">
-                            {{-- @dd($categories) --}}
-                            @foreach($categories as $key => $category)
-                                <li class="">
-                                    <a data-toggle="tab" aria-expanded="true" href="#{{ $key }}">{{ $category->name . ' ' . $category->id ?? '' }}</a>
+                            @foreach ($all_category_products as $key => $all_category_product)
+                                <li class="{{ $key == 0 ? 'active' : '' }}">
+                                    <a data-toggle="tab" aria-expanded="true" href="#{{$all_category_product['category']->slug}}">{{$all_category_product['category']->name}}</a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
-
                     <div class="tab-container">
-                        @foreach($signal_products as $levelOne => $products)
-                                <div id="{{ $levelOne }}" class="tab-panel active">
-                                    <div class="stelina-product">
-                                        <ul class="row list-products auto-clear equal-container product-grid">
-                                        @foreach($products as $levelTwo => $product)
-                                            <li class="product-item  col-lg-3 col-md-4 col-sm-6 col-xs-6 col-ts-12 style-1">
-
-                                                {{-- @dd(collect($product)) --}}
-                                                {{-- @include('frontend.product.includes.product-card', ['product' => collect($product)]) --}}
-                                                <div class="product-inner equal-element">
-                                                    <div class="product-top">
-                                                        <div class="flash">
-                                                            <span class="onnew">
-                                                                <span class="text">
-                                                                    {{ $product['type'] }}
-                                                                </span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-thumb">
-                                                        <div class="thumb-inner">
-                                                            <a href="{{ url('/product/details/'.$product['id'].'/'.$product['slug']) }}">
-                                                                <img src="{{ asset('/product/'.$product['image']) }}" alt="img">
-                                                            </a>
-                                                            <div class="thumb-group">
-                                                                <div class="yith-wcwl-add-to-wishlist">
-                                                                    <div class="yith-wcwl-add-button">
-                                                                        <a href="#">Add to Wishlist</a>
-                                                                    </div>
-                                                                </div>
-                                                                <a href="{{ url('/product/details/'.$product['id'].'/'.$product['slug']) }}" class="button quick-wiew-button">Quick View</a>
-                                                                <div class="loop-form-add-to-cart">
-                                                                    <form action="{{ url('/add/to/card') }}" method="post" enctype="multipart/form-data">
-                                                                        @csrf
-                                                                        <input type="hidden" name="product_id" value="{{ $product['id'] }}" />
-                                                                        @if($product['discount_price'])
-                                                                            <input type="hidden" name="discount_price" value="{{ $product['discount_price'] }}" />
-                                                                        @else
-                                                                            <input type="hidden" name="price" value="{{ $product['price'] }}" />
-                                                                        @endif
-                                                                        <button type="submit" class="single_add_to_cart_button button">Add to cart</button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-info">
-                                                        <h5 class="product-name product_title">
-                                                            <a href="#">{{ $product['name'] . ' ' . $product['cat_id'] }}</a>
-                                                        </h5>
-                                                        <div class="group-info">
-                                                            <div class="stars-rating">
-                                                                <div class="star-rating">
-                                                                    <span class="star-3"></span>
-                                                                </div>
-                                                                <div class="count-star">
-                                                                    (3)
-                                                                </div>
-                                                            </div>
-                                                            <div class="price">
-                                                                @if($product['discount_price'])
-                                                                    <del>
-                                                                        BDT {{ $product['price'] }}
-                                                                    </del>
-                                                                    <ins>
-                                                                        BDT {{ $product['discount_price'] }}
-                                                                    </ins>
-                                                                @endif
-                                                                @if(!$product['discount_price'])
-                                                                    <ins>
-                                                                        BDT {{ $product['price'] }}
-                                                                    </ins>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        @endforeach
-                                        </ul>
-                                    </div>
-                                </div>
+                        @foreach ($all_category_products as $key => $all_category_product)
+                        <div id="{{$all_category_product['category']->slug}}" class="tab-panel {{ $key == 0 ? 'active' : '' }}">
+                            <div class="stelina-product">
+                                <ul class="row list-products auto-clear equal-container product-grid">
+                                    @foreach ($all_category_product['products'] as $current_category_product)
+                                    <li class="product-item  col-lg-3 col-md-4 col-sm-6 col-xs-6 col-ts-12 style-1">
+                                        @include('frontend.product.includes.product-card', ['product' => $current_category_product])
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
                         @endforeach
                     </div>
                 </div>
             </div>
+            @endif
+
 
 
             @php

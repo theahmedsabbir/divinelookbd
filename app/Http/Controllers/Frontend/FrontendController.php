@@ -16,9 +16,36 @@ class FrontendController extends Controller
     public function index()
     {
     	// dd(session()->all());
-        $products = Product::with('category', 'brand')->get()->toArray();
-        $signal_products = count($products) > 0 ? array_chunk( $products, ceil(count($products)/4) ) : [];
-        return view('frontend.home.index', compact('signal_products'));
+        // $products = Product::with('category', 'brand')->get()->toArray();
+        // $signal_products = count($products) > 0 ? array_chunk( $products, ceil(count($products)/4) ) : [];
+
+        // take top 5 categories whose products are most, have at least a single product 
+        $most_product_categories = Category::withCount([
+            'products as count_products', 
+        ])->orderByRaw('count_products desc')
+        ->havingRaw('count_products > 0')
+        ->take(5)
+        ->get();
+
+        // take 8 products from each categories
+        $all_category_products = collect();
+        foreach ($most_product_categories as $key => $most_product_category) {
+            $this_category_products = $most_product_category->products; 
+            if(count($this_category_products) > 0){
+                $current_category_products = collect();
+                foreach ($this_category_products as $this_category_product) {
+                    $current_category_products->push($this_category_product);
+                }
+                $category_products_pair = collect();
+                $category_products_pair->put('category', $most_product_category);
+                $category_products_pair->put('products', $current_category_products);
+                $all_category_products->push($category_products_pair);
+            }
+        }
+
+        // dd($all_category_products);
+
+        return view('frontend.home.index', compact('all_category_products'));
     }
     public function profile()
     {

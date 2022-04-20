@@ -28,8 +28,19 @@
                     </div>
                     {{-- <a href="#" class="button quick-wiew-button">Quick View</a> --}}
                     <div class="loop-form-add-to-cart">
-                        <button class="single_add_to_cart_button button">Add to cart
+                        <button class="single_add_to_cart_button button"
+                            onclick="document.querySelector('#add_to_cart_form{{ $product->id}}').submit()" 
+                        >Add to cart
                         </button>
+                        <form action="{{ url('add/to/card') }}" class="d-none" id="add_to_cart_form{{ $product->id}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            @if($product->discount_price)
+                                <input type="hidden" name="discount_price" value="{{ $product->discount_price }}" />
+                            @else
+                                <input type="hidden" name="price" value="{{ $product->price }}" />
+                            @endif
+                        </form>
                     </div>
                 </div>
             </div>
