@@ -18,7 +18,6 @@ class OrderController extends Controller
         //dd($request->all());
         $updateCart = Cart::where('product_id', $request->product_id)->first();
         if ($updateCart){
-            $updateCart->qty = $updateCart->qty + $request->qty;
             if ($request->discount_price){
                 $updateCart->total_price = $request->discount_price * ($updateCart->qty + $request->qty);
             }else{
@@ -45,12 +44,12 @@ class OrderController extends Controller
             if ($request->qty){
                 $cart->qty = $request->qty;
             }else{
-                $cart->qty = 1;
+                $cart->qty = $request->qty;
             }
             if ($request->discount_price){
-                $cart->total_price = $request->qty ? $request->qty * $request->discount_price : 1*$request->discount_price;
+                $cart->total_price = $request->qty ? $request->qty * $request->discount_price : $request->qty*$request->discount_price;
             }else{
-                $cart->total_price = $request->qty ? $request->qty * $request->price : 1*$request->price;
+                $cart->total_price = $request->qty ? $request->qty * $request->price : $request->qty*$request->price;
             }
             $cart->save();
             return redirect()->back()->withSuccess('Product added to cart');
