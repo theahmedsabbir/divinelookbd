@@ -16,30 +16,45 @@ class OrderController extends Controller
     public function addToCart(Request $request)
     {
         //dd($request->all());
-        $cart = new Cart();
-        if (auth()->check()){
-            $cart->user_id = auth()->user()->id;
+        $updateCart = Cart::where('product_id', $request->product_id)->first();
+        if ($updateCart){
+            $updateCart->qty = $updateCart->qty + $request->qty;
+            if ($request->discount_price){
+                $updateCart->total_price = $request->discount_price * ($updateCart->qty + $request->qty);
+            }else{
+                $updateCart->total_price = $request->price * ($updateCart->qty + $request->qty);
+            }
+            if ($request->qty){
+                $updateCart->qty = $updateCart->qty + $request->qty;
+            }
+            $updateCart->save();
+            return redirect()->back()->withSuccess('Product updated to cart');
         }else{
-            $cart->ip_address = $request->ip();
+            $cart = new Cart();
+            if (auth()->check()){
+                $cart->user_id = auth()->user()->id;
+            }else{
+                $cart->ip_address = $request->ip();
+            }
+            $cart->product_id = $request->product_id;
+            if ($request->discount_price){
+                $cart->price = $request->discount_price;
+            }else{
+                $cart->price = $request->price;
+            }
+            if ($request->qty){
+                $cart->qty = $request->qty;
+            }else{
+                $cart->qty = 1;
+            }
+            if ($request->discount_price){
+                $cart->total_price = $request->qty ? $request->qty * $request->discount_price : 1*$request->discount_price;
+            }else{
+                $cart->total_price = $request->qty ? $request->qty * $request->price : 1*$request->price;
+            }
+            $cart->save();
+            return redirect()->back()->withSuccess('Product added to cart');
         }
-        $cart->product_id = $request->product_id;
-        if ($request->discount_price){
-            $cart->price = $request->discount_price;
-        }else{
-            $cart->price = $request->price;
-        }
-        if ($request->qty){
-            $cart->qty = $request->qty;
-        }else{
-            $cart->qty = 1;
-        }
-        if ($request->discount_price){
-            $cart->total_price = $request->qty ? $request->qty * $request->discount_price : 1*$request->discount_price;
-        }else{
-            $cart->total_price = $request->qty ? $request->qty * $request->price : 1*$request->price;
-        }
-        $cart->save();
-        return redirect()->back()->withSuccess('Product added to cart');
     }
 
     public function deleteCartProduct($id)

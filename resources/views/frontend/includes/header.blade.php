@@ -190,7 +190,7 @@
                                             </li>
                                             @php
                                                 $subtotal = \App\Models\Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
-                                                            ->orWhere('ip_address', request()->ip())->sum('price');
+                                                            ->orWhere('ip_address', request()->ip())->sum('total_price');
 
                                             @endphp
                                         @endforeach

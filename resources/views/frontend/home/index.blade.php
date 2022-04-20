@@ -99,9 +99,9 @@
                                      {{-- @dd($slider) --}}
 
                                     <div class="slider-item style7">
-                                        <div class="slider-inner equal-element" 
+                                        <div class="slider-inner equal-element"
                                             style="background-image: url({{ url('banner/' . $slider->image) }})"
-                                        > 
+                                        >
                                             <div class="slider-infor">
                                                 <h5 class="title-small">
                                                     {!! $slider->info !!}
@@ -136,7 +136,7 @@
 
                             <div class="banner">
                                 <div class="item-banner style7">
-                                    <div class="inner"                                        
+                                    <div class="inner"
                                             style="
                                                 background-image: url({{ url('banner/' . $sideBanner->image) }});
                                                 background-size: cover;
@@ -213,6 +213,7 @@
                                                                     <form action="{{ url('/add/to/card') }}" method="post" enctype="multipart/form-data">
                                                                         @csrf
                                                                         <input type="hidden" name="product_id" value="{{ $product['id'] }}" />
+                                                                        <input type="hidden" name="qty" value="1" />
                                                                         @if($product['discount_price'])
                                                                             <input type="hidden" name="discount_price" value="{{ $product['discount_price'] }}" />
                                                                         @else
