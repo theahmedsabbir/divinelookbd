@@ -49,9 +49,9 @@
                                         <tr>
                                             <td>{{ $loop->index+1 }}</td>
                                             <td>
-                                                <img src="{{ asset('/product/'.$cartProduct->products->image) }}" height="80" width="80" />
+                                                <img src="{{ asset('/product/'.$cartProduct->product->image) }}" height="80" width="80" />
                                             </td>
-                                            <td>{{ $cartProduct->products->name ?? '' }}</td>
+                                            <td>{{ $cartProduct->product->name ?? '' }}</td>
                                             <td>
                                                 <form action="{{ url('/cart/update/'.$cartProduct->id) }}" method="post" enctype="multipart/form-data">
                                                     @csrf

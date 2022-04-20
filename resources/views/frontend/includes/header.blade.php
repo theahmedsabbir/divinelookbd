@@ -160,14 +160,19 @@
                                 <div class="content-wrap">
                                     <h3 class="title">Shopping Cart</h3>
                                     <ul class="minicart-items">
-                                        @foreach($productCount as $product)
+                                        @foreach($productCount as $cart)
                                             <li class="product-cart mini_cart_item">
+                                                @if ($cart->product)
                                                 <a href="#" class="product-media">
-                                                    {{-- <img src="{{ asset('/product/'.$product->products->image) }}" alt="img"> --}}
+                                                    <img src="{{ asset('/product/'.$cart->product->image) }}" alt="img">
                                                 </a>
+                                                @endif
                                                 <div class="product-details">
                                                     <h5 class="product-name">
-                                                        <a href="#">{{ $product->name ?? '' }}</a>
+                                                        <a href="#">{{ $cart->product->name ?? '' }}</a>
+                                                        <div class="product-remove">
+                                                            <a href="{{ url('/cart/product/delete/'.$cart->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                        </div>
                                                     </h5>
                                                     <div class="variations">
                                                         <span class="attribute_color">
@@ -178,14 +183,11 @@
                                                         </span>
                                                     </div>
                                                     <span class="product-price">
-                                                        <span>BDT {{ $product->price ?? '' }}</span>
+                                                        <span>BDT {{ $cart->price ?? '' }}</span>
                                                     </span>
                                                     <span class="product-quantity">
-                                                        ({{ $product->qty ?? '' }})
+                                                        ({{ $cart->qty ?? '' }})
                                                     </span>
-                                                    <div class="product-remove">
-                                                        <a href="{{ url('/cart/product/delete/'.$product->id) }}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                                                    </div>
                                                 </div>
                                             </li>
                                             @php
