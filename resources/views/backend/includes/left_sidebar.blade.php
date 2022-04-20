@@ -1,7 +1,10 @@
 
-    <div class="br-logo"><a href="{{ url('admin/dashboard') }}"><span>[</span><i>DivineLook</i><span>]</span>BD</a></div>
+    <div class="br-logo"><a href="{{ url('admin/dashboard') }}">
+      <img src="{{ asset('/frontend/') }}/assets/images/logo-side.png" alt="img" style="">
+      {{-- <span>[</span><i>DivineLook</i><span>]</span>BD</a> --}}
+    </div>
     <div class="br-sideleft sideleft-scrollbar">
-      <label class="sidebar-label pd-x-10 mg-t-20 op-3">Navigation</label>
+      <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Navigation</label>
       <ul class="br-sideleft-menu">
         <li class="br-menu-item">
           <a href="{{ url('admin/dashboard') }}" class="br-menu-link {{ Request::is('admin/dashboard') ? 'active' : ''}}">
@@ -15,7 +18,7 @@
         {{-- user --}}
         <li class="br-menu-item">
           <a href="#" class="br-menu-link with-sub {{ Request::is('admin/user*') ? 'show-sub' : ''}}">
-            <i class="menu-item-icon icon ion-android-list tx-24"></i>
+            <i class="menu-item-icon icon ion-person-stalker tx-24"></i>
             {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
             <span class="menu-item-label">Users</span>
           </a><!-- br-menu-link -->
@@ -33,7 +36,7 @@
           {{-- category --}}
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub {{ Request::is('admin/category*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              <i class="menu-item-icon icon ion-pound tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
               <span class="menu-item-label">Category</span>
             </a><!-- br-menu-link -->
@@ -51,7 +54,7 @@
           {{-- brand --}}
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub {{ Request::is('admin/brand*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              <i class="menu-item-icon icon ion-star tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
               <span class="menu-item-label">Brand</span>
             </a><!-- br-menu-link -->
@@ -68,7 +71,7 @@
 
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub {{ Request::is('admin/product*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-android-person tx-24"></i>
+              <i class="menu-item-icon icon ion-tshirt-outline tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
               <span class="menu-item-label">Product</span>
             </a><!-- br-menu-link -->
@@ -83,16 +86,20 @@
             </ul>
           </li>
 
+
+
+          <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Manage Orders</label>
+
           <li class="br-menu-item">
-              <a href="#" class="br-menu-link with-sub {{ Request::is('admin/product*') ? 'show-sub' : ''}}">
-                  <i class="menu-item-icon icon ion-android-person tx-24"></i>
+              <a href="#" class="br-menu-link with-sub {{ Request::is('admin/order*') ? 'show-sub' : ''}}">
+                  <i class="menu-item-icon icon ion-ios-cart-outline tx-24"></i>
                   {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
                   <span class="menu-item-label">Order</span>
               </a><!-- br-menu-link -->
-              <ul class="br-menu-sub" style="{{ Request::is('admin/product*') ? 'display: block;' : 'display: none;'}}">
+              <ul class="br-menu-sub" style="{{ Request::is('admin/order*') ? 'display: block;' : 'display: none;'}}">
 
                   <li class="sub-item">
-                      <a href="{{ url('admin/product/order') }}" class="sub-link {{ Request::is('admin/product/order') ? 'active' : ''}}">Order</a>
+                      <a href="{{ url('admin/order/index') }}" class="sub-link {{ Request::is('admin/porder/index') ? 'active' : ''}}">Manage</a>
                   </li>
               </ul>
           </li>
@@ -102,7 +109,7 @@
           {{-- banner/slider --}}
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/slider*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              <i class="menu-item-icon icon ion-navicon-round tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
               <span class="menu-item-label">Sliders</span>
             </a><!-- br-menu-link -->
@@ -120,7 +127,7 @@
           {{-- banner/side-banner --}}
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/side-banner*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              <i class="menu-item-icon icon ion-arrow-right-c tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
               <span class="menu-item-label">Side Banners</span>
             </a><!-- br-menu-link -->
@@ -138,7 +145,7 @@
           {{-- banner/mid-banner --}}
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/mid-banner*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              <i class="menu-item-icon icon ion-arrow-down-c tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
               <span class="menu-item-label">Mid Banners</span>
             </a><!-- br-menu-link -->
@@ -156,7 +163,7 @@
           {{-- banner/full-banner --}}
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/full-banner*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              <i class="menu-item-icon icon ion-arrow-swap tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
               <span class="menu-item-label">Full Banners</span>
             </a><!-- br-menu-link -->
@@ -174,7 +181,7 @@
           {{-- banner/popup --}}
           <li class="br-menu-item">
             <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/popup*') ? 'show-sub' : ''}}">
-              <i class="menu-item-icon icon ion-android-list tx-24"></i>
+              <i class="menu-item-icon icon ion-arrow-expand tx-24"></i>
               {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
               <span class="menu-item-label">Popups</span>
             </a><!-- br-menu-link -->

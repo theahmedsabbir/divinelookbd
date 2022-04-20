@@ -13206,11 +13206,14 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child::
       border-right: 1px solid #ced4da; } }
   .br-logo > a {
     color: #212529;
-    letter-spacing: -0.5px; }
+    letter-spacing: -0.5px; display: block;width: 100%;}
     .br-logo > a i {
       font-style: normal;
       font-weight: 500;
       color: #17A2B8; }
+  .br-logo > a > img{
+    
+  width: 98%;}
     .br-logo > a span {
       font-weight: 300;
       color: #1CAF9A;

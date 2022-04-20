@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\FrontProductController;
@@ -47,15 +48,14 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('/dashboard', [AdminController::class, 'dashboard']);
         Route::post('/logout', [AdminController::class, 'logout']);
 
-        //============= Product orders ======================//
-        Route::get('/product/order', [AdminController::class, 'orders']);
-        Route::get('/order/view/{id}', [AdminController::class, 'ordersView']);
-        Route::get('/order/delete/{id}', [AdminController::class, 'ordersDelete']);
+        //=============  orders ======================//
+
+        Route::get('/order/index', [OrderController::class, 'index']);
+        Route::get('/order/view/{id}', [OrderController::class, 'view']);
+        Route::get('/order/delete/{id}', [OrderController::class, 'delete']);
 
         // ======================= User routes ======================= //
         Route::get('/user/index', [UserController::class, 'index']);
-        // Route::get('/user/edit/{id}', [UserController::class, 'edit']);
-        // Route::post('/user/update/{id}', [UserController::class, 'update']);
         Route::get('/user/status/edit/{id}/{status}', [UserController::class, 'statusEdit']);
         Route::get('/user/delete/{slug}', [UserController::class, 'destroy']);
 

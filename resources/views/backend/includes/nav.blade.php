@@ -1,3 +1,8 @@
+
+@php
+  $admin = Session::get('admin');
+@endphp
+
 <div class="br-header">
       <div class="br-header-left">
         <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href=""><i class="icon ion-navicon-round"></i></a></div>
@@ -14,10 +19,9 @@
             <div class="dropdown-menu dropdown-menu-header wd-250">
               <div class="tx-center">
                 <a href=""><img src="{{ url('backend/images/admin.png') }}" class="wd-80 rounded-circle" alt=""></a>
-                <h6 class="logged-fullname">{{ isset($admin) ? $admin->name : 'Admin'}}</h6>
-                <p>{{ isset($admin) ? $admin->email : ''}}</p>
+                <h6 class="logged-fullname">{{ $admin->name ?? 'Admin'}}</h6>
+                <p>{{ $admin->email ?? 'Admin'}}</p>
               </div>
-              <hr>
               <hr>
               <ul class="list-unstyled user-profile-nav">
                 <li><a href="{{ url('/') }}"><i class="icon ion-ios-folder"></i> Go to Website</a></li>
