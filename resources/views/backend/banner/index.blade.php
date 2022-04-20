@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="br-pagetitle">
-        <i class="icon ion-android-list"></i>
+        <i class="icon ion-navicon-round"></i>
         <div>
             <h4 class="text-capitalize">Manage {{ $bannerType }}s</h4>
             <p class="mg-b-0">

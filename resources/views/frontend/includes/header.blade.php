@@ -163,7 +163,7 @@
                                         @foreach($productCount as $product)
                                             <li class="product-cart mini_cart_item">
                                                 <a href="#" class="product-media">
-                                                    <img src="{{ asset('/product/'.$product->products->image) }}" alt="img">
+                                                    {{-- <img src="{{ asset('/product/'.$product->products->image) }}" alt="img"> --}}
                                                 </a>
                                                 <div class="product-details">
                                                     <h5 class="product-name">

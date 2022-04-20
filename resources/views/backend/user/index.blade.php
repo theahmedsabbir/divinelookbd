@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="br-pagetitle">
-        <i class="icon ion-android-list"></i>
+        <i class="icon ion-person-stalker"></i>
         <div>
             <h4>Manage User</h4>
             <p class="mg-b-0">

@@ -31,6 +31,7 @@ class AdminController extends Controller
             if (password_verify($request->password, $admin->password)){
                 Session::put('admin_id', $admin->id);
                 Session::put('admin_name', $admin->name);
+                Session::put('admin', $admin);
                 return redirect('/admin/dashboard');
             }else{
                 return redirect()->back()->with('error', 'Password dose not match');

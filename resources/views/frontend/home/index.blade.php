@@ -168,9 +168,10 @@
                 <div class="container">
                     <div class="tab-head">
                         <ul class="tab-link">
+                            {{-- @dd($categories) --}}
                             @foreach($categories as $key => $category)
                                 <li class="">
-                                    <a data-toggle="tab" aria-expanded="true" href="#{{ $key }}">{{ $category->name ?? '' }}</a>
+                                    <a data-toggle="tab" aria-expanded="true" href="#{{ $key }}">{{ $category->name . ' ' . $category->id ?? '' }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -183,6 +184,9 @@
                                         <ul class="row list-products auto-clear equal-container product-grid">
                                         @foreach($products as $levelTwo => $product)
                                             <li class="product-item  col-lg-3 col-md-4 col-sm-6 col-xs-6 col-ts-12 style-1">
+
+                                                {{-- @dd(collect($product)) --}}
+                                                {{-- @include('frontend.product.includes.product-card', ['product' => collect($product)]) --}}
                                                 <div class="product-inner equal-element">
                                                     <div class="product-top">
                                                         <div class="flash">
@@ -222,7 +226,7 @@
                                                     </div>
                                                     <div class="product-info">
                                                         <h5 class="product-name product_title">
-                                                            <a href="#">{{ $product['name'] }}</a>
+                                                            <a href="#">{{ $product['name'] . ' ' . $product['cat_id'] }}</a>
                                                         </h5>
                                                         <div class="group-info">
                                                             <div class="stars-rating">

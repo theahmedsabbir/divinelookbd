@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="br-pagetitle">
-        <i class="icon ion-android-list"></i>
+        <i class="icon ion-tshirt-outline"></i>
         <div>
             <h4>Manage Products</h4>
             <p class="mg-b-0">
