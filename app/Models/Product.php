@@ -30,6 +30,11 @@ class Product extends Model
                     ->where('type', 'wishlist');
     }
 
+    public function rating(){
+        return $this->hasMany(RatingWishlist::class, 'product_id')
+            ->where('type', 'rating');
+    }
+
     public function getColorIdsAttribute()
     {
         return json_decode($this->colors);

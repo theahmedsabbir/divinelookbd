@@ -52,11 +52,22 @@
             </h5>
             <div class="group-info">
                 <div class="stars-rating">
+                    @php
+                        $sum = 0;
+                        $ratings = \App\Models\RatingWishlist::with('product')->where('product_id', $product->id)->where('type', 'rating')->get();
+                        foreach ($ratings as $rating){
+                            $sum += ceil($rating->rating/count($ratings));
+                        }
+                    @endphp
                     <div class="star-rating">
-                        <span class="star-3"></span>
+                        @if($sum > 0)
+                        <span class="star-{{ $sum }}"></span>
+                        @else
+                            <span class="star-1"></span>
+                        @endif
                     </div>
                     <div class="count-star">
-                        (3)
+                        ({{ count($ratings) }})
                     </div>
                 </div>
                 <div class="price">
