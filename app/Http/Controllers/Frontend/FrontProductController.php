@@ -205,6 +205,7 @@ class FrontProductController extends Controller
     //================== Add to cart =====================//
     public function addToCart(Request $request)
     {
+        //dd($request->all());
         $cart = new Cart();
         if (auth()->check()){
             $cart->user_id = auth()->user()->id;
