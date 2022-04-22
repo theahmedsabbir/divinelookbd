@@ -53,7 +53,7 @@
                                             <li class="product-item-order">
                                                 <div class="product-thumb">
                                                     <a href="#">
-                                                        <img src="{{ asset('/product/'.$cartProduct->products->image) }}" alt="img">
+                                                        <img src="{{ asset('/product/'.$cartProduct->products->image ?? '') }}" alt="img">
                                                     </a>
                                                 </div>
                                                 <div class="product-order-inner">

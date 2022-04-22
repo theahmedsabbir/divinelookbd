@@ -32,7 +32,7 @@
                         <div class="page-main-content">
                             <div class="shoppingcart-content">
                                 <div class="col-md-12">
-                                    <table class="table">
+                                    <table class="table table-responsive">
                                         <tr style="background-color: #1D043E">
                                             <th width="5%">SL</th>
                                             <th width="15%">Image</th>
