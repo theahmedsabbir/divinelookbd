@@ -36,45 +36,4 @@ class OrderController extends Controller
 
         return redirect()->back()->with('success', 'Order has been deleted.');
     }
-
-    //============= Social login ====================//
-    public function redirectToGoogle()
-    {
-        return Socialite::driver('google')->redirect();
-    }
-
-    public function handleGoogleCallback()
-    {
-        try {
-
-            $user = Socialite::driver('google')->user();
-
-            $finduser = User::where('google_id', $user->id)->first();
-
-            if($finduser){
-
-                Auth::login($finduser);
-
-                return redirect()->intended('/');
-
-            }else{
-                $newUser = User::create([
-                    'google_id'=> $user->getId(),
-                    'avatar' => $user->getAvatar(),
-                    'name' => $user->getName(),
-                    'email' => $user->getEmail(),
-                    'phone' => '01738780232',
-                    'address' => 'Gulshan Dhaka Bangladesh',
-                    'password' => bcrypt('12345678'),
-                ]);
-
-                Auth::login($newUser);
-
-                return redirect()->intended('/');
-            }
-
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
-    }
 }

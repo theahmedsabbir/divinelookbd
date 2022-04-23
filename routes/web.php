@@ -112,21 +112,21 @@ Route::get('/product/wishlist/remove/{slug}', [FrontProductController::class, 'w
 Route::get('/product/wishlist', [FrontProductController::class, 'wishlist']);
 
 //=========== Add to cart ==============//
-Route::post('/add/to/card', [OrderController::class, 'addToCart']);
+Route::post('/add/to/card', [\App\Http\Controllers\Frontend\OrderController::class, 'addToCart']);
 Route::post('/cart/update/{id}', [FrontProductController::class, 'shoppingCartUpdate']);
-Route::get('/cart/product/delete/{id}', [OrderController::class, 'deleteCartProduct']);
-Route::get('/shopping/cart', [OrderController::class, 'shoppingCart']);
+Route::get('/cart/product/delete/{id}', [\App\Http\Controllers\Frontend\OrderController::class, 'deleteCartProduct']);
+Route::get('/shopping/cart', [\App\Http\Controllers\Frontend\OrderController::class, 'shoppingCart']);
 
 Route::group(['middleware' => 'auth'], function (){
-    Route::get('/shipping', [OrderController::class, 'shipping']);
-    Route::post('/shipping/store', [OrderController::class, 'shippingStore']);
-    Route::get('/payment', [OrderController::class, 'payment']);
-    Route::post('/order', [OrderController::class, 'order']);
-    Route::get('/complete', [OrderController::class, 'complete']);
-    Route::post('/rating', [OrderController::class, 'rating'])->middleware('auth');
+    Route::get('/shipping', [\App\Http\Controllers\Frontend\OrderController::class, 'shipping']);
+    Route::post('/shipping/store', [\App\Http\Controllers\Frontend\OrderController::class, 'shippingStore']);
+    Route::get('/payment', [\App\Http\Controllers\Frontend\OrderController::class, 'payment']);
+    Route::post('/order', [\App\Http\Controllers\Frontend\OrderController::class, 'order']);
+    Route::get('/complete', [\App\Http\Controllers\Frontend\OrderController::class, 'complete']);
+    Route::post('/rating', [\App\Http\Controllers\Frontend\OrderController::class, 'rating'])->middleware('auth');
 });
 
-Route::get('auth/google', [OrderController::class, 'redirectToGoogle']);
-Route::get('auth/google/callback', [OrderController::class, 'handleGoogleCallback']);
+Route::get('auth/google', [\App\Http\Controllers\Frontend\OrderController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [\App\Http\Controllers\Frontend\OrderController::class, 'handleGoogleCallback']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

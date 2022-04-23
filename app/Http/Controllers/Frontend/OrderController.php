@@ -8,7 +8,10 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\RatingWishlist;
 use App\Models\Shipping;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class OrderController extends Controller
 {
@@ -148,5 +151,46 @@ class OrderController extends Controller
             $cartEmpty->delete();
         }
         return redirect('/complete')->with('success', 'Your order has been completed.');
+    }
+
+    //============= Social login ====================//
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        try {
+
+            $user = Socialite::driver('google')->user();
+
+            $finduser = User::where('google_id', $user->id)->first();
+
+            if($finduser){
+
+                Auth::login($finduser);
+
+                return redirect()->intended('/');
+
+            }else{
+                $newUser = User::create([
+                    'google_id'=> $user->getId(),
+                    'avatar' => $user->getAvatar(),
+                    'name' => $user->getName(),
+                    'email' => $user->getEmail(),
+                    'phone' => '01738780232',
+                    'address' => 'Gulshan Dhaka Bangladesh',
+                    'password' => bcrypt('12345678'),
+                ]);
+
+                Auth::login($newUser);
+
+                return redirect()->intended('/');
+            }
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 }
