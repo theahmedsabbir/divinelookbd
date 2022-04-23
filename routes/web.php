@@ -126,4 +126,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/rating', [OrderController::class, 'rating'])->middleware('auth');
 });
 
+Route::get('auth/google', [OrderController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [OrderController::class, 'handleGoogleCallback']);
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
