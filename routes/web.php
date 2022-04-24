@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Frontend\FrontOrderController;
 use App\Http\Controllers\Frontend\FrontProductController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\HomeController;
@@ -112,21 +113,22 @@ Route::get('/product/wishlist/remove/{slug}', [FrontProductController::class, 'w
 Route::get('/product/wishlist', [FrontProductController::class, 'wishlist']);
 
 //=========== Add to cart ==============//
-Route::post('/add/to/card', [\App\Http\Controllers\Frontend\OrderController::class, 'addToCart']);
+Route::post('/add/to/card', [FrontOrderController::class, 'addToCart']);
+Route::get('order/add-to-cart/{id}', [FrontOrderController::class, 'addToCartGet']);
 Route::post('/cart/update/{id}', [FrontProductController::class, 'shoppingCartUpdate']);
-Route::get('/cart/product/delete/{id}', [\App\Http\Controllers\Frontend\OrderController::class, 'deleteCartProduct']);
-Route::get('/shopping/cart', [\App\Http\Controllers\Frontend\OrderController::class, 'shoppingCart']);
+Route::get('/cart/product/delete/{id}', [FrontOrderController::class, 'deleteCartProduct']);
+Route::get('/shopping/cart', [FrontOrderController::class, 'shoppingCart']);
 
 Route::group(['middleware' => 'auth'], function (){
-    Route::get('/shipping', [\App\Http\Controllers\Frontend\OrderController::class, 'shipping']);
-    Route::post('/shipping/store', [\App\Http\Controllers\Frontend\OrderController::class, 'shippingStore']);
-    Route::get('/payment', [\App\Http\Controllers\Frontend\OrderController::class, 'payment']);
-    Route::post('/order', [\App\Http\Controllers\Frontend\OrderController::class, 'order']);
-    Route::get('/complete', [\App\Http\Controllers\Frontend\OrderController::class, 'complete']);
-    Route::post('/rating', [\App\Http\Controllers\Frontend\OrderController::class, 'rating'])->middleware('auth');
+    Route::get('/shipping', [FrontOrderController::class, 'shipping']);
+    Route::post('/shipping/store', [FrontOrderController::class, 'shippingStore']);
+    Route::get('/payment', [FrontOrderController::class, 'payment']);
+    Route::post('/order', [FrontOrderController::class, 'order']);
+    Route::get('/complete', [FrontOrderController::class, 'complete']);
+    Route::post('/rating', [FrontOrderController::class, 'rating'])->middleware('auth');
 });
 
-Route::get('auth/google', [\App\Http\Controllers\Frontend\OrderController::class, 'redirectToGoogle']);
-Route::get('auth/google/callback', [\App\Http\Controllers\Frontend\OrderController::class, 'handleGoogleCallback']);
+Route::get('auth/google', [FrontOrderController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [FrontOrderController::class, 'handleGoogleCallback']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

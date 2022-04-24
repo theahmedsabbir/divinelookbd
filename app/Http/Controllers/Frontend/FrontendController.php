@@ -30,7 +30,7 @@ class FrontendController extends Controller
         // take 8 products from each categories
         $all_category_products = collect();
         foreach ($most_product_categories as $key => $most_product_category) {
-            $this_category_products = $most_product_category->products; 
+            $this_category_products = $most_product_category->products->take(8); 
             if(count($this_category_products) > 0){
                 $current_category_products = collect();
                 foreach ($this_category_products as $this_category_product) {
