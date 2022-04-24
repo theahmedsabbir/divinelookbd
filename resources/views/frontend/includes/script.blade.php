@@ -18,18 +18,9 @@
 <script src="{{ asset('/frontend/') }}/assets/js/jquery.scrollbar.min.js"></script>
 <script src="{{ asset('/frontend/') }}/assets/js/frontend-plugin.js"></script>
 
-
-
 {{-- toastr --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-
-
-
 {{-- toastr --}}
-
-
     {{-- toastr --}}
     <script type="text/javascript">
     @if (Session::has('success'))
@@ -78,8 +69,8 @@
 {{-- modal --}}
 <script>
     @if (
-      Session::get('modal-visibility') == 'off' 
-    )  
+      Session::get('modal-visibility') == 'off'
+    )
 
     @else
 

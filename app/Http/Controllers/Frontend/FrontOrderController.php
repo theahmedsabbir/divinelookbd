@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Product;
 use App\Models\RatingWishlist;
 use App\Models\Shipping;
 use App\Models\User;
@@ -89,7 +90,7 @@ class FrontOrderController extends Controller
             if (auth()->check()){
                 $cart->user_id = auth()->user()->id;
             }else{
-                $cart->ip_address = $ip();
+                $cart->ip_address = request()->ip();
             }
             $cart->product_id = $product_id;
             if ($discount_price){
