@@ -10,7 +10,7 @@ use App\Models\RatingWishlist;
 use App\Models\Shipping;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class FrontOrderController extends Controller
 {
     //================== Add to cart =====================//
     public function addToCart(Request $request)
@@ -50,6 +50,59 @@ class OrderController extends Controller
                 $cart->total_price = $request->qty ? $request->qty * $request->discount_price : $request->qty*$request->discount_price;
             }else{
                 $cart->total_price = $request->qty ? $request->qty * $request->price : $request->qty*$request->price;
+            }
+            $cart->save();
+            return redirect()->back()->withSuccess('Product added to cart');
+        }
+    }
+
+
+    public function addToCartGet($product_id)
+    {
+        // return $product_id;
+        $product = Product::find($product_id);
+
+        if(!$product) {return redirect()->back()->withError('Product not found.');}
+
+        $discount_price = $product->discount_price;
+        $price          = $product->price;
+        $qty            = 1;
+
+        // dd($request->all());
+        $updateCart = Cart::where('product_id', $product_id)->first();
+        if ($updateCart){
+            if ($discount_price){
+                $updateCart->total_price = $discount_price * ($updateCart->qty + $qty);
+            }else{
+                $updateCart->total_price = $price * ($updateCart->qty + $qty);
+            }
+            if ($qty){
+                $updateCart->qty = $updateCart->qty + $qty;
+            }
+            $updateCart->save();
+            return redirect()->back()->withSuccess('Product updated to cart');
+        }else{
+            $cart = new Cart();
+            if (auth()->check()){
+                $cart->user_id = auth()->user()->id;
+            }else{
+                $cart->ip_address = $ip();
+            }
+            $cart->product_id = $product_id;
+            if ($discount_price){
+                $cart->price = $discount_price;
+            }else{
+                $cart->price = $price;
+            }
+            if ($qty){
+                $cart->qty = $qty;
+            }else{
+                $cart->qty = $qty;
+            }
+            if ($discount_price){
+                $cart->total_price = $qty ? $qty * $discount_price : $qty*$discount_price;
+            }else{
+                $cart->total_price = $qty ? $qty * $price : $qty*$price;
             }
             $cart->save();
             return redirect()->back()->withSuccess('Product added to cart');

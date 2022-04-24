@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Frontend\FrontOrderController;
 use App\Http\Controllers\Frontend\FrontProductController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\HomeController;
@@ -112,18 +113,19 @@ Route::get('/product/wishlist/remove/{slug}', [FrontProductController::class, 'w
 Route::get('/product/wishlist', [FrontProductController::class, 'wishlist']);
 
 //=========== Add to cart ==============//
-Route::post('/add/to/card', [OrderController::class, 'addToCart']);
+Route::post('/add/to/card', [FrontOrderController::class, 'addToCart']);
+Route::get('order/add-to-cart/{id}', [FrontOrderController::class, 'addToCartGet']);
 Route::post('/cart/update/{id}', [FrontProductController::class, 'shoppingCartUpdate']);
-Route::get('/cart/product/delete/{id}', [OrderController::class, 'deleteCartProduct']);
-Route::get('/shopping/cart', [OrderController::class, 'shoppingCart']);
+Route::get('/cart/product/delete/{id}', [FrontOrderController::class, 'deleteCartProduct']);
+Route::get('/shopping/cart', [FrontOrderController::class, 'shoppingCart']);
 
 Route::group(['middleware' => 'auth'], function (){
-    Route::get('/shipping', [OrderController::class, 'shipping']);
-    Route::post('/shipping/store', [OrderController::class, 'shippingStore']);
-    Route::get('/payment', [OrderController::class, 'payment']);
-    Route::post('/order', [OrderController::class, 'order']);
-    Route::get('/complete', [OrderController::class, 'complete']);
-    Route::post('/rating', [OrderController::class, 'rating'])->middleware('auth');
+    Route::get('/shipping', [FrontOrderController::class, 'shipping']);
+    Route::post('/shipping/store', [FrontOrderController::class, 'shippingStore']);
+    Route::get('/payment', [FrontOrderController::class, 'payment']);
+    Route::post('/order', [FrontOrderController::class, 'order']);
+    Route::get('/complete', [FrontOrderController::class, 'complete']);
+    Route::post('/rating', [FrontOrderController::class, 'rating'])->middleware('auth');
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

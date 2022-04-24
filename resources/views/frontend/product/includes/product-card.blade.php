@@ -28,12 +28,11 @@
                     </div>
                     {{-- <a href="#" class="button quick-wiew-button">Quick View</a> --}}
                     <div class="loop-form-add-to-cart">
-                        <button class="single_add_to_cart_button button"
-                            onclick="document.querySelector('#add_to_cart_form{{ $product->id}}').submit()"
+                        <a class="single_add_to_cart_button button"
+                            href="{{ url('order/add-to-cart/' . $product->id ) }}" 
                         >Add to cart
-                        </button>
-                        <form action="{{ url('add/to/card') }}" class="d-none" id="add_to_cart_form{{ $product->id}}" method="POST">
-                            @csrf
+                        </a>
+{{--                         <form action="{{ url('add/to/card') }}" class="d-none" id="add_to_cart_form{{ $product->id}}" method="GET">
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <input type="hidden" name="qty" value="1">
                             @if($product->discount_price)
@@ -41,7 +40,7 @@
                             @else
                                 <input type="hidden" name="price" value="{{ $product->price }}" />
                             @endif
-                        </form>
+                        </form> --}}
                     </div>
                 </div>
             </div>
