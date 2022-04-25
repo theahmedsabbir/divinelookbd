@@ -132,6 +132,7 @@ class FrontOrderController extends Controller
         //dd($id);
         $cartUpdate = Cart::find($id);
         $cartUpdate->qty = $request->qty;
+        $cartUpdate->total_price = $request->qty * $cartUpdate->price;
         $cartUpdate->save();
         return redirect()->back()->withSuccess('Product qty has been updated.');
     }

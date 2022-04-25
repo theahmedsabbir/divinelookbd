@@ -19,9 +19,9 @@ class FrontendController extends Controller
         // $products = Product::with('category', 'brand')->get()->toArray();
         // $signal_products = count($products) > 0 ? array_chunk( $products, ceil(count($products)/4) ) : [];
 
-        // take top 5 categories whose products are most, have at least a single product 
+        // take top 5 categories whose products are most, have at least a single product
         $most_product_categories = Category::withCount([
-            'products as count_products', 
+            'products as count_products',
         ])->orderByRaw('count_products desc')
         ->havingRaw('count_products > 0')
         ->take(5)
@@ -30,7 +30,7 @@ class FrontendController extends Controller
         // take 8 products from each categories
         $all_category_products = collect();
         foreach ($most_product_categories as $key => $most_product_category) {
-            $this_category_products = $most_product_category->products->take(8); 
+            $this_category_products = $most_product_category->products->take(8);
             if(count($this_category_products) > 0){
                 $current_category_products = collect();
                 foreach ($this_category_products as $this_category_product) {
@@ -97,6 +97,11 @@ class FrontendController extends Controller
 
 
         return redirect()->back()->with('success', 'Account updated successfully');
+    }
+
+    public function about()
+    {
+        return view('frontend.home.about');
     }
     public function modalSetVisibility($value)
     {

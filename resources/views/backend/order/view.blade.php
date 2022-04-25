@@ -63,6 +63,36 @@
                     @endforeach
                     </tbody>
                 </table>
+                <hr/>
+                <h2>Order details</h2>
+                <table id="" class="table display nowrap">
+                    <thead>
+                    <tr>
+                        <th class="">#</th>
+                        <th class="">Image</th>
+                        <th class="">Product Name</th>
+                        <th class="">Qty</th>
+                        <th class="">Price</th>
+                        <th class="">Total Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($order->orderDetails as $order)
+                        <tr>
+                            <td>{{ $loop->index+1 }}</td>
+                            <td>
+                                <img src="{{ asset('/product/'.$order->product->image) }}" height="50" width="50" />
+                            </td>
+                            <td>
+                                {{ $order->product->name ?? 'No  name found' }}
+                            </td>
+                            <td>{{ $order->qty ?? '00' }} Pc</td>
+                            <td>৳ {{ number_format($order->price,2) ?? '00' }}</td>
+                            <td>৳ {{ number_format($order->qty*$order->price,2) ?? '00' }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div><!-- table-wrapper -->
 
         </div><!-- br-section-wrapper -->

@@ -34,13 +34,13 @@
                                 <div class="col-md-12">
                                     <table class="table table-responsive">
                                         <tr style="background-color: #1D043E">
-                                            <th width="5%">SL</th>
-                                            <th width="15%">Image</th>
-                                            <th>Name</th>
-                                            <th width="15%">Qty</th>
-                                            <th width="10%">Price</th>
-                                            <th width="10%">Total Price</th>
-                                            <th width="5%">Action</th>
+                                            <th width="5%" style="color: white;">SL</th>
+                                            <th width="15%" style="color: white;">Image</th>
+                                            <th style="color: white;">Name</th>
+                                            <th width="15%" style="color: white;">Qty</th>
+                                            <th width="10%" style="color: white;">Price</th>
+                                            <th width="10%" style="color: white;">Total Price</th>
+                                            <th width="5%" style="color: white;">Action</th>
                                         </tr>
                                         @php
                                             $sum = 0;
