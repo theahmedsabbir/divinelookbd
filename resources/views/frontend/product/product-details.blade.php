@@ -11,11 +11,11 @@
                             <li class="trail-item trail-begin">
                                 <a href="{{ url('/') }}">Home</a>
                             </li>
-                            <li class="trail-item">
+{{--                             <li class="trail-item">
                                 <a href="#">{{ $product->brand->name ?? '' }}</a>
-                            </li>
+                            </li> --}}
                             <li class="trail-item trail-end active">
-                                {{ $product->category->name ?? '' }}
+                                Product Details
                             </li>
                         </ul>
                     </div>
@@ -93,36 +93,33 @@
                                         <li>{{ $product->short_description ?? '' }}</li>
                                     </ul>
                                 </div>
+                                @if ($product->colors != null)
                                 <div class="variations">
-                                    <div class="attribute attribute_color">
-                                        <div class="color-text text-attribute">
-                                            Color:
-                                        </div>
-                                        <div class="list-color list-item">
-                                            <a href="#" class="color1"></a>
-                                            <a href="#" class="color2"></a>
-                                            <a href="#" class="color3 active"></a>
-                                            <a href="#" class="color4"></a>
-                                        </div>
-                                    </div>
                                     <div class="attribute attribute_size">
                                         <div class="size-text text-attribute">
-                                            Size:
+                                            Color:
                                         </div>
                                         <div class="list-size list-item">
-                                            <a href="#" class="">xs</a>
-                                            <a href="#" class="">s</a>
-                                            <a href="#" class="active">m</a>
-                                            <a href="#" class="">l</a>
-                                            <a href="#" class="">xl</a>
-                                            <a href="#" class="">xxl</a>
+                                            @foreach (json_decode($product->colors) as $color_id)
+                                                @php
+                                                    // dd($color_id);
+                                                    $color = App\Models\Color::find($color_id);
+                                                    if ($color == null) {
+                                                        continue;
+                                                    }
+                                                @endphp
+                                                
+                                                <a href="#" class="">{{$color->name}}</a>
+                                            @endforeach
+                                            {{-- <a href="#" class="active">m</a> --}}
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                                 <div class="group-button">
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button">
-                                            <a href="#">Add to Wishlist</a>
+                                            <a href="{{ url('product/wishlist/add/' . $product->slug) }}">Add to Wishlist</a>
                                         </div>
                                     </div>
 {{--                                    <div class="size-chart-wrapp">--}}
@@ -134,14 +131,14 @@
                                     <form action="{{ url('/add/to/card') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="quantity-add-to-cart">
-                                            <div class="quantity">
+{{--                                             <div class="quantity">
                                                 <div class="control">
                                                     <a class="btn-number qtyminus quantity-minus" href="#">-</a>
                                                     <input type="text" data-step="1" data-min="0" value="1" name="qty" title="Qty"
                                                            class="input-qty qty" size="4">
                                                     <a href="#" class="btn-number qtyplus quantity-plus">+</a>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <input type="hidden" name="product_id" value="{{ $product->id }}" />
                                             @if($product->discount_price)
                                                 <input type="hidden" name="discount_price" value="{{ $product->discount_price }}" />
@@ -162,9 +159,9 @@
                                 <li class="">
                                     <a data-toggle="tab" aria-expanded="true" href="#information">Information </a>
                                 </li>
-                                <li class="">
+{{--                                 <li class="">
                                     <a data-toggle="tab" aria-expanded="true" href="#reviews">Reviews</a>
-                                </li>
+                                </li> --}}
                             </ul>
                             <div class="tab-container">
                                 <div id="product-descriptions" class="tab-panel active">
@@ -175,7 +172,7 @@
                                 <div id="information" class="tab-panel">
                                     {!! $product->information !!}
                                 </div>
-                                <div id="reviews" class="tab-panel">
+{{--                                 <div id="reviews" class="tab-panel">
                                     <div class="reviews-tab">
                                         <div class="comments">
                                             <h2 class="reviews-title">
@@ -265,7 +262,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div style="clear: left;"></div>
