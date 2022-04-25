@@ -55,6 +55,10 @@ class FrontendController extends Controller
     {
         return view('frontend.home.contact');
     }
+    public function about()
+    {
+        return view('frontend.home.about');
+    }
     public function profileUpdate(Request $request)
     {
         // validate
