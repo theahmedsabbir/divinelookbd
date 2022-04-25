@@ -4,7 +4,7 @@
     <div>
         <h3 class="custommenu-title-blog">
             <i class="flaticon-instagram" aria-hidden="true"></i>
-            Instagram Feed
+            Latest Feed
         </h3>
         <div class="stelina-instagram">
             <div class="instagram owl-slick equal-container"

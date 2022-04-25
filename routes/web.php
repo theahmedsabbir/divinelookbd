@@ -98,7 +98,9 @@ Auth::routes();
 
 // ======================= Frontend routes ======================= //
 Route::get('/', [FrontendController::class, 'index']);
-Route::get('/about-us', [FrontendController::class, 'about']);
+
+Route::get('/contact', [FrontendController::class, 'contact']);
+Route::get('/about', [FrontendController::class, 'about']);
 Route::get('/modal/set-visibility/{value}', [FrontendController::class, 'modalSetVisibility']);
 
 Route::group(['middleware' => 'auth'], function (){
