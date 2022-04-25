@@ -56,7 +56,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <label for="title">title</label>
-                            <input type="text" name="title" value="{{ $banner->title }}" id="title" class="form-control" placeholder="{{$bannerType}} title" required>
+                            <input type="text" name="title" value="{{ $banner->title }}" id="title" class="form-control" placeholder="{{$bannerType}} title">
 
                             @if ($errors->has('title'))
                                 <p class="text-danger">{{ $errors->first('title') }}</p>

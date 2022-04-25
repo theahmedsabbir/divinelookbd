@@ -66,8 +66,12 @@
                         ">
                             <img src="{{ asset('banner/' . $popup->image) }}" alt="{{ $popup->title }}" style="width:100%;" class="carousel_img">
                             <div class="carousel-caption">
-                                <h3>{{ $popup->title }}</h3>
-                                <p>{{ $popup->sub_title }}</p>
+                                @if ($popup->title)
+                                    <h3>{{ $popup->title }}</h3>
+                                @endif
+                                @if ($popup->sub_title)
+                                    <p>{{ $popup->sub_title }}</p>
+                                @endif
                             </div>
                         </div>
                         @endforeach
