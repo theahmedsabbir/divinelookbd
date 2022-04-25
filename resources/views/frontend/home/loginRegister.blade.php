@@ -37,12 +37,12 @@
 									<h5 class="title-login">Login your Account</h5>
 									<form method="POST" action="{{ url('/login') }}" class="login">
 										@csrf
-										
+
 										<div class="social-account">
 											<h6 class="title-social">Login with social account</h6>
-											<a href="#" class="mxh-item facebook">
-												<i class="icon fa fa-facebook-square" aria-hidden="true"></i>
-												<span class="text">FACEBOOK</span>
+											<a href="{{ url('/auth/google') }}" class="mxh-item facebook">
+												<i class="icon fa fa-google-plus-official" aria-hidden="true"></i>
+												<span class="text">Google</span>
 											</a>
 											<a href="#" class="mxh-item twitter">
 												<i class="icon fa fa-twitter" aria-hidden="true"></i>
@@ -84,7 +84,7 @@
 									<form method="POST" action="{{ url('/register') }}" class="register" enctype="multipart/form-data">
 
 										@csrf
-										
+
 
 										<p class="form-row form-row-wide">
 											<label class="text">Your name</label>

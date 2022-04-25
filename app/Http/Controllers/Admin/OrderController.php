@@ -7,7 +7,10 @@ use App\Http\Requests\AdminLoginRequest;
 use App\Models\Admin;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 use Session;
 class OrderController extends Controller
 {

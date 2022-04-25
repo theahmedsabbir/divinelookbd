@@ -113,6 +113,7 @@ Route::get('/product/wishlist/remove/{slug}', [FrontProductController::class, 'w
 Route::get('/product/wishlist', [FrontProductController::class, 'wishlist']);
 
 //=========== Add to cart ==============//
+
 Route::post('/add/to/card', [FrontOrderController::class, 'addToCart']);
 Route::get('order/add-to-cart/{id}', [FrontOrderController::class, 'addToCartGet']);
 Route::post('/cart/update/{id}', [FrontProductController::class, 'shoppingCartUpdate']);
@@ -126,6 +127,10 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/order', [FrontOrderController::class, 'order']);
     Route::get('/complete', [FrontOrderController::class, 'complete']);
     Route::post('/rating', [FrontOrderController::class, 'rating'])->middleware('auth');
+
 });
+
+Route::get('auth/google', [\App\Http\Controllers\Frontend\OrderController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [\App\Http\Controllers\Frontend\OrderController::class, 'handleGoogleCallback']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

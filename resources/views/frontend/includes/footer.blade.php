@@ -1,4 +1,3 @@
-
 <!-- ======================= Instagram Feeds ======================== -->
 
 <div class="instagram-wrapp">
@@ -82,7 +81,7 @@
 <section class="px-0 py-3 br-top">
     <div class="container">
         <div class="row">
-            
+
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                 <div class="d-flex align-items-center justify-content-start py-2">
                     <div class="d_ico">
@@ -94,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                 <div class="d-flex align-items-center justify-content-start py-2">
                     <div class="d_ico">
@@ -106,7 +105,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                 <div class="d-flex align-items-center justify-content-start py-2">
                     <div class="d_ico">
@@ -118,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
                 <div class="d-flex align-items-center justify-content-start py-2">
                     <div class="d_ico">
@@ -130,7 +129,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </section>
@@ -148,7 +147,7 @@
                         </div>
                         <div class="newsletter-form-wrap" style="">
                             <div class="address mt-3" style="text-align: justify;">
-                                3298 Grant Street Longview, TX<br>United Kingdom 75601  
+                                3298 Grant Street Longview, TX<br>United Kingdom 75601
                             </div>
                             <div class="address mt-3" style="text-align: justify;">
                                 1-202-555-0106<br>help@shopper.com

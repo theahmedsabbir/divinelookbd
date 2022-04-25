@@ -283,8 +283,6 @@
                                                     <a  onclick="document.querySelector('#logout').submit()" style="cursor: pointer;" class="button button-checkout">
                                                         <span>Logout</span>
                                                     </a>
-
-
                                                 </div>
                                             @endif
                                         </div>
@@ -413,10 +411,10 @@
                                 </div>
                             </li>
                             <li class="menu-item">
-                                <a href="about.html" class="stelina-menu-item-title" title="About">Contact</a>
+                                <a href="#" class="stelina-menu-item-title" title="About">Contact</a>
                             </li>
                             <li class="menu-item">
-                                <a href="about.html" class="stelina-menu-item-title" title="About">About</a>
+                                <a href="#" class="stelina-menu-item-title" title="About">About</a>
                             </li>
                         </ul>
                     </div>

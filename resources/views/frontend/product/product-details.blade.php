@@ -2,7 +2,6 @@
 
 @section('content')
     <!-- ======================= Main Content ======================== -->
-
     <div class="main-content main-content-details single no-sidebar">
         <div class="container">
             <div class="row">
@@ -311,61 +310,7 @@
             <div class="stelina-product style3">
                 <ul class="row list-products auto-clear equal-container product-grid">
                     @foreach($feature_products as $feature_product)
-                        <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-3">
-                            <div class="product-inner equal-element">
-                                <div class="product-thumb">
-                                    <div class="product-top">
-                                        <div class="flash">
-                                                <span class="onnew">
-                                                    <span class="text">
-                                                        {{ $feature_product->type }}
-                                                    </span>
-                                                </span>
-                                        </div>
-                                        <div class="yith-wcwl-add-to-wishlist">
-                                            <div class="yith-wcwl-add-button">
-                                                <a href="#" tabindex="0">Add to Wishlist</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="thumb-inner">
-                                        <a href="#" tabindex="0">
-                                            <img src="{{ asset('/product/'.$feature_product->image) }}" alt="img">
-                                        </a>
-                                    </div>
-                                    <a href="#" class="button quick-wiew-button" tabindex="0">Quick View</a>
-                                </div>
-                                <div class="product-info">
-                                    <h5 class="product-name product_title">
-                                        <a href="#" tabindex="0">{{ $feature_product->name ?? '' }}</a>
-                                    </h5>
-                                    <div class="group-info">
-                                        <div class="stars-rating">
-                                            <div class="star-rating">
-                                                <span class="star-3"></span>
-                                            </div>
-                                            <div class="count-star">
-                                                (3)
-                                            </div>
-                                        </div>
-                                        <div class="price">
-                                            <span>BDT {{ $feature_product->price ?? '' }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="group-buttons">
-                                        <div class="quantity">
-                                            <div class="control">
-                                                <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                <input type="text" data-step="1" data-min="0" value="1" title="Qty"
-                                                       class="input-qty qty" size="4">
-                                                <a href="#" class="btn-number qtyplus quantity-plus">+</a>
-                                            </div>
-                                        </div>
-                                        <button class="add_to_cart_button button" tabindex="0">Shop now</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        @include('frontend.product.includes.feature-product')
                     @endforeach
                 </ul>
             </div>
