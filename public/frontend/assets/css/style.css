@@ -11297,3 +11297,8 @@ li.list-inline-item {
 .actions.logged_in_box a:hover {color: white;}
 
 a.button.button-viewcart a {background: transparent !important;}
+
+
+.info_details span.icon {border-color: #fff !important;}
+
+.info_details span.icon:before {color: #fff !important;}

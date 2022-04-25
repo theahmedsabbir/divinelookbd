@@ -348,73 +348,17 @@
                 <div class="header-nav">
                     <div class="container-wapper">
                         <ul class="stelina-clone-mobile-menu stelina-nav main-menu " id="menu-main-menu">
-                            <li class="menu-item  menu-item-has-children">
-                                <a href="index.html" class="stelina-menu-item-title" title="Home">Home</a>
-                                <span class="toggle-submenu"></span>
-                                <ul class="submenu">
-                                    <li class="menu-item">
-                                        <a href="index.html">Home</a>
-                                    </li>
-                                </ul>
+                            <li class="menu-item">
+                                <a href="{{ url('/') }}" class="stelina-menu-item-title" title="Home">Home</a>
                             </li>
-                            <li class="menu-item menu-item-has-children">
+                            <li class="menu-item">
                                 <a href="{{ url('product/all') }}" class="stelina-menu-item-title" title="Shop">Shop</a>
-                                <span class="toggle-submenu"></span>
-                                <ul class="submenu">
-                                    <li class="menu-item">
-                                        <a href="{{ url('/product/all') }}">Product List</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item  menu-item-has-children item-megamenu">
-                                <a href="#" class="stelina-menu-item-title" title="Pages">Pages</a>
-                                <span class="toggle-submenu"></span>
-                                <div class="submenu mega-menu menu-page">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item">
-                                            <div class="stelina-custommenu default">
-                                                <h2 class="widgettitle">Shop Pages</h2>
-                                                <ul class="menu">
-                                                    <li class="menu-item">
-                                                        <a href="shoppingcart.html">Shopping Cart</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a href="checkout.html">Checkout</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a href="contact.html">Contact us</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a href="404page.html">404</a>
-                                                    </li>
-                                                    <li class="menu-item">
-                                                        <a href="login.html">Login/Register</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item">
-                                            <div class="stelina-custommenu default">
-                                                <h2 class="widgettitle">Product</h2>
-                                                <ul class="menu">
-                                                    <li class="menu-item">
-                                                        <a href="{{ url('product/all') }}">Product List</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item">
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 menu-page-item">
-                                        </div>
-                                    </div>
-                                </div>
                             </li>
                             <li class="menu-item">
-                                <a href="#" class="stelina-menu-item-title" title="About">Contact</a>
+                                <a href="{{ url('/contact') }}" class="stelina-menu-item-title" title="About">Contact</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#" class="stelina-menu-item-title" title="About">About</a>
+                                <a href="{{ url('/about') }}" class="stelina-menu-item-title" title="About">About</a>
                             </li>
                         </ul>
                     </div>
