@@ -43,4 +43,9 @@ class User extends Authenticatable
         return $this->hasMany(RatingWishlist::class, 'user_id')
                 ->where('type', 'wishlist');
     }
+
+    public function shipping()
+    {
+        return $this->hasMany(Shipping::class);
+    }
 }

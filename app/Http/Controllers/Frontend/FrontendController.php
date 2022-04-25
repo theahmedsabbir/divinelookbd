@@ -98,11 +98,6 @@ class FrontendController extends Controller
 
         return redirect()->back()->with('success', 'Account updated successfully');
     }
-
-    public function about()
-    {
-        return view('frontend.home.about');
-    }
     public function modalSetVisibility($value)
     {
     	if ($value == $value) {
