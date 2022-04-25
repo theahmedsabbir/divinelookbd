@@ -101,7 +101,8 @@ Route::get('/', [FrontendController::class, 'index']);
 
 Route::get('/contact', [FrontendController::class, 'contact']);
 Route::get('/about', [FrontendController::class, 'about']);
-Route::get('/modal/set-visibility/{value}', [FrontendController::class, 'modalSetVisibility']);
+// Route::get('/modal/set-visibility/{value}', [FrontendController::class, 'modalSetVisibility']);
+Route::get('/popup/{value}', [FrontendController::class, 'modalSetVisibility']);
 
 Route::group(['middleware' => 'auth'], function (){
     Route::get('/profile', [FrontendController::class, 'profile']);
