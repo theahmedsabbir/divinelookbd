@@ -14,7 +14,7 @@
                 <div class="breadcrumb-trail breadcrumbs">
                     <ul class="trail-items breadcrumb">
                         <li class="trail-item trail-begin">
-                            <a href="index.html">Home</a>
+                            <a href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="trail-item trail-end active">
                             Contact us
@@ -39,19 +39,19 @@
 {{--     			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.46635661222064!2d90.41542565348793!3d23.77761389580101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c79c60a8f1d3%3A0x7fddc2d3695ef344!2s3%20A%20Rd%20No%202%2C%20Dhaka%201212!5e0!3m2!1sen!2sbd!4v1650905251032!5m2!1sen!2sbd" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
 
 
-    			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.46635661222064!2d90.41542565348793!3d23.77761389580101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c79c60a8f1d3%3A0x7fddc2d3695ef344!2s3%20A%20Rd%20No%202%2C%20Dhaka%201212!5e0!3m2!1sen!2sbd!4v1650905251032!5m2!1sen!2sbd&z=1" 
-                width="100%" height="500" 
+    			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.46635661222064!2d90.41542565348793!3d23.77761389580101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c79c60a8f1d3%3A0x7fddc2d3695ef344!2s3%20A%20Rd%20No%202%2C%20Dhaka%201212!5e0!3m2!1sen!2sbd!4v1650905251032!5m2!1sen!2sbd&z=1"
+                width="100%" height="500"
                 id="gmap_canvas"
-                frameborder="0" 
-                scrolling="no" 
+                frameborder="0"
+                scrolling="no"
                 marginheight="0" marginwidth="0"
     			></iframe>
-{{-- 
-                <iframe src="https://maps.google.com/maps?q=university%20of%20san%20francisco&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" 
-                width="100%" height="500" 
+{{--
+                <iframe src="https://maps.google.com/maps?q=university%20of%20san%20francisco&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                width="100%" height="500"
                 id="gmap_canvas"
-                frameborder="0" 
-                scrolling="no" 
+                frameborder="0"
+                scrolling="no"
                 marginheight="0" marginwidth="0"
                 ></iframe> --}}
         </div>
@@ -134,16 +134,16 @@
                                     <div class="info info_details">
                                         <div class="item address">
 												<span class="icon">
-													
+
 												</span>
                                             <span class="text">
-													 
+
 													Road # 02, Gulshan - 1, Dhaka 1212 Dhaka, Dhaka Division, Bangladesh
 												</span>
                                         </div>
                                         <div class="item phone">
 												<span class="icon">
-													
+
 												</span>
                                             <span class="text">
 													(+880) 170 8926 171
@@ -151,7 +151,7 @@
                                         </div>
                                         <div class="item email">
 												<span class="icon">
-													
+
 												</span>
                                             <span class="text">
 													info@divinelookbd.com
@@ -161,17 +161,17 @@
                                     <div class="socials">
                                         <a href="https://www.facebook.com/divinelookbangladesh" class="social-item" target="_blank">
 												<span class="icon fa fa-facebook">
-													
+
 												</span>
                                         </a>
                                         <a href="https://twitter.com/DivinelookBD " class="social-item" target="_blank">
 												<span class="icon fa fa-twitter-square">
-													
+
 												</span>
                                         </a>
                                         <a href="https://www.instagram.com/divinelookbd/ " class="social-item" target="_blank">
 												<span class="icon fa fa-instagram">
-													
+
 												</span>
                                         </a>
                                     </div>
