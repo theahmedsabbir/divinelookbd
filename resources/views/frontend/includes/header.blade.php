@@ -3,7 +3,7 @@
         <div class="container">
             <div class="top-bar-left">
                 <div class="header-message">
-                    Welcome to our online store!
+                    Welcome to DivineLook BD!
                 </div>
             </div>
             <div class="top-bar-right">
@@ -11,17 +11,17 @@
                 <div class="dl_socials">
                     <ul class="dl_social_list">
                         <li>
-                            <a href="#" class="dl_social-item" target="_blank">
+                            <a href="https://www.facebook.com/divinelookbangladesh" class="dl_social-item" target="_blank">
                                 <i class="icon fa fa-facebook"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="dl_social-item" target="_blank">
+                            <a href="https://twitter.com/DivinelookBD" class="dl_social-item" target="_blank">
                                 <i class="icon fa fa-twitter"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="dl_social-item" target="_blank">
+                            <a href="https://www.instagram.com/divinelookbd/" class="dl_social-item" target="_blank">
                                 <i class="icon fa fa-instagram"></i>
                             </a>
                         </li>

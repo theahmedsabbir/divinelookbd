@@ -4,7 +4,7 @@
     <div>
         <h3 class="custommenu-title-blog">
             <i class="flaticon-instagram" aria-hidden="true"></i>
-            Latest Feed
+            Our Latest Feed
         </h3>
         <div class="stelina-instagram">
             <div class="instagram owl-slick equal-container"
@@ -141,24 +141,25 @@
                 <div class="col-md-3">
                     <div class="stelina-newsletter style1">
                         <div class="newsletter-head">
-                            <a href="index.html" class="logo-link">
+                            <a href="{{ url('/') }}" class="logo-link">
                                 <img src="{{ asset('/frontend/') }}/assets/images/logo-transparent.png" alt="img">
                             </a>
                         </div>
                         <div class="newsletter-form-wrap" style="">
                             <div class="address mt-3" style="text-align: justify;">
-                                3298 Grant Street Longview, TX<br>United Kingdom 75601
+                                
+                                Road # 02, Gulshan - 1, Dhaka 1212<br>Dhaka Division, Bangladesh
                             </div>
                             <div class="address mt-3" style="text-align: justify;">
-                                1-202-555-0106<br>help@shopper.com
+                                01708-926171<br>info@divinelookbd.com
                             </div>
                             <div class="address mt-3" style="text-align: justify;">
                                 <ul class="list-inline">
-                                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-                                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/divinelookbangladesh"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://twitter.com/DivinelookBD"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.pinterest.com/divinelookbd/"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.instagram.com/divinelookbd/"><i class="fa fa-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.linkedin.com/in/divinelookbd"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -169,7 +170,7 @@
                         <p class="text-white footer-custome-font-size">SUPPORTS</p>
                     </div>
                     <ul class="" style="">
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="{{ url('/contact') }}">Contact Us</a></li>
                         <li><a href="#">About Page</a></li>
                         <li><a href="#">Size Guide</a></li>
                         <li><a href="#">Shipping & Returns</a></li>
