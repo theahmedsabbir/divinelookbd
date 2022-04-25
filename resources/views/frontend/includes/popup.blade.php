@@ -17,13 +17,15 @@
     .carousel-caption h3 {color: white;font-size: 34px;background: #0000002b;margin: 0;}
 
     .carousel-caption p {font-size: 24px;background: #0000002b;padding-bottom: 13px;}
+    .modal-body.p-0 {padding: 0 !important;}
+    .modal-content {background: transparent !important;}
 </style>
 
 
 <div id="myModal" class="modal fade">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg" style="width: 75%; height: 75%">
         <div class="modal-content">
-            <div class="modal-header">
+{{--             <div class="modal-header">
                 <div class="row">
                     <div class="col-md-10">                        
                         <h5 class="modal-title">Welcome to DivineLookBD</h5>
@@ -37,8 +39,8 @@
                         >&times;</button>
                     </div>
                 </div>
-            </div>
-            <div class="modal-body">
+            </div> --}}
+            <div class="modal-body p-0">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
 {{--                     <ol class="carousel-indicators">
