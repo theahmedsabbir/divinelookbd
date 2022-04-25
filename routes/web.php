@@ -24,6 +24,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('migrate', function() {
+    \Artisan::call('migrate');
+    return "migrated!";
+});
+
 Route::get('cache', function() {
     \Artisan::call('cache:clear');
     \Artisan::call('config:clear');
