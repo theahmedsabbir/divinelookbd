@@ -414,7 +414,7 @@
                                 <a href="#" class="stelina-menu-item-title" title="About">Contact</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#" class="stelina-menu-item-title" title="About">About</a>
+                                <a href="{{ url('/about-us') }}" class="stelina-menu-item-title" title="About">About</a>
                             </li>
                         </ul>
                     </div>

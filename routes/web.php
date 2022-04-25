@@ -98,6 +98,7 @@ Auth::routes();
 
 // ======================= Frontend routes ======================= //
 Route::get('/', [FrontendController::class, 'index']);
+Route::get('/about-us', [FrontendController::class, 'about']);
 Route::get('/modal/set-visibility/{value}', [FrontendController::class, 'modalSetVisibility']);
 
 Route::group(['middleware' => 'auth'], function (){
@@ -116,7 +117,7 @@ Route::get('/product/wishlist', [FrontProductController::class, 'wishlist']);
 
 Route::post('/add/to/card', [FrontOrderController::class, 'addToCart']);
 Route::get('order/add-to-cart/{id}', [FrontOrderController::class, 'addToCartGet']);
-Route::post('/cart/update/{id}', [FrontProductController::class, 'shoppingCartUpdate']);
+Route::post('/cart/update/{id}', [FrontOrderController::class, 'shoppingCartUpdate']);
 Route::get('/cart/product/delete/{id}', [FrontOrderController::class, 'deleteCartProduct']);
 Route::get('/shopping/cart', [FrontOrderController::class, 'shoppingCart']);
 
