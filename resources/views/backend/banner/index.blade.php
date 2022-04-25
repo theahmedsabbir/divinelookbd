@@ -20,14 +20,16 @@
                         <th>#</th>
                         <th>image</th>
 
-                        @if ($bannerType != 'side-banner' && $bannerType != 'popup')
-                        <th>info</th>
-                        @endif
-                        <th>title</th>
-                        <th>sub title</th>
-                        @if ($bannerType != 'popup')
-                        <th>button text</th>
-                        <th>link</th>
+                        @if ($bannerType != 'gallery')
+                            @if ($bannerType != 'side-banner' && $bannerType != 'popup')
+                            <th>info</th>
+                            @endif
+                            <th>title</th>
+                            <th>sub title</th>
+                            @if ($bannerType != 'popup')
+                            <th>button text</th>
+                            <th>link</th>
+                            @endif
                         @endif
                         <th>priority</th>
                         <th>action</th>
@@ -40,14 +42,17 @@
                             <td>
                                 <img src="{{ asset('banner/' . $banner->image) }}" width="30" alt="">
                             </td>
-                            @if ($bannerType != 'side-banner' && $bannerType != 'popup')
-                            <td>{{ $banner->info }}</td>
-                            @endif
-                            <td>{{ $banner->title }}</td>
-                            <td>{{ $banner->sub_title }}</td>
-                            @if ($bannerType != 'popup')
-                            <td>{{ $banner->button_text }}</td>
-                            <td>{{ $banner->link }}</td>
+
+                            @if ($bannerType != 'gallery')
+                                @if ($bannerType != 'side-banner' && $bannerType != 'popup')
+                                <td>{{ $banner->info }}</td>
+                                @endif
+                                <td>{{ $banner->title }}</td>
+                                <td>{{ $banner->sub_title }}</td>
+                                @if ($bannerType != 'popup')
+                                <td>{{ $banner->button_text }}</td>
+                                <td>{{ $banner->link }}</td>
+                                @endif
                             @endif
                             <td>{{ $banner->priority }}</td>
                             <td>

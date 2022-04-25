@@ -16,7 +16,7 @@ class BannerMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $bannerTypes = ['slider','side-banner', 'mid-banner', 'full-banner', 'popup'];
+        $bannerTypes = ['slider','side-banner', 'mid-banner', 'full-banner', 'popup', 'gallery'];
         if (!in_array($request->route()->parameter('bannerType'), $bannerTypes)) {
             return redirect()->back()->withError('Invalid Request.');
         }

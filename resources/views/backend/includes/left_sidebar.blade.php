@@ -196,6 +196,24 @@
             </ul>
           </li>
 
+          {{-- banner/gallery --}}
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/banner/gallery*') ? 'show-sub' : ''}}">
+              <i class="menu-item-icon icon ion-images tx-24"></i>
+              {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
+              <span class="menu-item-label">Gallery</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub" style="{{ Request::is('admin/banner/gallery*') ? 'display: block;' : 'display: none;'}}">
+
+              <li class="sub-item">
+                <a href="{{ url('admin/banner/gallery/index') }}" class="sub-link {{ Request::is('admin/banner/gallery/index') ? 'active' : ''}}">Manage</a>
+              </li>
+              <li class="sub-item">
+                <a href="{{ url('admin/banner/gallery/create') }}" class="sub-link {{ Request::is('admin/banner/gallery/create') ? 'active' : ''}}">Add</a>
+              </li>
+            </ul>
+          </li>
+
       </ul><!-- br-sideleft-menu -->
       <br>
     </div><!-- br-sideleft -->

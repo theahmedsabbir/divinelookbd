@@ -34,72 +34,78 @@
                 </div>
 
                 @if (
-                    $bannerType != 'side-banner' &&
-                    $bannerType != 'popup'
+                    $bannerType != 'gallery'
                 )
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="info">info</label>
-                            <input type="text" name="info" id="info" class="form-control" placeholder="{{$bannerType}} info">
 
-                            @if ($errors->has('info'))
-                                <p class="text-danger">{{ $errors->first('info') }}</p>
-                            @endif
+                    @if (
+                        $bannerType != 'side-banner' &&
+                        $bannerType != 'popup'
+                    )
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="info">info</label>
+                                <input type="text" name="info" id="info" class="form-control" placeholder="{{$bannerType}} info">
+
+                                @if ($errors->has('info'))
+                                    <p class="text-danger">{{ $errors->first('info') }}</p>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
-                @endif
+                    @endif
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="title">title</label>
-                            <input type="text" name="title" id="title" class="form-control" placeholder="{{$bannerType}} title">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="title">title</label>
+                                <input type="text" name="title" id="title" class="form-control" placeholder="{{$bannerType}} title">
 
-                            @if ($errors->has('title'))
-                                <p class="text-danger">{{ $errors->first('title') }}</p>
-                            @endif
+                                @if ($errors->has('title'))
+                                    <p class="text-danger">{{ $errors->first('title') }}</p>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="sub_title">sub title</label>
-                            <input type="text" name="sub_title" id="sub_title" class="form-control" placeholder="{{$bannerType}} sub title">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="sub_title">sub title</label>
+                                <input type="text" name="sub_title" id="sub_title" class="form-control" placeholder="{{$bannerType}} sub title">
 
-                            @if ($errors->has('sub_title'))
-                                <p class="text-danger">{{ $errors->first('sub_title') }}</p>
-                            @endif
+                                @if ($errors->has('sub_title'))
+                                    <p class="text-danger">{{ $errors->first('sub_title') }}</p>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                @if (
-                    $bannerType != 'popup' 
-                )
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="button_text">button text</label>
-                            <input type="text" name="button_text" id="button_text" class="form-control" placeholder="{{$bannerType}} button text">
+                    @if (
+                        $bannerType != 'popup' 
+                    )
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="button_text">button text</label>
+                                <input type="text" name="button_text" id="button_text" class="form-control" placeholder="{{$bannerType}} button text">
 
-                            @if ($errors->has('button_text'))
-                                <p class="text-danger">{{ $errors->first('button_text') }}</p>
-                            @endif
-                        </div>
-                        <div class="col-md-9">
-                            <label for="link">link</label>
-                            <input type="url" name="link" id="link" class="form-control" placeholder="{{$bannerType}} link">
+                                @if ($errors->has('button_text'))
+                                    <p class="text-danger">{{ $errors->first('button_text') }}</p>
+                                @endif
+                            </div>
+                            <div class="col-md-9">
+                                <label for="link">link</label>
+                                <input type="url" name="link" id="link" class="form-control" placeholder="{{$bannerType}} link">
 
-                            @if ($errors->has('link'))
-                                <p class="text-danger">{{ $errors->first('link') }}</p>
-                            @endif
+                                @if ($errors->has('link'))
+                                    <p class="text-danger">{{ $errors->first('link') }}</p>
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
+                    @endif
+                    
                 @endif
 
                 <div class="form-group">
