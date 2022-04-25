@@ -127,10 +127,9 @@ Route::group(['middleware' => 'auth'], function (){
     Route::post('/order', [FrontOrderController::class, 'order']);
     Route::get('/complete', [FrontOrderController::class, 'complete']);
     Route::post('/rating', [FrontOrderController::class, 'rating'])->middleware('auth');
-
 });
 
-Route::get('auth/google', [\App\Http\Controllers\Frontend\OrderController::class, 'redirectToGoogle']);
-Route::get('auth/google/callback', [\App\Http\Controllers\Frontend\OrderController::class, 'handleGoogleCallback']);
+Route::get('auth/google', [FrontOrderController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [FrontOrderController::class, 'handleGoogleCallback']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -58,12 +58,12 @@
                                             <li class="product-item-order">
                                                 <div class="product-thumb">
                                                     <a href="#">
-                                                        <img src="{{ asset('/product/'.$cartProduct->products->image) }}" alt="img">
+                                                        <img src="{{ asset('/product/'.$cartProduct->product->image) }}" alt="img">
                                                     </a>
                                                 </div>
                                                 <div class="product-order-inner">
                                                     <h5 class="product-name">
-                                                        <a href="#">{{ $cartProduct->products->name ?? 'No name found' }}</a>
+                                                        <a href="#">{{ $cartProduct->product->name ?? 'No name found' }}</a>
                                                     </h5>
                                                     <span class="attributes-select attributes-color">Black,</span>
                                                     <span class="attributes-select attributes-size">XXL</span>

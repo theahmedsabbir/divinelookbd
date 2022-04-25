@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2022 at 11:10 PM
+-- Generation Time: Apr 24, 2022 at 09:36 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -238,6 +238,16 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `total_qty`, `total_price`, `payment_type`, `transaction_id`, `created_at`, `updated_at`) VALUES
+(5, 7, 2, 1128.00, 'Cash on delivery', '23423423SDFG', '2022-04-19 15:53:16', '2022-04-19 15:53:16'),
+(6, 7, 1, 1228.00, 'Cash on delivery', '23423423SDFG', '2022-04-20 09:25:10', '2022-04-20 09:25:10'),
+(7, 7, 1, 829.00, 'Cash on delivery', '23423423SDFH', '2022-04-20 10:32:39', '2022-04-20 10:32:39'),
+(8, 8, 1, 829.00, 'Cash on delivery', '23423423SDFG', '2022-04-24 10:41:18', '2022-04-24 10:41:18');
+
 -- --------------------------------------------------------
 
 --
@@ -253,6 +263,17 @@ CREATE TABLE `order_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `qty`, `price`, `created_at`, `updated_at`) VALUES
+(13, 5, 10, 1, 483.00, '2022-04-19 15:53:16', '2022-04-19 15:53:16'),
+(14, 5, 11, 1, 645.00, '2022-04-19 15:53:16', '2022-04-19 15:53:16'),
+(15, 6, 9, 2, 614.00, '2022-04-20 09:25:10', '2022-04-20 09:25:10'),
+(16, 7, 12, 1, 829.00, '2022-04-20 10:32:39', '2022-04-20 10:32:39'),
+(17, 8, 12, 1, 829.00, '2022-04-24 10:41:18', '2022-04-24 10:41:18');
 
 -- --------------------------------------------------------
 
@@ -318,10 +339,10 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `cat_id`, `brand_id`, `image`, `name`, `slug`, `sku`, `colors`, `discount_price`, `price`, `qty`, `short_description`, `long_description`, `information`, `type`, `features`, `avg_rating`, `created_at`, `updated_at`) VALUES
 (8, 2, 1, 'eagan-vaughn1649761301.jpg', 'Eagan Vaughn', 'eagan-vaughn', 'Optio est architect', NULL, 911.00, 532.00, 357, 'Quam maiores enim en', NULL, NULL, NULL, NULL, NULL, '2022-04-12 05:01:42', '2022-04-12 05:01:42'),
-(9, 2, 1, 'taylor-nolan1649773607.jpg', 'Taylor Nolan', 'taylor-nolan', 'Est autem voluptate', '[\"1\",\"7\"]', 614.00, 151.00, 235, 'Nemo est non qui au', NULL, NULL, 'hot', 'featured', NULL, '2022-04-12 08:26:47', '2022-04-15 02:37:06'),
-(10, 1, 2, 'knox-macias1649773639.jpg', 'Knox Macias', 'knox-macias', 'Maiores minima fugia', '[\"3\"]', 483.00, 311.00, 467, 'Pariatur Eveniet v', NULL, NULL, 'hot', 'featured', NULL, '2022-04-12 08:27:19', '2022-04-15 02:36:45'),
+(9, 2, 1, 'taylor-nolan1650827645.jpg', 'Taylor Nolan', 'taylor-nolan', 'Est autem voluptate', '[\"1\",\"7\"]', 614.00, 151.00, 235, 'Nemo est non qui au', NULL, NULL, 'hot', 'featured', NULL, '2022-04-12 08:26:47', '2022-04-24 13:14:05'),
+(10, 1, 2, 'knox-macias1650827297.jpg', 'Knox Macias', 'knox-macias', 'Maiores minima fugia', '[\"3\"]', 483.00, 311.00, 467, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod placerat lacus, ut vestibulum ante consectetur in. Integer quis egestas metus.', '<p><span style=\"font-family: &quot;Open Sans&quot;, Arial, sans-serif; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod placerat lacus, ut vestibulum ante consectetur in. Integer quis egestas metus. Nulla dolor quam, bibendum a metus eu, luctus euismod sapien. Curabitur ut viverra diam. Phasellus interdum vehicula tempor. Proin ut feugiat mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse molestie, risus in placerat lacinia, arcu justo eleifend ante, vitae dictum velit metus vel dolor.</span></p>', '<p><span style=\"font-family: &quot;Open Sans&quot;, Arial, sans-serif; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod placerat lacus, ut vestibulum ante consectetur in. Integer quis egestas metus. Nulla dolor quam, bibendum a metus eu, luctus euismod sapien. Curabitur ut viverra diam. Phasellus interdum vehicula tempor. Proin ut feugiat mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse molestie, risus in placerat lacinia, arcu justo eleifend ante, vitae dictum velit metus vel dolor.</span></p>', 'hot', 'featured', NULL, '2022-04-12 08:27:19', '2022-04-24 13:08:17'),
 (11, 2, 2, 'dexter-payne1649773702.jpg', 'Dexter Payne', 'dexter-payne', 'Nisi eos iusto dolo', '[\"1\",\"7\"]', 645.00, 452.00, 799, 'Voluptatem Illum q', NULL, NULL, 'new', 'best_seller', NULL, '2022-04-12 08:28:22', '2022-04-15 02:36:33'),
-(12, 1, 2, 'levi-hurst1649776786.jpg', 'Levi Hurst', 'levi-hurst', 'Sunt eos ut totam al', '[\"1\"]', 829.00, 770.00, 203, 'Dolore adipisicing d', NULL, NULL, 'discount', 'featured', NULL, '2022-04-12 09:19:46', '2022-04-15 02:35:55');
+(12, 1, 2, 'levi-hurst1650828773.jpg', 'Levi Hurst', 'levi-hurst', 'Sunt eos ut totam al', '[\"1\"]', 829.00, 770.00, 203, 'Dolore adipisicing d', NULL, NULL, 'discount', 'featured', NULL, '2022-04-12 09:19:46', '2022-04-24 13:32:53');
 
 -- --------------------------------------------------------
 
@@ -345,24 +366,20 @@ INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `update
 (21, 8, 'eagan-vaughn16497613020.jpg', '2022-04-12 05:01:42', '2022-04-12 05:01:42'),
 (22, 8, 'eagan-vaughn16497613021.jpg', '2022-04-12 05:01:42', '2022-04-12 05:01:42'),
 (23, 8, 'eagan-vaughn16497613022.jpg', '2022-04-12 05:01:42', '2022-04-12 05:01:42'),
-(24, 9, 'taylor-nolan16497736070.jpg', '2022-04-12 08:26:47', '2022-04-12 08:26:47'),
-(25, 9, 'taylor-nolan16497736071.jpg', '2022-04-12 08:26:47', '2022-04-12 08:26:47'),
-(26, 9, 'taylor-nolan16497736072.jpg', '2022-04-12 08:26:47', '2022-04-12 08:26:47'),
-(27, 9, 'taylor-nolan16497736073.jpg', '2022-04-12 08:26:47', '2022-04-12 08:26:47'),
-(28, 10, 'knox-macias16497736390.jpg', '2022-04-12 08:27:19', '2022-04-12 08:27:19'),
-(29, 10, 'knox-macias16497736391.jpg', '2022-04-12 08:27:19', '2022-04-12 08:27:19'),
-(30, 10, 'knox-macias16497736392.jpg', '2022-04-12 08:27:19', '2022-04-12 08:27:19'),
-(31, 10, 'knox-macias16497736393.jpg', '2022-04-12 08:27:19', '2022-04-12 08:27:19'),
 (32, 11, 'dexter-payne16497737020.jpg', '2022-04-12 08:28:22', '2022-04-12 08:28:22'),
 (33, 11, 'dexter-payne16497737021.jpg', '2022-04-12 08:28:22', '2022-04-12 08:28:22'),
 (34, 11, 'dexter-payne16497737022.jpg', '2022-04-12 08:28:22', '2022-04-12 08:28:22'),
 (35, 11, 'dexter-payne16497737023.jpg', '2022-04-12 08:28:22', '2022-04-12 08:28:22'),
 (36, 11, 'dexter-payne16497737024.jpg', '2022-04-12 08:28:22', '2022-04-12 08:28:22'),
-(37, 12, 'levi-hurst16497767860.png', '2022-04-12 09:19:46', '2022-04-12 09:19:46'),
-(38, 12, 'levi-hurst16497767861.jpg', '2022-04-12 09:19:46', '2022-04-12 09:19:46'),
-(39, 12, 'levi-hurst16497767862.png', '2022-04-12 09:19:46', '2022-04-12 09:19:46'),
-(40, 12, 'levi-hurst16497767863.jpg', '2022-04-12 09:19:46', '2022-04-12 09:19:46'),
-(41, 12, 'levi-hurst16497767864.png', '2022-04-12 09:19:46', '2022-04-12 09:19:46');
+(42, 10, 'knox-macias16508272970.jpg', '2022-04-24 13:08:17', '2022-04-24 13:08:17'),
+(43, 10, 'knox-macias16508272971.jpg', '2022-04-24 13:08:17', '2022-04-24 13:08:17'),
+(44, 10, 'knox-macias16508272972.jpg', '2022-04-24 13:08:17', '2022-04-24 13:08:17'),
+(48, 9, 'taylor-nolan16508276450.jpg', '2022-04-24 13:14:05', '2022-04-24 13:14:05'),
+(49, 9, 'taylor-nolan16508276451.jpg', '2022-04-24 13:14:05', '2022-04-24 13:14:05'),
+(50, 9, 'taylor-nolan16508276452.jpg', '2022-04-24 13:14:05', '2022-04-24 13:14:05'),
+(51, 12, 'levi-hurst16508287730.jpg', '2022-04-24 13:32:53', '2022-04-24 13:32:53'),
+(52, 12, 'levi-hurst16508287731.jpg', '2022-04-24 13:32:53', '2022-04-24 13:32:53'),
+(53, 12, 'levi-hurst16508287732.jpg', '2022-04-24 13:32:53', '2022-04-24 13:32:53');
 
 -- --------------------------------------------------------
 
@@ -380,6 +397,17 @@ CREATE TABLE `rating_wishlists` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rating_wishlists`
+--
+
+INSERT INTO `rating_wishlists` (`id`, `user_id`, `product_id`, `rating`, `message`, `type`, `created_at`, `updated_at`) VALUES
+(27, 7, 10, 4.00, 'Best product', 'rating', '2022-04-19 15:55:46', '2022-04-19 15:55:46'),
+(28, 7, 12, 4.00, 'Best product', 'rating', '2022-04-19 15:55:46', '2022-04-19 15:55:46'),
+(29, 7, 8, 2.00, NULL, 'rating', '2022-04-20 09:25:19', '2022-04-20 09:25:19'),
+(30, 7, 8, 3.00, NULL, 'rating', '2022-04-20 10:32:45', '2022-04-20 10:32:45'),
+(31, 8, 12, 2.00, 'best product', 'rating', '2022-04-24 10:41:28', '2022-04-24 10:41:28');
 
 -- --------------------------------------------------------
 
@@ -400,7 +428,11 @@ CREATE TABLE `shippings` (
 --
 
 INSERT INTO `shippings` (`id`, `user_id`, `address`, `created_at`, `updated_at`) VALUES
-(1, 7, 'Et ut eveniet ducim', '2022-04-19 09:37:55', '2022-04-19 09:37:55');
+(1, 7, 'Et ut eveniet ducim', '2022-04-19 09:37:55', '2022-04-19 09:37:55'),
+(2, 7, 'Cillum est quia cons', '2022-04-19 15:43:11', '2022-04-19 15:43:11'),
+(3, 7, 'sdfsdfsdfsdfsdf', '2022-04-20 09:25:04', '2022-04-20 09:25:04'),
+(4, 7, 'আসেদ্রেক্বাসদাসদাসদ', '2022-04-20 10:32:32', '2022-04-20 10:32:32'),
+(5, 8, 'sadfsdfsddfsdfsdfsd', '2022-04-24 10:39:51', '2022-04-24 10:39:51');
 
 -- --------------------------------------------------------
 
@@ -424,6 +456,7 @@ CREATE TABLE `sizes` (
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `google_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `avatar` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -441,9 +474,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `avatar`, `name`, `email`, `phone`, `address`, `status`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(6, 'gage-mayer1650292814_.jpg', 'Gage Mayer', 'dygyxe@mailinator.com', '+1 (742) 394-5412', 'Quia autem cupiditat', 0, NULL, '$2y$10$VzwQ2daHC/Gzr5vsyZ2keeAeWT1aHc5aAqXno6IFTJoZiC0ixmqLS', NULL, '2022-04-18 08:40:14', '2022-04-18 08:40:14'),
-(7, 'stone-hood1650382368_.jpg', 'Stone Hood', 'test@info.com', '+1 (597) 799-5072', 'Cillum commodo dicta', 0, NULL, '$2y$10$QMpykrCp.wvH3uktbJsh5OrNutHeGPUO13be/KWvhIxdoC38i1ABW', NULL, '2022-04-19 09:32:48', '2022-04-19 09:32:48');
+INSERT INTO `users` (`id`, `google_id`, `avatar`, `name`, `email`, `phone`, `address`, `status`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(6, NULL, 'gage-mayer1650292814_.jpg', 'Gage Mayer', 'dygyxe@mailinator.com', '+1 (742) 394-5412', 'Quia autem cupiditat', 0, NULL, '$2y$10$VzwQ2daHC/Gzr5vsyZ2keeAeWT1aHc5aAqXno6IFTJoZiC0ixmqLS', NULL, '2022-04-18 08:40:14', '2022-04-18 08:40:14'),
+(7, NULL, 'stone-hood1650382368_.jpg', 'Stone Hood', 'test@info.com', '+1 (597) 799-5072', 'Cillum commodo dicta', 0, NULL, '$2y$10$QMpykrCp.wvH3uktbJsh5OrNutHeGPUO13be/KWvhIxdoC38i1ABW', NULL, '2022-04-19 09:32:48', '2022-04-19 09:32:48'),
+(8, '115604259690509405177', 'https://lh3.googleusercontent.com/a-/AOh14GhPxh6FMdIPxOXwneWM7gbx-3WtJp-R2yzmj6Wrnw=s96-c', 'Shahariar Ikbal', 'shahariar.ikbal86@gmail.com', '01738780232', 'Gulshan Dhaka Bangladesh', 0, NULL, '$2y$10$w6ec4V6fggVs3xZHi9B6KO0k6WntyM67u5BDRIUi8dmV6EKcB3I66', NULL, '2022-04-23 09:30:43', '2022-04-23 09:30:43');
 
 --
 -- Indexes for dumped tables
@@ -593,7 +627,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -623,13 +657,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -647,19 +681,19 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `rating_wishlists`
 --
 ALTER TABLE `rating_wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `shippings`
 --
 ALTER TABLE `shippings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sizes`
@@ -671,7 +705,7 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
