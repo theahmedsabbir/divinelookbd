@@ -19,11 +19,19 @@
     .carousel-caption p {font-size: 24px;background: #0000002b;padding-bottom: 13px;}
     .modal-body.p-0 {padding: 0 !important;}
     .modal-content {background: transparent !important;}
+
+    @media (min-width: 992px) { 
+
+        .modal_box{
+            width: 75% !important;
+            height: 75% !important;
+        }
+    }
 </style>
 
 
 <div id="myModal" class="modal fade">
-    <div class="modal-dialog modal-lg" style="width: 75%; height: 75%">
+    <div class="modal-dialog modal-lg  modal-dialog-centered modal_box" {{-- style="width: 75%; height: 75%" --}}>
         <div class="modal-content">
 {{--             <div class="modal-header">
                 <div class="row">
