@@ -68,7 +68,7 @@
                                 <div class="inner">
                                     <input type="text" class="input" name="search" value="{{ Request::get('search') }}" placeholder="Search here">
                                 </div>
-                                <button class="btn-search" type="submit">
+                                <button class="btn-search custom-btn-color" type="submit">
                                     <span class="icon-search"></span>
                                 </button>
                             </div>
@@ -316,7 +316,7 @@
     <div class="header-nav-container rows-space-20">
         <div class="container">
             <div class="header-nav-wapper main-menu-wapper">
-                <div class="vertical-wapper block-nav-categori">
+                <div class="vertical-wapper block-nav-categori custom-btn-color">
                     <div class="block-title">
 							<span class="icon-bar">
 								<span></span>

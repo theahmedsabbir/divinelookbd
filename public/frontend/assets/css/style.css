@@ -6406,7 +6406,8 @@ ul.list-products {
 -----------------home 02------------------
 =========================================*/
 .top-bar {
-	background: #1D043E;
+	/*background: #1D043E;*/
+    background-image: linear-gradient(#F15C36, #B6277E);
 	padding: 10px 0;
 	color: #fff;
 }
@@ -11302,3 +11303,7 @@ a.button.button-viewcart a {background: transparent !important;}
 .info_details span.icon {border-color: #fff !important;}
 
 .info_details span.icon:before {color: #fff !important;}
+
+.custom-btn-color{
+    background-image: linear-gradient(#F15C36, #B6277E);
+}
