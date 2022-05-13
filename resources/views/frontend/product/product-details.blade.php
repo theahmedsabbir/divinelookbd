@@ -108,7 +108,7 @@
                                                         continue;
                                                     }
                                                 @endphp
-                                                
+
                                                 <a href="#" class="">{{$color->name}}</a>
                                             @endforeach
                                             {{-- <a href="#" class="active">m</a> --}}
@@ -145,7 +145,7 @@
                                             @else
                                                 <input type="hidden" name="price" value="{{ $product->price }}" />
                                             @endif
-                                            <button class="single_add_to_cart_button button">Add to cart</button>
+                                            <button class="single_add_to_cart_button button custom-btn-color">Add to cart</button>
                                         </div>
                                     </form>
                                 </div>

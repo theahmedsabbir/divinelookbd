@@ -40,24 +40,24 @@
                 @endphp
 
                 <div class="price-slider-wrapper">
-                    <div data-label-reasult="Range:" 
+                    <div data-label-reasult="Range:"
                     	data-min="0" data-max="{{ $max_price }}" data-unit="৳"
-                        class="slider-range-price " 
-                        data-value-min="{{Request::get('min_price') ?? 0}}" 
+                        class="slider-range-price "
+                        data-value-min="{{Request::get('min_price') ?? 0}}"
                         data-value-max="{{ Request::get('max_price') ?? $max_price }}"
                     >
                     </div>
                     <div class="price-slider-amount">
-                    	<input type="number" 
-                    		name="min_price" value="{{Request::get('min_price') ?? 0}}" 
-                    		oninput="update_slider()" 
-                    		min="0" max="{{ $max_price }}" 
+                    	<input type="number"
+                    		name="min_price" value="{{Request::get('min_price') ?? 0}}"
+                    		oninput="update_slider()"
+                    		min="0" max="{{ $max_price }}"
                     		class="from" id="from" placeholder="min"
                 		>
-                    	<input type="number" 
-                    		name="max_price" value="{{ Request::get('max_price') ?? $max_price }}" 
-                    		oninput="update_slider()" 
-                    		min="0" max="{{ $max_price }}" 
+                    	<input type="number"
+                    		name="max_price" value="{{ Request::get('max_price') ?? $max_price }}"
+                    		oninput="update_slider()"
+                    		min="0" max="{{ $max_price }}"
                     		class="from" id="to" placeholder="max"
                 		>
 
@@ -76,7 +76,7 @@
                 	@endphp
 
                     <li>
-                        <input type="checkbox" id="{{ 'brand'.$brand->id }}" name="brand_ids[]" value="{{ $brand->id }}"                    	
+                        <input type="checkbox" id="{{ 'brand'.$brand->id }}" name="brand_ids[]" value="{{ $brand->id }}"
 
                         	@if (Request::get('brand_ids') && in_array($brand->id, Request::get('brand_ids')))
                         		checked
@@ -92,15 +92,15 @@
             </div>
             <div class="widget widget-categories">
                 <h3 class="widgettitle">Colors</h3>
-                <ul class="list-categories">           	
+                <ul class="list-categories">
                 	@php
                 		// collecting unique color ids first
                 		$color_ids = [];
                 		foreach ($products as $key => $product) {
-                			if($product->colors == null) continue;	
+                			if($product->colors == null) continue;
                 			foreach (json_decode($product->colors) as $color_id) {
 
-                				// jodi array te na thake tahole in koro 
+                				// jodi array te na thake tahole in koro
                 				if(!in_array($color_id, $color_ids)){
                 					array_push($color_ids, $color_id);
                 				}
@@ -140,7 +140,7 @@
                 	@endphp
                 	@foreach ($products->pluck('type') as $type)
                 	@php
-                		// jodi array te thake taile contine, else array te rakho and show koro 
+                		// jodi array te thake taile contine, else array te rakho and show koro
                 		if (!in_array($type, $types) && $type != null) {
                 			array_push($types, $type);
                 		}else{
@@ -168,10 +168,10 @@
         	<input type="hidden" name="search" value="{{ Request::get('search') }}">
         @endif
         <div class="widget">
-            <button type="submit" class="button submit-newsletter">Filter</button>
-            <button type="button" 
+            <button type="submit" class="button submit-newsletter custom-btn-color">Filter</button>
+            <button type="button"
             	class="button"style="background-color: #EE1C47"
-            	onclick="location.href='{{ url('product/all') }}'" 
+            	onclick="location.href='{{ url('product/all') }}'"
         	>Clear</button>
         </div>
         <div class="widget newsletter-widget">
@@ -181,7 +181,7 @@
                     More special Deals, Events & Promotions
                 </div>
                 <input type="email" class="email" placeholder="Your email letter">
-                <button type="button" class="button submit-newsletter">Subscribe</button>
+                <button type="button" class="button submit-newsletter custom-btn-color">Subscribe</button>
             </div>
         </div>
     </div>

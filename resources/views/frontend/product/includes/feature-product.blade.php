@@ -68,7 +68,7 @@
                     @else
                         <input type="hidden" name="price" value="{{ $feature_product->price }}" />
                     @endif
-                    <button class="add_to_cart_button button" tabindex="0" type="submit">Shop now</button>
+                    <button class="add_to_cart_button button custom-btn-color" tabindex="0" type="submit">Shop now</button>
                 </form>
             </div>
         </div>

@@ -206,10 +206,10 @@
                                         </span>
                                     </div>
                                     <div class="actions">
-                                        <a class="button button-viewcart" href="{{ url('/shopping/cart') }}">
+                                        <a class="button button-viewcart custom-btn-color" href="{{ url('/shopping/cart') }}">
                                             <span>View Bag</span>
                                         </a>
-                                        <a href="{{ url('/shipping') }}" class="button button-checkout">
+                                        <a href="{{ url('/shipping') }}" class="button button-checkout custom-btn-color">
                                             <span>Checkout</span>
                                         </a>
                                     </div>
@@ -265,7 +265,7 @@
                                                                         Remember me
                                                                     </span>
                                                         </label>
-                                                        <input type="submit" class="button" value="Login">
+                                                        <input type="submit" class="button custom-btn-color" value="Login">
                                                     </p>
                                                     <p class="lost_password">
                                                         <a href="{{ url('password/reset') }}">Lost your password?</a>

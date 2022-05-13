@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="button button-payment">Payment</button>
+                        <button type="submit" class="button button-payment custom-btn-color">Payment</button>
                     </div>
                 </form>
             </div>
