@@ -30,22 +30,22 @@
                     @foreach($orders as $order)
                         <tr>
                             <td>{{ $loop->index+1 }}</td>
-                            <td>{{ $order->user->name ?? 'No user name found' }}</td>
+                            <td>{{ $order[0]->user->name ?? 'No user name found' }}</td>
                             <td>
-                                @foreach($order->orderDetails as $orderDetails)
+                                @foreach($order[0]->orderDetails as $orderDetails)
                                     <img src="{{ asset('/product/'.$orderDetails->product->image) }}" height="50" width="50" />
                                 @endforeach
                             </td>
                             <td>
-                                @foreach($order->orderDetails as $orderDetails)
+                                @foreach($order[0]->orderDetails as $orderDetails)
                                     {{ $orderDetails->product->name ?? 'No  name found' }} <br/>
                                 @endforeach
                             </td>
-                            <td>{{ $order->total_qty ?? '00' }}</td>
-                            <td>৳ {{ number_format($order->total_price,2) ?? '00' }}</td>
+                            <td>{{ $order[0]->total_qty ?? '00' }}</td>
+                            <td>৳ {{ number_format($order[0]->total_price,2) ?? '00' }}</td>
                             <td>
-                                <a href="{{ url('/admin/order/view/'.$order->id) }}" class="btn btn-sm btn-info">View</a>
-                                <a href="{{ url('/admin/order/delete/'.$order->id) }}" onclick="return confirm('Are you sure permanently this order ?')" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{{ url('/admin/order/view/'.$order[0]->id) }}" class="btn btn-sm btn-info">View</a>
+                                <a href="{{ url('/admin/order/delete/'.$order[0]->id) }}" onclick="return confirm('Are you sure permanently this order ?')" class="btn btn-sm btn-danger">Delete</a>
                             </td>
                         </tr>
                     @endforeach

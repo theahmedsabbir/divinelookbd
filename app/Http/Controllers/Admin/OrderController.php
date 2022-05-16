@@ -16,7 +16,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('orderDetails', 'user')->orderByDesc('created_at')->get();
+        $orders = Order::with('orderDetails', 'user')->orderByDesc('created_at')->get()->groupBy('user_id');
         return view('backend.order.index', compact('orders'));
     }
 

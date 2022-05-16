@@ -47,20 +47,36 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($order->orderDetails as $order)
+                    @foreach($order->orderDetails as $orderDetail)
                         <tr>
                             <td>{{ $loop->index+1 }}</td>
                             <td>
-                                <img src="{{ asset('/product/'.$order->product->image) }}" height="50" width="50" />
+                                <img src="{{ asset('/product/'.$orderDetail->product->image) }}" height="50" width="50" />
                             </td>
                             <td>
-                                {{ $order->product->name ?? 'No  name found' }}
+                                {{ $orderDetail->product->name ?? 'No  name found' }}
                             </td>
-                            <td>{{ $order->qty ?? '00' }} Pc</td>
-                            <td>৳ {{ number_format($order->price,2) ?? '00' }}</td>
-                            <td>৳ {{ number_format($order->qty*$order->price,2) ?? '00' }}</td>
+                            <td>{{ $orderDetail->qty ?? '00' }} Pc</td>
+                            <td>৳ {{ number_format($orderDetail->price,2) ?? '00' }}</td>
+                            <td>৳ {{ number_format($orderDetail->qty*$orderDetail->price,2) ?? '00' }}</td>
                         </tr>
                     @endforeach
+                    </tbody>
+                </table>
+                <hr/>
+                <h2>Shipping Address</h2>
+                <table id="" class="table display nowrap">
+                    <thead>
+                    <tr>
+                        <th class="">#</th>
+                        <th class="">Address</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>{{ $order->user->shipping[0]->address ?? 'No user name found' }}</td>
+                    </tr>
                     </tbody>
                 </table>
             </div><!-- table-wrapper -->
