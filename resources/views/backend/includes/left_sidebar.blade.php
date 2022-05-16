@@ -99,7 +99,21 @@
               <ul class="br-menu-sub" style="{{ Request::is('admin/order*') ? 'display: block;' : 'display: none;'}}">
 
                   <li class="sub-item">
-                      <a href="{{ url('admin/order/index') }}" class="sub-link {{ Request::is('admin/porder/index') ? 'active' : ''}}">Manage</a>
+                      <a href="{{ url('admin/order/index') }}" class="sub-link {{ Request::is('admin/order/index') ? 'active' : ''}}">Manage</a>
+                  </li>
+              </ul>
+          </li>
+
+          <li class="br-menu-item">
+              <a href="#" class="br-menu-link with-sub {{ Request::is('admin/stock*') ? 'show-sub' : ''}}">
+                  <i class="menu-item-icon icon ion-ios-cart-outline tx-24"></i>
+                  {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
+                  <span class="menu-item-label">Stock</span>
+              </a><!-- br-menu-link -->
+              <ul class="br-menu-sub" style="{{ Request::is('admin/order*') ? 'display: block;' : 'display: none;'}}">
+
+                  <li class="sub-item">
+                      <a href="{{ url('admin/stock/index') }}" class="sub-link {{ Request::is('admin/stock/index') ? 'active' : ''}}">Manage</a>
                   </li>
               </ul>
           </li>

@@ -36,4 +36,11 @@ class OrderController extends Controller
 
         return redirect()->back()->with('success', 'Order has been deleted.');
     }
+
+    //============== Stock ==============//
+
+    public function stockList()
+    {
+        return view('backend.stock.index');
+    }
 }
