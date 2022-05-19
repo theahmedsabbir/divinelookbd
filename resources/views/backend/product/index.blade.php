@@ -23,7 +23,7 @@
                         <th>Category</th>
                         <th>Brand</th>
                         <th>Price</th>
-                        <th>Action</th>
+                        <th class="notexport">Action</th>
                     </tr>
                     </thead>
                     <tbody>

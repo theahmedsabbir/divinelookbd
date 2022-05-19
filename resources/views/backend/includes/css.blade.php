@@ -3,7 +3,10 @@
 <link href="{{ asset('backend/lib/ionicons/css/ionicons.min.css') }}" rel="stylesheet">
 {{-- <link href="{{ asset('backend/lib/rickshaw/rickshaw.min.css') }}" rel="stylesheet"> --}}
 <link href="{{ asset('backend/lib/select2/css/select2.min.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('backend/css/jquery.dataTables.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('backend/css/jquery.dataTables.min.css') }}"> --}}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
 {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"> --}}
 {{-- <link href="{{ asset('backend/lib/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet"> --}}
 {{-- <link href="{{ asset('backend/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css') }}" rel="stylesheet"> --}}

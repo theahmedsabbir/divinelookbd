@@ -20,7 +20,7 @@
                         <th class="">#</th>
                         <th class="">Image</th>
                         <th class="">Name</th>
-                        <th class="">Action</th>
+                        <th class="notexport">Action</th>
                     </tr>
                     </thead>
                     <tbody>

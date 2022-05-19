@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="br-pagetitle">
-        <i class="icon ion-tshirt-outline"></i>
+        <i class="icon ion-compose"></i>
         <div>
             <h4>Manage Stock</h4>
             <p class="mg-b-0">
@@ -22,7 +22,7 @@
                         <th>Name</th>
                         <th>Qty</th>
                         <th>Price</th>
-                        <th>Action</th>
+                        <th class="notexport">Action</th>
                     </tr>
                     </thead>
                     <tbody>
