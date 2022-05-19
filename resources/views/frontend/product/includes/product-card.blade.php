@@ -62,7 +62,7 @@
                         @if($sum > 0)
                         <span class="star-{{ $sum }}"></span>
                         @else
-                            <span class="star-1"></span>
+                            <span class="star-5"></span>
                         @endif
                     </div>
                     <div class="count-star">
