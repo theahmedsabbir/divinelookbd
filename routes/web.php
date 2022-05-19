@@ -58,6 +58,7 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('/order/index', [OrderController::class, 'index']);
         Route::get('/order/view/{id}', [OrderController::class, 'view']);
         Route::get('/order/delete/{id}', [OrderController::class, 'delete']);
+        Route::get('/stock/index', [OrderController::class, 'stockList']);
 
         // ======================= User routes ======================= //
         Route::get('/user/index', [UserController::class, 'index']);

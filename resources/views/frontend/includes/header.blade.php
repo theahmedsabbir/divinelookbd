@@ -68,7 +68,7 @@
                                 <div class="inner">
                                     <input type="text" class="input" name="search" value="{{ Request::get('search') }}" placeholder="Search here">
                                 </div>
-                                <button class="btn-search" type="submit">
+                                <button class="btn-search custom-btn-color" type="submit">
                                     <span class="icon-search"></span>
                                 </button>
                             </div>
@@ -206,10 +206,10 @@
                                         </span>
                                     </div>
                                     <div class="actions">
-                                        <a class="button button-viewcart" href="{{ url('/shopping/cart') }}">
+                                        <a class="button button-viewcart custom-btn-color" href="{{ url('/shopping/cart') }}">
                                             <span>View Bag</span>
                                         </a>
-                                        <a href="{{ url('/shipping') }}" class="button button-checkout">
+                                        <a href="{{ url('/shipping') }}" class="button button-checkout custom-btn-color">
                                             <span>Checkout</span>
                                         </a>
                                     </div>
@@ -265,7 +265,7 @@
                                                                         Remember me
                                                                     </span>
                                                         </label>
-                                                        <input type="submit" class="button" value="Login">
+                                                        <input type="submit" class="button custom-btn-color" value="Login">
                                                     </p>
                                                     <p class="lost_password">
                                                         <a href="{{ url('password/reset') }}">Lost your password?</a>
@@ -316,7 +316,7 @@
     <div class="header-nav-container rows-space-20">
         <div class="container">
             <div class="header-nav-wapper main-menu-wapper">
-                <div class="vertical-wapper block-nav-categori">
+                <div class="vertical-wapper block-nav-categori custom-btn-color">
                     <div class="block-title">
 							<span class="icon-bar">
 								<span></span>

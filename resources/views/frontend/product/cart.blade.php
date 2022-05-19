@@ -33,7 +33,7 @@
                             <div class="shoppingcart-content">
                                 <div class="col-md-12">
                                     <table class="table table-responsive">
-                                        <tr style="background-color: #1D043E">
+                                        <tr class="custom-btn-color">
                                             <th width="5%" style="color: white;">SL</th>
                                             <th width="15%" style="color: white;">Image</th>
                                             <th style="color: white;">Name</th>
@@ -60,7 +60,7 @@
                                                             <div class="input-group">
                                                                 <input type="number" name="qty" value="{{ $cartProduct->qty }}" class="form-control" placeholder="qty...">
                                                                 <span class="input-group-btn">
-                                                                    <button class="btn btn-success" type="submit">Update</button>
+                                                                    <button class="btn btn-success custom-btn-color" type="submit">Update</button>
                                                                 </span>
                                                             </div><!-- /input-group -->
                                                         </div><!-- /.col-lg-6 -->
@@ -86,7 +86,7 @@
                                                 <div class="coupon">
                                                     <label class="coupon_code">Coupon Code:</label>
                                                     <input type="text" class="input-text" placeholder="Promotion code here">
-                                                    <a href="#" class="button">Coupon</a>
+                                                    <a href="#" class="button custom-btn-color">Coupon</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -103,15 +103,15 @@
                                     </div>
                                 </div>
                                 <div class="control-cart">
-                                    <a href="{{ url('/') }}" class="button btn-continue-shopping">
+                                    <a href="{{ url('/') }}" class="button btn-continue-shopping custom-btn-color">
                                         Continue Shopping
                                     </a>
                                     @if(auth()->check())
-                                        <a href="{{ url('/shipping') }}" class="button btn-cart-to-checkout">
+                                        <a href="{{ url('/shipping') }}" class="button btn-cart-to-checkout custom-btn-color">
                                             Checkout
                                         </a>
                                     @else
-                                        <a href="{{ url('/login') }}" class="button btn-cart-to-checkout">
+                                        <a href="{{ url('/login') }}" class="button btn-cart-to-checkout custom-btn-color">
                                             Checkout
                                         </a>
                                     @endif

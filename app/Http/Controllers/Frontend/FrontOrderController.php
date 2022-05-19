@@ -182,6 +182,12 @@ class FrontOrderController extends Controller
             $orderDetails->save();
         }
 
+        //=============== Product qty update ================//
+        foreach ($cartProducts as $cartProduct){
+            $product = Product::find($cartProduct->product_id);
+            $product->qty = $product->qty - $cartProduct->qty;
+            $product->save();
+        }
         return redirect('/complete')->with('success', 'Your order has been completed.');
     }
 

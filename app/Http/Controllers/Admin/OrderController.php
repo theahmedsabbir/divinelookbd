@@ -16,7 +16,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('orderDetails', 'user')->orderByDesc('created_at')->get();
+        $orders = Order::with('orderDetails', 'user')->orderByDesc('created_at')->get()->groupBy('user_id');
         return view('backend.order.index', compact('orders'));
     }
 
@@ -35,5 +35,12 @@ class OrderController extends Controller
         $orderDelete->delete();
 
         return redirect()->back()->with('success', 'Order has been deleted.');
+    }
+
+    //============== Stock ==============//
+
+    public function stockList()
+    {
+        return view('backend.stock.index');
     }
 }
