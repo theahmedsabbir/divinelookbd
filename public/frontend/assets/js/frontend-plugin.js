@@ -238,7 +238,9 @@ jQuery(document).ready(function ($) {
 
     // =====================slick============================
     function stelina_init_carousel() {
+        // console.log('hei')
         $('.owl-slick').not('.slick-initialized').each(function () {
+
             var _this = $(this),
                 _responsive = _this.data('responsive'),
                 _config = [];
@@ -460,14 +462,15 @@ jQuery(document).ready(function ($) {
 // ------------------owl-thumbs-----------------------------------------------
     init_carousel();
     function init_carousel() {
-        //owl has thumbs 
+        //owl has thumbs
+        console.log('yes');
         $('.owl-carousel.has-thumbs').owlCarousel({
             loop: true,
             items: 1,
             thumbs: true,
             thumbImage: true,
             thumbContainerClass: 'owl-thumbs',
-            thumbItemClass: 'owl-thumb-item'
+            thumbItemClass: 'owl-thumb-item',
         });
         // owl config
         $(".owl-carousel").each(function (index, el) {

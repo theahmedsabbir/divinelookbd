@@ -20,6 +20,7 @@
 
 {{-- toastr --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 {{-- toastr --}}
     {{-- toastr --}}
     <script type="text/javascript">

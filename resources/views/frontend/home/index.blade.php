@@ -1,5 +1,37 @@
 @extends('frontend.master')
 
+
+@push('style')
+<style type="text/css">
+        /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .slider-inner{  height: 236px;  }
+    }
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+
+        .slider-inner{  height: 434px;  }
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+
+    }
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {        
+        /*.slider-inner{  height: 611px;  }*/
+    }
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+        .slider-inner{  height: 611px;  }
+    }
+</style>
+@endpush
+
+
 @section('content')
 {{-- @dd(Auth::check()) --}}
     <div class="header-device-mobile">
@@ -99,8 +131,8 @@
                                      {{-- @dd($slider) --}}
 
                                     <div class="slider-item style7">
-                                        <div class="slider-inner equal-element"
-                                            style="background-image: url({{ url('banner/' . $slider->image) }})"
+                                        <div class="slider-inner"
+                                            style="background-image: url({{ url('banner/' . $slider->image) }}); "
                                         >
                                             <div class="slider-infor">
                                                 <h5 class="title-small">
