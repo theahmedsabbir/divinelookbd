@@ -14,7 +14,7 @@
     <div class="br-pagebody">
         <div class="br-section-wrapper">
             <div class="table-wrapper table-responsive">
-                <table id="datatable3" class="table display nowrap">
+                <table id="datatable3_without_export" class="table display nowrap">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -32,7 +32,7 @@
                             @endif
                         @endif
                         <th>priority</th>
-                        <th>action</th>
+                        <th class="notexport">action</th>
                     </tr>
                     </thead>
                     <tbody>

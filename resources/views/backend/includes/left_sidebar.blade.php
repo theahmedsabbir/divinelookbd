@@ -106,9 +106,9 @@
 
           <li class="br-menu-item">
               <a href="#" class="br-menu-link with-sub {{ Request::is('admin/stock*') ? 'show-sub' : ''}}">
-                  <i class="menu-item-icon icon ion-ios-cart-outline tx-24"></i>
+                  <i class="menu-item-icon icon ion-compose tx-24"></i>
                   {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
-                  <span class="menu-item-label">Stock</span>
+                  <span class="menu-item-label">Stock Report</span>
               </a><!-- br-menu-link -->
               <ul class="br-menu-sub" style="{{ Request::is('admin/order*') ? 'display: block;' : 'display: none;'}}">
 
@@ -116,6 +116,30 @@
                       <a href="{{ url('admin/stock/index') }}" class="sub-link {{ Request::is('admin/stock/index') ? 'active' : ''}}">Manage</a>
                   </li>
               </ul>
+          </li>
+
+          <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Manage Accounts</label>
+
+
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/report*') ? 'show-sub' : ''}}">
+              <i class="menu-item-icon ion-stats-bars tx-20"></i>
+              <span class="menu-item-label">Reports</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub" style="{{ Request::is('admin/report*') ? 'display: block;' : 'display: none;'}}">
+
+              <li class="sub-item">
+                <a href="{{ url('admin/report/sales') }}" class="sub-link {{ Request::is('admin/report/sales') ? 'active' : ''}}">Sales Report</a>
+{{--                 <a href="{{ url('admin/report/gross-margin') }}" class="sub-link {{ Request::is('admin/report/gross-margin') ? 'active' : ''}}">GM Report</a>
+                <a href="{{ url('admin/report/purchase-order') }}" class="sub-link {{ Request::is('admin/report/purchase-order') ? 'active' : ''}}">Purchase Order</a> --}}
+                <a href="{{ url('admin/report/sales-by-product') }}" class="sub-link {{ Request::is('admin/report/sales-by-product') ? 'active' : ''}}">Sales By Product</a>
+{{--                 <a href="{{ url('admin/report/vendor') }}" class="sub-link {{ Request::is('admin/report/vendor') ? 'active' : ''}}">Vendor Report</a> --}}
+                <a href="{{ url('admin/report/customer') }}" class="sub-link {{ Request::is('admin/report/customer') ? 'active' : ''}}">Customer Report</a>
+{{--                 <a href="{{ url('admin/report/soa') }}" class="sub-link {{ Request::is('admin/report/soa') ? 'active' : ''}}">Statement Of Account</a> --}}
+
+              </li>
+
+            </ul>
           </li>
 
           <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Settings</label>

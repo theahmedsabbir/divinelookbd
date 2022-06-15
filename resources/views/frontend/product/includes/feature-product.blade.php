@@ -20,7 +20,7 @@
                     <img src="{{ asset('/product/'.$feature_product->image) }}" alt="img">
                 </a>
             </div>
-            <a href="#" class="button quick-wiew-button" tabindex="0">Quick View</a>
+            {{-- <a href="#" class="button quick-wiew-button" tabindex="0">Quick View</a> --}}
         </div>
         <div class="product-info">
             <h5 class="product-name product_title">
@@ -39,7 +39,7 @@
                         @if($sum > 0)
                             <span class="star-{{ $sum }}"></span>
                         @else
-                            <span class="star-1"></span>
+                            <span class="star-5"></span>
                         @endif
                     </div>
                     <div class="count-star">

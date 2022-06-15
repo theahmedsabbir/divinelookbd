@@ -32,7 +32,7 @@
                         <th class="">phone</th>
                         <th class="">address</th>
                         <th class="">status</th>
-                        <th class="">action</th>
+                        <th class="notexport">action</th>
                     </tr>
                     </thead>
                     <tbody>

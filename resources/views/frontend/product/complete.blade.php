@@ -159,7 +159,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-header">
-                                            <span class="text-center complete">Your order has been completed.Thank you for ordered.</span>
+                                            <span class="text-center complete">Your order has been completed.Thank you for shopping.</span>
                                             <hr/>
                                             <div class="container-rating">
                                                 <div class="feedback">

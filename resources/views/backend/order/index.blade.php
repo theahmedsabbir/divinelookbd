@@ -23,7 +23,7 @@
                         <th class="">Product Name</th>
                         <th class="">Total Qty</th>
                         <th class="">Total Price</th>
-                        <th class="">Action</th>
+                        <th class="notexport">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,7 +33,9 @@
                             <td>{{ $order[0]->user->name ?? 'No user name found' }}</td>
                             <td>
                                 @foreach($order[0]->orderDetails as $orderDetails)
-                                    <img src="{{ asset('/product/'.$orderDetails->product->image) }}" height="50" width="50" />
+                                    @if ($orderDetails->product && $orderDetails->product->image)                                        
+                                        <img src="{{ asset('/product/'.$orderDetails->product->image) }}" height="50" width="50" />
+                                    @endif
                                 @endforeach
                             </td>
                             <td>

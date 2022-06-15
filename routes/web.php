@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\FrontOrderController;
 use App\Http\Controllers\Frontend\FrontProductController;
@@ -23,6 +24,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('migrate', function() {
+    \Artisan::call('migrate');
+    return "migrated!";
+});
 
 Route::get('cache', function() {
     \Artisan::call('cache:clear');
@@ -92,6 +98,18 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('/banner/{bannerType}/edit/{id}', [BannerController::class, 'edit']);
         Route::post('/banner/{bannerType}/update/{id}', [BannerController::class, 'update']);
         Route::get('/banner/{bannerType}/delete/{id}', [BannerController::class, 'destroy']);
+
+
+
+        // report
+        Route::get('report/sales', [ReportController::class,'sales']);
+        Route::get('report/gross-margin', [ReportController::class,'grossMargin']);
+        Route::get('report/sales-by-product', [ReportController::class,'salesByProduct']);
+        Route::get('report/soa', [ReportController::class,'soa']);
+        Route::post('report/soa/pdf', [ReportController::class,'soaPdf']);
+        Route::get('report/vendor', [ReportController::class,'vendor']);
+        Route::get('report/customer', [ReportController::class,'customer']);
+        Route::get('report/purchase-order', [ReportController::class,'purchaseOrder']);
     });
 });
 

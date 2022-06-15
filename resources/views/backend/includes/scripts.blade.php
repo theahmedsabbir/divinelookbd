@@ -7,7 +7,15 @@
     {{-- <script src="{{ asset('backend/lib/datatables.net-dt/js/dataTables.dataTables.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('backend/lib/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('backend/lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js') }}"></script> --}}
-    <script src="{{ asset('backend/js/jquery.dataTables.min.js') }}"></script>
+    {{-- <script src="{{ asset('backend/js/jquery.dataTables.min.js') }}"></script> --}}
+
+  <script src="{{ asset('backend/js/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('backend/js/dataTables.buttons.min.js') }}"></script>
+  <script src="{{ asset('backend/js/jszip.min.js') }}"></script>
+  <script src="{{ asset('backend/js/pdfmake.min.js') }}"></script>
+  <script src="{{ asset('backend/js/vfs_fonts.js') }}"></script>
+  <script src="{{ asset('backend/js/buttons.html5.min.js') }}"></script>
+
     <script src="{{ asset('backend/lib/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('backend/lib/medium-editor/js/medium-editor.min.js') }}"></script>
 
@@ -93,7 +101,80 @@
           }
         });
 
-        $('#datatable3').DataTable();
+
+        // this one is used mostly
+        // $('#datatable3').DataTable({
+
+        //     buttons: [
+
+        //         {
+        //            extend: 'excel',
+        //            text: 'Excel',
+        //            title : 'Report',
+        //            // className: 'btn btn-default',
+        //            exportOptions: {
+        //               columns: ':not(.notexport)'
+        //            }
+        //         },
+
+        //         {
+        //           extend: 'pdf',
+        //           text: 'Pdf',
+        //           title : 'Report',
+        //           // className: 'btn btn-default',
+        //           exportOptions: {
+        //             columns: ':not(.notexport)',
+        //           },              
+        //           customize: function (doc) {
+        //             doc.content[1].table.widths = 
+        //                   Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+        //             doc.defaultStyle.alignment = 'center';
+        //             doc.styles.tableHeader.alignment = 'center';
+        //           }
+        //         },
+        //       // 'pdf'
+        //     ]
+        // });
+        $('#datatable3_without_export').DataTable(
+        );
+        $('#datatable3').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',    
+                {
+                   extend: 'excel',
+                   text: 'Excel',
+                   title : 'Report',
+                   exportOptions: {
+                      columns: ':not(.notexport)',
+                   }
+                },   
+                {
+                   extend: 'csv',
+                   text: 'Csv',
+                   title : 'Report',
+                   exportOptions: {
+                      columns: ':not(.notexport)',
+                   }
+                },  
+                {
+                   extend: 'pdf',
+                   text: 'Pdf',
+                   title : 'Report',
+                   exportOptions: {
+                      columns: ':not(.notexport)',
+                   },              
+                  customize: function (doc) {
+                    // doc.content[1].table.widths = 
+                    // Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                    doc.defaultStyle.alignment = 'center';
+                    doc.styles.tableHeader.alignment = 'center';
+                  }
+                },
+            ],
+        });
+
+
         $('#datatableNoLabel').DataTable({
           "bPaginate": false,
           "bLengthChange": false,

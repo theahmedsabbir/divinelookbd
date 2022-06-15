@@ -131,14 +131,14 @@
                                     <form action="{{ url('/add/to/card') }}" method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="quantity-add-to-cart">
-{{--                                             <div class="quantity">
+                                            <div class="quantity">
                                                 <div class="control">
                                                     <a class="btn-number qtyminus quantity-minus" href="#">-</a>
                                                     <input type="text" data-step="1" data-min="0" value="1" name="qty" title="Qty"
                                                            class="input-qty qty" size="4">
                                                     <a href="#" class="btn-number qtyplus quantity-plus">+</a>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                             <input type="hidden" name="product_id" value="{{ $product->id }}" />
                                             @if($product->discount_price)
                                                 <input type="hidden" name="discount_price" value="{{ $product->discount_price }}" />
