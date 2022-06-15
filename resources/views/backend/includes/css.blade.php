@@ -6,8 +6,7 @@
 {{-- <link rel="stylesheet" href="{{ asset('backend/css/jquery.dataTables.min.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('backend/css/jquery.dataTables.min.css') }}">
 
-  <link rel="stylesheet" href="{{ asset('backend/css/buttons.dataTables.min.css') }}">
-  
+  <link rel="stylesheet" href="{{ asset('backend/css/buttons.dataTables.min.css') }}">  
 {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"> --}}
 {{-- <link href="{{ asset('backend/lib/datatables.net-dt/css/jquery.dataTables.min.css') }}" rel="stylesheet"> --}}
 {{-- <link href="{{ asset('backend/lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css') }}" rel="stylesheet"> --}}
