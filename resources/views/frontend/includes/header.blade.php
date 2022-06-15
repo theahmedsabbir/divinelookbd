@@ -151,6 +151,10 @@
                         </div>
                         <div class="block-minicart stelina-mini-cart block-header stelina-dropdown">
                             <a href="javascript:void(0);" class="shopcart-icon" data-stelina="stelina-dropdown">
+                                <div id="toast">
+                                    <div id="img">Icon</div>
+                                    <div id="desc">A notification message..</div>
+                                </div>
                                 Cart
                                 <span class="count">
                                     {{ count($productCount) }}

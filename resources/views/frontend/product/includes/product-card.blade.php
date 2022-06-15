@@ -28,10 +28,7 @@
                     </div>
                     {{-- <a href="#" class="button quick-wiew-button">Quick View</a> --}}
                     <div class="loop-form-add-to-cart">
-                        <a class="single_add_to_cart_button button"
-                            href="{{ url('order/add-to-cart/' . $product->id ) }}" 
-                        >Add to cart
-                        </a>
+                        <a class="single_add_to_cart_button button" onclick="launch_toast()" href="{{ url('order/add-to-cart/' . $product->id ) }}">Add to cart</a>
 {{--                         <form action="{{ url('add/to/card') }}" class="d-none" id="add_to_cart_form{{ $product->id}}" method="GET">
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <input type="hidden" name="qty" value="1">
@@ -82,3 +79,11 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function launch_toast() {
+            var x = document.getElementById("toast")
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+        }
+    </script>
