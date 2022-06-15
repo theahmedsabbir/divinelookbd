@@ -173,6 +173,42 @@
                 },
             ],
         });
+        $('#datatable_report_sales').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',    
+                {
+                   extend: 'excel',
+                   text: 'Excel',
+                   title : 'Report',
+                   exportOptions: {
+                      columns: ':not(.notexport)',
+                   }
+                },   
+                {
+                   extend: 'csv',
+                   text: 'Csv',
+                   title : 'Report',
+                   exportOptions: {
+                      columns: ':not(.notexport)',
+                   }
+                },  
+                {
+                   extend: 'pdf',
+                   text: 'Pdf',
+                   title : 'Report',
+                   exportOptions: {
+                      columns: ':not(.notexport)',
+                   },              
+                  customize: function (doc) {
+                    // doc.content[1].table.widths = 
+                    // Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                    doc.defaultStyle.alignment = 'center';
+                    doc.styles.tableHeader.alignment = 'center';
+                  }
+                },
+            ],
+        });
 
 
         $('#datatableNoLabel').DataTable({

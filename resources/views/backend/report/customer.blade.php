@@ -41,7 +41,7 @@
                   </div>
                   <div class="col-md-6">                    
                     <div class="form-group">
-                      <label for="">Date From</label>
+                      <label for="">Date To</label>
                       <input type="date" name="to" required class="form-control">
                     </div>
                   </div>

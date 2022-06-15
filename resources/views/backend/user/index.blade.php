@@ -31,6 +31,7 @@
                         <th class="">email</th>
                         <th class="">phone</th>
                         <th class="">address</th>
+                        <th class="">division</th>
                         <th class="">status</th>
                         <th class="notexport">action</th>
                     </tr>
@@ -50,6 +51,7 @@
                             <td>{{ $user->email ?? '' }}</td>
                             <td>{{ $user->phone ?? '' }}</td>
                             <td>{{ $user->address ?? '' }}</td>
+                            <td>{{ $user->division ?? '' }}</td>
                             <td>
                                 {!! $user->status==0 ? 
                                     '<span class="badge badge-danger">Pending</span>' :

@@ -12,6 +12,7 @@ use App\Models\Shipping;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
 class FrontOrderController extends Controller
@@ -31,6 +32,7 @@ class FrontOrderController extends Controller
                 $updateCart->qty = $updateCart->qty + $request->qty;
             }
             $updateCart->save();
+            Session::flash('show_cart_animation', true);
             return redirect()->back()->withSuccess('Product updated to cart');
         }else{
             $cart = new Cart();
@@ -56,6 +58,7 @@ class FrontOrderController extends Controller
                 $cart->total_price = $request->qty ? $request->qty * $request->price : $request->qty*$request->price;
             }
             $cart->save();
+            Session::flash('show_cart_animation', true);
             return redirect()->back()->withSuccess('Product added to cart');
         }
     }
@@ -84,6 +87,7 @@ class FrontOrderController extends Controller
                 $updateCart->qty = $updateCart->qty + $qty;
             }
             $updateCart->save();
+            Session::flash('show_cart_animation', true);
             return redirect()->back()->withSuccess('Product updated to cart');
         }else{
             $cart = new Cart();
@@ -109,6 +113,8 @@ class FrontOrderController extends Controller
                 $cart->total_price = $qty ? $qty * $price : $qty*$price;
             }
             $cart->save();
+            Session::flash('show_cart_animation', true);
+            // dd(Session::all());
             return redirect()->back()->withSuccess('Product added to cart');
         }
     }
@@ -116,7 +122,8 @@ class FrontOrderController extends Controller
     public function deleteCartProduct($id)
     {
         $cartProduct = Cart::find($id);
-        $cartProduct->delete();
+        $cartProduct->delete();        
+        // Session::flash('show_cart_animation', true);
         return redirect()->back()->withSuccess('Product has been removed form cart.');
     }
 
@@ -134,6 +141,8 @@ class FrontOrderController extends Controller
         $cartUpdate->qty = $request->qty;
         $cartUpdate->total_price = $request->qty * $cartUpdate->price;
         $cartUpdate->save();
+        
+        Session::flash('show_cart_animation', true);
         return redirect()->back()->withSuccess('Product qty has been updated.');
     }
 

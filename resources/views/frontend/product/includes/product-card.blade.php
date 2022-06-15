@@ -29,9 +29,22 @@
                     {{-- <a href="#" class="button quick-wiew-button">Quick View</a> --}}
                     <div class="loop-form-add-to-cart">
                         <a class="single_add_to_cart_button button"
-                            href="{{ url('order/add-to-cart/' . $product->id ) }}" 
+                            style="cursor: pointer" 
+                            onclick="show_animation_add_to_cart({{$product->id}})" 
+                            {{-- href="{{ url('order/add-to-cart/' . $product->id ) }}"  --}}
                         >Add to cart
                         </a>
+
+                        <script>
+                            function show_animation_add_to_cart(product_id){
+
+
+                                document.querySelector('.add_to_cart_animation').style.display= 'block';
+                                window.location.href= "{{ url('order/add-to-cart/' ) }}/"+product_id;
+
+                            }
+                        </script>
+
 {{--                         <form action="{{ url('add/to/card') }}" class="d-none" id="add_to_cart_form{{ $product->id}}" method="GET">
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                             <input type="hidden" name="qty" value="1">

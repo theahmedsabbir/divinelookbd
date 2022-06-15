@@ -46,6 +46,11 @@
     </div>
     <div class="container">
         <div class="main-header">
+
+
+
+                            {{-- <div id="loading"></div> --}}
+
             <div class="row">
                 <div class="col-lg-3 col-sm-4 col-md-3 col-xs-7 col-ts-12 header-element">
                     <div class="logo">
@@ -150,6 +155,40 @@
                             </div>
                         </div>
                         <div class="block-minicart stelina-mini-cart block-header stelina-dropdown">
+
+
+                                {{-- @dd(Session::has('show_cart_animation')) --}}
+                            <style>
+                                .add_to_cart_animation {
+                                    
+                                    position: absolute !important;
+                                    top: -58%;
+                                    right: -16%;
+                                    background: white;
+                                    z-index: 9999;
+                                    /* width: 9%; */
+                                    border-radius: 50%;
+                                    @if (Session::has('show_cart_animation') && Session::get('show_cart_animation') == true)
+                                        display: block;
+                                    @else
+                                        display: none;
+                                    @endif
+
+                                }
+                            </style>
+                            <img src="{{ asset('order/add_to_cart.gif') }}" class="add_to_cart_animation" alt="">
+
+                            {{-- hide after 2-3 second --}}
+                            <script type="text/javascript">
+                            @if (Session::has('show_cart_animation'))
+
+                                setTimeout(function () {
+                                    document.querySelector('.add_to_cart_animation').style.display= 'none';
+                                }, 3000);
+                            @endif
+                            </script>
+
+
                             <a href="javascript:void(0);" class="shopcart-icon" data-stelina="stelina-dropdown">
                                 Cart
                                 <span class="count">
