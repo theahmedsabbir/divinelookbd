@@ -63,13 +63,7 @@
                     <div class="block-search-block">
                         <form action="{{ url('product/all') }}" class="form-search form-search-width-category">
                             <div class="form-content">
-{{--                                 <div class="category">
-                                    <select title="cate" data-placeholder="All Categories" class="chosen-select" tabindex="1">
-                                        @foreach($categories as $category)
-                                        <option value="United States">{{ $category->name ?? 'No Category' }}</option>
-                                        @endforeach
-                                    </select>
-                                </div> --}}
+
                                 <div class="inner">
                                     <input type="text" class="input" name="search" value="{{ Request::get('search') }}" placeholder="Search here">
                                 </div>
@@ -130,9 +124,7 @@
                                                 </li>
                                             @endforeach
                                         </ul>
-{{--                                         <div class="subtotal">
-                                            <span class="total-title">Go to wishlist</span>
-                                        </div> --}}
+
                                         <br>
                                         <div class="actions">
                                             <a class="button button-viewcart wishlist-login" href="{{ url('product/wishlist') }}">
@@ -178,15 +170,7 @@
                             </style>
                             <img src="{{ asset('order/add_to_cart.gif') }}" class="add_to_cart_animation" alt="">
 
-                            {{-- hide after 2-3 second --}}
-                            <script type="text/javascript">
-                            @if (Session::has('show_cart_animation'))
-
-                                setTimeout(function () {
-                                    document.querySelector('.add_to_cart_animation').style.display= 'none';
-                                }, 3000);
-                            @endif
-                            </script>
+                            {{-- see script in mobile_header --}}
 
 
                             <a href="javascript:void(0);" class="shopcart-icon" data-stelina="stelina-dropdown">
@@ -271,9 +255,7 @@
                                                 <a data-toggle="tab" aria-expanded="true" href="#header-tab-login" style="text-transform: lowercase;">{{ Auth::user()->email }}</a>
                                             @endif
                                         </li>
-{{--                                         <li>
-                                            <a data-toggle="tab" aria-expanded="true" href="#header-tab-rigister">Register</a>
-                                        </li> --}}
+
                                     </ul>
                                     <div class="tab-container">
                                         <div id="header-tab-login" class="tab-panel active">
@@ -406,3 +388,156 @@
         </div>
     </div>
 </header>
+
+
+<div class="header-device-mobile">
+    <div class="wapper">
+        <div class="item mobile-logo">
+            <div class="logo">
+                <a href="#">
+                    <img src="{{ asset('/frontend/') }}/assets/images/logo.png" alt="img">
+                </a>
+            </div>
+        </div>
+        <div class="item item mobile-search-box has-sub">
+            <a href="#">
+                <span class="icon">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </span>
+            </a>
+            <div class="block-sub">
+                <a href="#" class="close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+                <div class="header-searchform-box">
+                    <form class="header-searchform">
+                        <div class="searchform-wrap">
+                            <input type="text" class="search-input" placeholder="Enter keywords to search...">
+                            <input type="submit" class="submit button" value="Search">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        {{-- style for add-to-cart animation mobile  --}}
+        <style>         
+
+
+            .add_to_cart_animation_mobile {
+                
+                position: absolute !important;
+                top: 0%;
+                background: white;
+                z-index: 9999;
+                @if (Session::has('show_cart_animation') && Session::get('show_cart_animation') == true)
+                    display: block;
+                @else
+                    display: none;
+                @endif
+                
+            }
+
+            /* Extra small devices (phones, 450px and down) */
+            @media  only screen and (max-width: 359px) {                             
+                .add_to_cart_animation_mobile {
+                    width: 82%;
+                    right: 3%;
+                }
+            }
+
+            /*360px and up*/
+            @media  only screen and (min-width: 360px) {                             
+                .add_to_cart_animation_mobile {
+                    width: 58%;
+                    right: 20%;
+                }
+            }
+
+            /*450px and up*/
+            @media  only screen and (min-width: 450px) {                             
+                .add_to_cart_animation_mobile {
+                    width: 50%;
+                    right: 25%;
+                }
+            }
+
+            /* Small devices (portrait tablets and large phones, 600px and up) */
+            @media  only screen and (min-width: 600px) {                
+                .add_to_cart_animation_mobile {
+                    width: 37%;
+                    right: 32%;
+                }
+            }
+
+            /* Medium devices (landscape tablets, 768px and up) */
+            @media  only screen and (min-width: 768px) {                
+                .add_to_cart_animation_mobile {
+                    width: 37%;
+                    right: 32%;
+                }
+                
+            }
+
+            /* Large devices (laptops/desktops, 992px and up) */
+            @media  only screen and (min-width: 992px) {
+
+            }
+
+            /* Extra large devices (large laptops and desktops, 1200px and up) */
+            @media  only screen and (min-width: 1200px) {
+            }
+
+
+            .icon2{
+                position: relative;
+            }
+            .count-icon2{
+                background-color: #1D043E;
+                    width: 20px;
+                    height: 20px;
+                    text-align: center;
+                    line-height: 20px;
+                    border-radius: 50%;
+                    color: #ffffff;
+                    font-weight: 600;
+                    display: inline-block;
+                    position: absolute;
+                    top: 0;
+                    right: -10px;
+                    font-size: 12px;
+            }
+            .add_to_cart_animation_mobile_top{
+                width: 82%;
+                left: 15%;
+                top: 21%;
+            }
+
+        </style>
+
+
+        {{-- top mobile cart here --}}
+        <div class="item mobile-settings-box" style="position: relative;">
+
+            <img src="{{ asset('order/add_to_cart.gif') }}" class="add_to_cart_animation_mobile add_to_cart_animation_mobile_top" alt="">
+            <a href="{{ url('/shopping/cart') }}">
+                    <span class="icon icon2">
+                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        <span class="count-icon count-icon2">
+                            {{ count($productCount) }}
+                        </span>
+                    </span>
+                {{-- <span class="text">Cart</span> --}}
+            </a>
+        </div>
+        <div class="item menu-bar">
+            <a class=" mobile-navigation  menu-toggle" href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+    </div>
+</div>
