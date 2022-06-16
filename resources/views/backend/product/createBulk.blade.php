@@ -6,10 +6,10 @@
 <div class="br-pagetitle">
     <i class="icon ion-ios-list-outline"></i>
     <div>
-        <h4>Add Product</h4>
+        <h4>Product Upload From Excel</h4>
         <p class="mg-b-0">
             <a href="{{ url('admin/dashboard') }}">Dashboard</a>
-            / <a href="{{ url('admin/product/index') }}">Manage Product</a> / Add Product /
+            / <a href="{{ url('admin/product/index') }}">Manage Product</a> / Excel Upload /
         </p>
     </div>
 </div>
@@ -88,7 +88,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="">Download sample file</label>
-                  <a href="{{ url('admin/product/create/bulk/sample-file?v=1') }}" class="btn d-block text-left " style="
+                  <a href="{{ url('admin/product/create/bulk/sample-file?v=4') }}" class="btn d-block text-left " style="
                     border: 1px solid #ced4da;
                     color: #868ba1;
                     position: relative;
@@ -107,6 +107,16 @@
               </div>
             </div>
 
+
+  			<div class="form-group mt-4">
+  				<pre class="text-danger">
+1. Every field except DISCOUNT PRICE is required
+2. NAME should be unique
+3. Copy "CATEGORY SLUG" and "BRAND SLUG" from category and brand module 
+4. Price and quantity should be numeric and minimum is 0
+5. Download the sample file and insert data similarly 
+  				</pre>
+  			</div>
 
             <div class="form-group">
               <button type="submit" class="btn btn-teal mt-3">Submit</button>

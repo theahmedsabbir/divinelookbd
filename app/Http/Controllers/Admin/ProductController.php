@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\ProductsImport;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -206,7 +208,9 @@ class ProductController extends Controller
 
         // delete product single image
         if ($product->image && file_exists('product/'.$product->image)){
-            unlink('product/'.$product->image);
+            if ($product->image != 'sample.jpg') {
+                unlink('product/'.$product->image);                
+            }
         }
 
         // delete product
