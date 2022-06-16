@@ -17,6 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         return view('backend.product.index');
+        // test changes
     }
 
     public function create()
