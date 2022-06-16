@@ -27,7 +27,7 @@
 							{{ count($productCount) }}
 						</span>
 					</span>
-                {{-- <span class="text">Cart</span> --}}
+                <span class="text">Cart</span>
             </a>
         </div>
 

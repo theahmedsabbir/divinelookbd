@@ -394,7 +394,7 @@
     <div class="wapper">
         <div class="item mobile-logo">
             <div class="logo">
-                <a href="#">
+                <a href="{{ url('/') }}">
                     <img src="{{ asset('/frontend/') }}/assets/images/logo.png" alt="img">
                 </a>
             </div>
