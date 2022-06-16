@@ -20,6 +20,7 @@
                         <th class="">#</th>
                         <th class="">Image</th>
                         <th class="">Name</th>
+                        <th class="">Slug</th>
                         <th class="notexport">Action</th>
                     </tr>
                     </thead>
@@ -35,6 +36,7 @@
                                 @endif
                             </td>
                             <td>{{ $category->name ?? 'No  name found' }}</td>
+                            <td>{{ $category->slug ?? 'No  slug found' }}</td>
                             <td>
                                 <a href="{{ url('/admin/category/edit/'.$category->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{ url('/admin/category/delete/'.$category->slug) }}" onclick="return confirm('Are you sure permanently this category ?')" class="btn btn-sm btn-danger">Delete</a>

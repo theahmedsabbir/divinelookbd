@@ -215,4 +215,42 @@ class ProductController extends Controller
         return redirect('admin/product/index')->withSuccess('Product deleted successfully.');
 
     }
+
+
+    public function createBulk(){
+        return view('backend.product.createBulk');
+    }
+    public function storeBulk(Request $r){
+
+        // echo "<pre>";
+        // print_r($r->file('bulk_file')->getClientOriginalExtension());
+        // echo "<pre>";
+
+        $validated = $r->validate([
+            'bulk_file'      => 'required',
+        ],[
+            'bulk_file.required'     => 'File is required',
+        ]);
+
+        $extensions = array("xls","xlsx","xlm","xla","xlc","xlt","xlw");
+
+        $result = array($r->file('bulk_file')->getClientOriginalExtension());
+
+        if(in_array($result[0],$extensions) == false){
+            session()->flash('file_type_error', 'File extensions must be xls, xlsx');
+            return redirect()->back();
+        }
+
+        $import = Excel::import(new ProductsImport, $r->file('bulk_file'), \Maatwebsite\Excel\Excel::XLSX );
+        
+        session()->flash('Success', 'Bulk products uploaded successfully');
+        return redirect('admin/product/index');
+
+
+        // product image upload 
+    }
+
+    public function bulkSampleFile(){
+        return response()->download('product/bulk/sample.xlsx');
+    }
 }

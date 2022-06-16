@@ -91,6 +91,12 @@ Route::group(['prefix' => 'admin'], function (){
         Route::post('/product/update/{id}', [ProductController::class, 'update']);
         Route::get('/product/delete/{id}', [ProductController::class, 'destroy']);
 
+        Route::get('product/create/bulk', [ProductController::class, 'createBulk']);
+        Route::get('product/create/bulk/sample-file', [ProductController::class, 'bulkSampleFile']);
+        Route::post('product/store/bulk', [ProductController::class, 'storeBulk']);
+
+
+
         // ======================= Product routes ======================= //
         Route::get('banner/{bannerType}/index', [BannerController::class, 'index']);
         Route::get('banner/{bannerType}/create', [BannerController::class, 'create']);

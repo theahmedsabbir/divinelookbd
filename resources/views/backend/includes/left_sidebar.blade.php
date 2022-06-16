@@ -87,6 +87,22 @@
           </li>
 
 
+          <li class="br-menu-item">
+            <a href="#" class="br-menu-link with-sub {{ Request::is('admin/product/create/bulk*') ? 'show-sub' : ''}}">
+              <i class="menu-item-icon icon ion-ios-list-outline tx-24"></i>
+              {{-- <i class="menu-item-icon fa fa-star tx-16"></i> --}}
+              <span class="menu-item-label">Excel Upload</span>
+            </a><!-- br-menu-link -->
+            <ul class="br-menu-sub" style="{{ Request::is('admin/product*') ? 'display: block;' : 'display: none;'}}">
+
+
+              <li class="sub-item">
+                <a href="{{ url('admin/product/create/bulk') }}" class="sub-link {{ Request::is('admin/product/create/bulk') ? 'active' : ''}}">Manage</a>
+              </li>
+            </ul>
+          </li>
+
+
 
           <label class="sidebar-label pd-x-10 mg-t-25 mg-b-20 tx-info">Manage Orders</label>
 

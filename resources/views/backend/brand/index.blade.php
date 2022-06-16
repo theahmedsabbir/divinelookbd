@@ -20,6 +20,7 @@
                         <th class="">#</th>
                         <th class="">Image</th>
                         <th class="">Name</th>
+                        <th class="">Slug</th>
                         <th class="notexport">Action</th>
                     </tr>
                     </thead>
@@ -35,6 +36,7 @@
                                 @endif
                             </td>
                             <td>{{ $brand->name ?? 'No  name found' }}</td>
+                            <td>{{ $brand->slug ?? 'No  slug found' }}</td>
                             <td>
                                 <a href="{{ url('/admin/brand/edit/'.$brand->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{ url('/admin/brand/delete/'.$brand->slug) }}" onclick="return confirm('Are you sure permanently this brand ?')" class="btn btn-sm btn-danger">Delete</a>
