@@ -141,7 +141,7 @@ trait ResetsPasswords
         if ($request->wantsJson()) {
             return new JsonResponse(['message' => trans($response)], 200);
         }
-        session()->flash('success', 'Password updated successfully.');
+
         return redirect($this->redirectPath())
                             ->with('status', trans($response));
     }

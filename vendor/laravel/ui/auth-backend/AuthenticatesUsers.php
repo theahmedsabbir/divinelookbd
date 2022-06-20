@@ -18,7 +18,7 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
-        return view('frontend.home.loginRegister');
+        return view('auth.login');
     }
 
     /**
@@ -84,7 +84,7 @@ trait AuthenticatesUsers
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request), $request->filled('remember')
+            $this->credentials($request), $request->boolean('remember')
         );
     }
 
