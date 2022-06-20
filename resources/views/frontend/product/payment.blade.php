@@ -25,7 +25,7 @@
                 Payment
             </h3>
             <div class="checkout-wrapp">
-                <form action="{{ url('/order') }}" method="post">
+                <form action="{{ url('/order/store') }}" method="post">
                     @csrf
                     <div class="shipping-address-form-wrapp">
                         <div class="shipping-address-form  checkout-form">

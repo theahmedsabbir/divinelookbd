@@ -171,6 +171,7 @@ class FrontOrderController extends Controller
 
     public function order(Request $request)
     {
+        // return $request->all();
         $cartProducts = Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
             ->orWhere('ip_address', request()->ip())->get();
         $newOrder = new Order();

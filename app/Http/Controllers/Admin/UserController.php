@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -12,6 +14,55 @@ class UserController extends Controller
     {
         $users = User::orderBy('created_at', 'desc')->get();
         return view('backend.user.index', compact('users'));
+    }
+
+    public function create(){
+        $page = 'create';
+        return view('backend.user.create', compact('page'));
+    }
+
+    public function store(Request $request){
+        // return $request->all();
+
+
+        // validate
+        $request->validate([
+
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'phone' => 'required|string|max:255|unique:users,phone',
+            // 'password' => 'required|string|min:8|confirmed',
+            'avatar' => 'mimes:jpg,jpeg,png,bmp,tiff|max:4096',
+
+        ]);
+
+        // save this user
+        $user = new User;
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->division = $request->division;
+        $user->password = Hash::make($request->password);
+        $user->status = true;
+
+
+        // upload image
+        if($request->avatar){
+            $avatar = $request->avatar;
+            $avatarName = Str::slug($request->name) . time().'_'.'.'. $avatar->extension();
+            $avatar->move('users', $avatarName );
+
+            $user->avatar = $avatarName;
+        }
+
+
+        $user->save();
+
+
+        return redirect('admin/user/index')->with('success', 'User successfully registered');
+
     }
 
     public function statusEdit($id, $status)
