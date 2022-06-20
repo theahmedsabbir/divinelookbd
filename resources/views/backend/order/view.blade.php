@@ -19,6 +19,7 @@
                     <thead>
                     <tr>
                         <th class="">#</th>
+                        <th class="">OrderId</th>
                         <th class="">Customer Name</th>
                         <th class="">Total Qty</th>
                         <th class="">Total Price</th>
@@ -27,6 +28,7 @@
                     <tbody>
                         <tr>
                             <td>1</td>
+                            <td>{{ $order->order_id ?? 'No order id found' }}</td>
                             <td>{{ $order->user->name ?? 'No user name found' }}</td>
                             <td>{{ $order->total_qty ?? '00' }} Pcs</td>
                             <td>৳ {{ number_format($order->total_price,2) ?? '00' }}</td>

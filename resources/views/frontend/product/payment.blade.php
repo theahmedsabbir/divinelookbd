@@ -40,7 +40,7 @@
                                     </div>
                                     <p class="form-row form-row-card-number">
                                         <label class="text">Transaction no</label>
-                                        <input type="text" name="transaction_id" class="input-text" placeholder="xxx - xxx - xxx - xxx" required>
+                                        <input type="text" name="transaction_id" class="input-text" placeholder="xxx - xxx - xxx - xxx">
                                     </p>
                                 </div>
                             </div>

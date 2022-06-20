@@ -152,7 +152,7 @@
                                 {{-- @dd(Session::has('show_cart_animation')) --}}
                             <style>
                                 .add_to_cart_animation {
-                                    
+
                                     position: absolute !important;
                                     top: -58%;
                                     right: -16%;
@@ -180,7 +180,7 @@
                                 </div>
                                 Cart
                                 <span class="count">
-                                    {{ count($productCount) }}
+                                    {{ $productCount->sum('qty') ?? '0' }}
                                 </span>
                             </a>
                             <div class="shopcart-description stelina-submenu">
@@ -427,11 +427,11 @@
 
 
         {{-- style for add-to-cart animation mobile  --}}
-        <style>         
+        <style>
 
 
             .add_to_cart_animation_mobile {
-                
+
                 position: absolute !important;
                 top: 0%;
                 background: white;
@@ -441,11 +441,11 @@
                 @else
                     display: none;
                 @endif
-                
+
             }
 
             /* Extra small devices (phones, 450px and down) */
-            @media  only screen and (max-width: 359px) {                             
+            @media  only screen and (max-width: 359px) {
                 .add_to_cart_animation_mobile {
                     width: 82%;
                     right: 3%;
@@ -453,7 +453,7 @@
             }
 
             /*360px and up*/
-            @media  only screen and (min-width: 360px) {                             
+            @media  only screen and (min-width: 360px) {
                 .add_to_cart_animation_mobile {
                     width: 58%;
                     right: 20%;
@@ -461,7 +461,7 @@
             }
 
             /*450px and up*/
-            @media  only screen and (min-width: 450px) {                             
+            @media  only screen and (min-width: 450px) {
                 .add_to_cart_animation_mobile {
                     width: 50%;
                     right: 25%;
@@ -469,7 +469,7 @@
             }
 
             /* Small devices (portrait tablets and large phones, 600px and up) */
-            @media  only screen and (min-width: 600px) {                
+            @media  only screen and (min-width: 600px) {
                 .add_to_cart_animation_mobile {
                     width: 37%;
                     right: 32%;
@@ -477,12 +477,12 @@
             }
 
             /* Medium devices (landscape tablets, 768px and up) */
-            @media  only screen and (min-width: 768px) {                
+            @media  only screen and (min-width: 768px) {
                 .add_to_cart_animation_mobile {
                     width: 37%;
                     right: 32%;
                 }
-                
+
             }
 
             /* Large devices (laptops/desktops, 992px and up) */
