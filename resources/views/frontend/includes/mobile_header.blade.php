@@ -16,7 +16,10 @@
                 Wishlist
             </a>
         </div>
-        <div class="footer-device-mobile-item device-home device-cart">
+
+        <div class="footer-device-mobile-item device-home device-cart" style="position: relative;">
+
+            <img src="{{ asset('order/add_to_cart.gif') }}" class="add_to_cart_animation_mobile" alt="">
             <a href="{{ url('/shopping/cart') }}">
 					<span class="icon">
 						<i class="fa fa-shopping-basket" aria-hidden="true"></i>
@@ -27,6 +30,21 @@
                 <span class="text">Cart</span>
             </a>
         </div>
+
+
+        {{-- hide add-to-cart-animation for mobile after 2-3 second --}}
+        <script type="text/javascript">
+        @if (Session::has('show_cart_animation'))
+
+            setTimeout(function () {
+                document.querySelectorAll('.add_to_cart_animation_mobile').forEach((animation)=>{
+                    animation.style.display= 'none';
+                });
+                document.querySelector('.add_to_cart_animation').style.display= 'none';
+            }, 3000);
+        @endif
+        </script>
+
         <div class="footer-device-mobile-item device-home device-user">
             @if(!auth()->check())
             <a href="{{ url('/register') }}">

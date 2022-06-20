@@ -61,8 +61,17 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('/order/delete/{id}', [OrderController::class, 'delete']);
         Route::get('/stock/index', [OrderController::class, 'stockList']);
 
+
+        Route::get('/offline-order/create', [OrderController::class, 'create']);
+        Route::post('/order/store', [OrderController::class, 'store']);
+
         // ======================= User routes ======================= //
         Route::get('/user/index', [UserController::class, 'index']);
+
+
+        Route::get('/user/create', [UserController::class, 'create']);
+        Route::post('/user/store', [UserController::class, 'store']);
+
         Route::get('/user/status/edit/{id}/{status}', [UserController::class, 'statusEdit']);
         Route::get('/user/delete/{slug}', [UserController::class, 'destroy']);
 
@@ -90,6 +99,12 @@ Route::group(['prefix' => 'admin'], function (){
         Route::get('/product/edit/{id}', [ProductController::class, 'edit']);
         Route::post('/product/update/{id}', [ProductController::class, 'update']);
         Route::get('/product/delete/{id}', [ProductController::class, 'destroy']);
+
+        Route::get('product/create/bulk', [ProductController::class, 'createBulk']);
+        Route::get('product/create/bulk/sample-file', [ProductController::class, 'bulkSampleFile']);
+        Route::post('product/store/bulk', [ProductController::class, 'storeBulk']);
+
+
 
         // ======================= Product routes ======================= //
         Route::get('banner/{bannerType}/index', [BannerController::class, 'index']);
@@ -147,7 +162,7 @@ Route::group(['middleware' => 'auth'], function (){
     Route::get('/shipping', [FrontOrderController::class, 'shipping']);
     Route::post('/shipping/store', [FrontOrderController::class, 'shippingStore']);
     Route::get('/payment', [FrontOrderController::class, 'payment']);
-    Route::post('/order', [FrontOrderController::class, 'order']);
+    Route::post('/order/store', [FrontOrderController::class, 'order']);
     Route::get('/complete', [FrontOrderController::class, 'complete']);
     Route::post('/rating', [FrontOrderController::class, 'rating'])->middleware('auth');
 });

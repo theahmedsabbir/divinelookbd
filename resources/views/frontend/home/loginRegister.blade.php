@@ -2,7 +2,12 @@
 
 
 @push('style')
-
+<style type="text/css">
+	select{
+		border-color: rgb(238, 238, 238) !important;
+		width: 100%;
+	}
+</style>
 @endpush
 
 
@@ -136,6 +141,24 @@
 
 											@if ($errors->has('address'))
 												<p class="text-danger text-right text-capitalize">{{ $errors->first('address') }}</p>
+											@endif
+										</p>
+										<p class="form-row form-row-wide">
+											<label class="text">Division</label>
+											<select name="division" id="" class="input-text" required>
+												<option value="Dhaka">Dhaka</option>
+												<option value="Barishal">Barishal</option>
+												<option value="Chattogram">Chattogram</option>
+												<option value="Khulna">Khulna</option>
+												<option value="Rajshahi">Rajshahi</option>
+												<option value="Rangpur">Rangpur</option>
+												<option value="Mymensingh">Mymensingh</option>
+												<option value="Sylhet">Sylhet</option>
+											</select>
+
+
+											@if ($errors->has('division'))
+												<p class="text-danger text-right text-capitalize">{{ $errors->first('division') }}</p>
 											@endif
 										</p>
 										<p class="form-row form-row-wide">

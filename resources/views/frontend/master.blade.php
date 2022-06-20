@@ -104,6 +104,9 @@
     </style>
 </head>
 <body class="home">
+
+
+
 <!-- ======================= Header ======================== -->
 @include('frontend.includes.header')
 <!-- ======================= Customer Features ======================== -->

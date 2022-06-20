@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\ProductsImport;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
     public function index()
     {
         return view('backend.product.index');
+        // test changes
     }
 
     public function create()
@@ -206,7 +209,9 @@ class ProductController extends Controller
 
         // delete product single image
         if ($product->image && file_exists('product/'.$product->image)){
-            unlink('product/'.$product->image);
+            if ($product->image != 'sample.jpg') {
+                unlink('product/'.$product->image);                
+            }
         }
 
         // delete product
@@ -214,5 +219,43 @@ class ProductController extends Controller
 
         return redirect('admin/product/index')->withSuccess('Product deleted successfully.');
 
+    }
+
+
+    public function createBulk(){
+        return view('backend.product.createBulk');
+    }
+    public function storeBulk(Request $r){
+
+        // echo "<pre>";
+        // print_r($r->file('bulk_file')->getClientOriginalExtension());
+        // echo "<pre>";
+
+        $validated = $r->validate([
+            'bulk_file'      => 'required',
+        ],[
+            'bulk_file.required'     => 'File is required',
+        ]);
+
+        $extensions = array("xls","xlsx","xlm","xla","xlc","xlt","xlw");
+
+        $result = array($r->file('bulk_file')->getClientOriginalExtension());
+
+        if(in_array($result[0],$extensions) == false){
+            session()->flash('file_type_error', 'File extensions must be xls, xlsx');
+            return redirect()->back();
+        }
+
+        $import = Excel::import(new ProductsImport, $r->file('bulk_file'), \Maatwebsite\Excel\Excel::XLSX );
+        
+        session()->flash('Success', 'Bulk products uploaded successfully');
+        return redirect('admin/product/index');
+
+
+        // product image upload 
+    }
+
+    public function bulkSampleFile(){
+        return response()->download('product/bulk/sample.xlsx');
     }
 }
