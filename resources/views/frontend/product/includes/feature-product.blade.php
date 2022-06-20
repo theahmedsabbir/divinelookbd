@@ -1,5 +1,9 @@
+
+
+
+
 <li class="product-item  col-lg-4 col-md-6 col-sm-6 col-xs-6 col-ts-12 style-3">
-    <div class="product-inner equal-element">
+    <div class="product-inner">
         <div class="product-thumb">
             <div class="product-top">
                 <div class="flash">

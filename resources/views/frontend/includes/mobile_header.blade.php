@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="footer-device-mobile-item device-home device-wishlist">
-            <a href="#">
+            <a href="{{ url('product/wishlist') }}">
 					<span class="icon">
 						<i class="fa fa-heart" aria-hidden="true"></i>
 					</span>

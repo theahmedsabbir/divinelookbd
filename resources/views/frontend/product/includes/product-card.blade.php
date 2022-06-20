@@ -37,15 +37,6 @@
                         >Add to cart
                         </a>
 
-                        <script>
-                            function show_animation_add_to_cart(product_id){
-
-
-                                document.querySelector('.add_to_cart_animation').style.display= 'block';
-                                window.location.href= "{{ url('order/add-to-cart/' ) }}/"+product_id;
-
-                            }
-                        </script>
                     </div>
                 </div>
             </div>
@@ -76,19 +67,38 @@
                 </div>
                 <div class="price">
                 	@if ($product->discount_price)
-                    <del>
-                        ৳{{ $product->discount_price ?? ''}}
-                    </del>
+
+                        <del>
+                            ৳{{ $product->price ?? ''}}
+                        </del>
+                        <ins>
+                            ৳{{ $product->discount_price}}
+                        </ins>
+
+
+                    @else
+
+                        <ins>
+                            ৳{{ $product->price}}
+                        </ins>
+
                 	@endif
-                    <ins>
-                        ৳{{ $product->price}}
-                    </ins>
                 </div>
-                <button class="single_add_to_cart_button button custom-btn-color" style="margin: 10px auto;"
-                    onclick="window.location.href='{{ url('/order/add-to-cart/' . $product->id) }}'" 
+                <button type="button" class="single_add_to_cart_button button custom-btn-color" style="margin: 10px auto;"
+                    onclick="show_animation_add_to_cart({{$product->id}})" 
                 >
                     Add to cart
                 </button>
             </div>
         </div>
     </div>
+
+    <script>
+        function show_animation_add_to_cart(product_id){
+
+
+            document.querySelector('.add_to_cart_animation').style.display= 'block';
+            window.location.href= "{{ url('order/add-to-cart/' ) }}/"+product_id;
+
+        }
+    </script>

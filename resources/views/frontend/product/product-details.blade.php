@@ -269,9 +269,12 @@
                         <div class="related products product-grid">
                             <h2 class="product-grid-title">You may also like</h2>
                             <div class="owl-products owl-slick equal-container nav-center"  data-slick ='{"autoplay":false, "autoplaySpeed":1000, "arrows":true, "dots":false, "infinite":true, "speed":800, "rows":1}' data-responsive='[{"breakpoint":"2000","settings":{"slidesToShow":3}},{"breakpoint":"1200","settings":{"slidesToShow":2}},{"breakpoint":"992","settings":{"slidesToShow":2}},{"breakpoint":"480","settings":{"slidesToShow":1}}]'>
+
+
                                 @foreach($related as $data)
                                 <div class="product-item style-1">
-                                    <div class="product-inner equal-element">
+                                    @include('frontend.product.includes.product-card', ['product' => $data])
+{{--                                     <div class="product-inner equal-element">
                                         <div class="product-top">
                                             <div class="flash">
 													<span class="onnew">
@@ -300,7 +303,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                @endforeach
                             </div>
