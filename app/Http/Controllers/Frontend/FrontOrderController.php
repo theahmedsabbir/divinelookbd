@@ -20,7 +20,7 @@ class FrontOrderController extends Controller
     //================== Add to cart =====================//
     public function addToCart(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         $updateCart = Cart::where('product_id', $request->product_id)->first();
         if ($updateCart){
             if ($request->discount_price){
@@ -38,6 +38,7 @@ class FrontOrderController extends Controller
             $cart = new Cart();
             if (auth()->check()){
                 $cart->user_id = auth()->user()->id;
+                $cart->ip_address = request()->ip();
             }else{
                 $cart->ip_address = $request->ip();
             }
@@ -67,56 +68,51 @@ class FrontOrderController extends Controller
     public function addToCartGet($product_id)
     {
         // return $product_id;
-        $product = Product::find($product_id);
+        $product = Product::find($product_id); //find product
 
         if(!$product) {return redirect()->back()->withError('Product not found.');}
 
-        $discount_price = $product->discount_price;
-        $price          = $product->price;
-        $qty            = 1;
+        // find current user's (ip or authenticated) this product's cart, if there, update it 
+        $this_user_cart = Cart::where('product_id', $product_id)->where('ip_address', request()->ip())->first();
 
-        // dd($request->all());
-        $updateCart = Cart::where('product_id', $product_id)->first();
-        if ($updateCart){
-            if ($discount_price){
-                $updateCart->total_price = $discount_price * ($updateCart->qty + $qty);
-            }else{
-                $updateCart->total_price = $price * ($updateCart->qty + $qty);
-            }
-            if ($qty){
-                $updateCart->qty = $updateCart->qty + $qty;
-            }
-            $updateCart->save();
-            Session::flash('show_cart_animation', true);
-            return redirect()->back()->withSuccess('Product updated to cart');
-        }else{
+        if (Auth::check()) {
+            $this_user_cart = Cart::where('product_id', $product_id)->where('user_id', Auth::user()->id)->first();
+        }
+
+
+        // if cart exists then update it 
+        if ($this_user_cart){
+
+            $this_user_cart->qty += 1;
+            $this_user_cart->price = $product->discount_price ? $product->discount_price : $product->price;
+            $this_user_cart->total_price = $this_user_cart->qty * $this_user_cart->price;
+            $this_user_cart->save();
+
+        }else{ //else open a new cart 
             $cart = new Cart();
             if (auth()->check()){
                 $cart->user_id = auth()->user()->id;
+                $cart->ip_address = request()->ip();
             }else{
                 $cart->ip_address = request()->ip();
             }
             $cart->product_id = $product_id;
-            if ($discount_price){
-                $cart->price = $discount_price;
+            $cart->qty = 1;
+
+            if ($product->discount_price){
+                $cart->price = $product->discount_price;
             }else{
-                $cart->price = $price;
+                $cart->price = $product->price;
             }
-            if ($qty){
-                $cart->qty = $qty;
-            }else{
-                $cart->qty = $qty;
-            }
-            if ($discount_price){
-                $cart->total_price = $qty ? $qty * $discount_price : $qty*$discount_price;
-            }else{
-                $cart->total_price = $qty ? $qty * $price : $qty*$price;
-            }
+
+            $cart->total_price = $cart->qty * $cart->price;
+
             $cart->save();
-            Session::flash('show_cart_animation', true);
-            // dd(Session::all());
-            return redirect()->back()->withSuccess('Product added to cart');
         }
+
+
+        Session::flash('show_cart_animation', true);
+        return redirect()->back()->withSuccess('Product added to cart');
     }
 
     public function deleteCartProduct($id)
@@ -129,8 +125,9 @@ class FrontOrderController extends Controller
 
     public function shoppingCart()
     {
-        $cartProducts = Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
-            ->orWhere('ip_address', request()->ip())->get();
+        $cartProducts = Auth::check() ? 
+                Cart::where('user_id', Auth::user()->id)->get() :  
+                Cart::where('ip_address', request()->ip() )->get();
         return view('frontend.product.cart', compact('cartProducts'));
     }
 
@@ -148,8 +145,9 @@ class FrontOrderController extends Controller
 
     public function shipping()
     {
-        $cartProducts = Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
-            ->orWhere('ip_address', request()->ip())->get();
+        $cartProducts = Auth::check() ? 
+                Cart::where('user_id', Auth::user()->id)->get() :  
+                Cart::where('ip_address', request()->ip() )->get();
         return view('frontend.product.shipping', compact('cartProducts'));
     }
 
@@ -164,16 +162,18 @@ class FrontOrderController extends Controller
 
     public function payment()
     {
-        $cartProducts = Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
-            ->orWhere('ip_address', request()->ip())->get();
+        $cartProducts = Auth::check() ? 
+                Cart::where('user_id', Auth::user()->id)->get() :  
+                Cart::where('ip_address', request()->ip() )->get();
         return view('frontend.product.payment', compact('cartProducts'));
     }
 
     public function order(Request $request)
     {
         // return $request->all();
-        $cartProducts = Cart::where('user_id', auth()->check() ? auth()->user()->id : '')
-            ->orWhere('ip_address', request()->ip())->get();
+        $cartProducts = Auth::check() ? 
+                Cart::where('user_id', Auth::user()->id)->get() :  
+                Cart::where('ip_address', request()->ip() )->get();
         $newOrder = new Order();
         $newOrder->user_id = auth()->user()->id;
         $newOrder->total_qty = $request->total_qty;
@@ -209,7 +209,9 @@ class FrontOrderController extends Controller
     public function rating(Request $request)
     {
         //============== Empty cart ================//
-        $cartProductsEmpty = Cart::where('user_id', auth()->user()->id)->orWhere('ip_address', request()->ip())->get();
+        $cartProductsEmpty = Auth::check() ? 
+                Cart::where('user_id', Auth::user()->id)->get() :  
+                Cart::where('ip_address', request()->ip() )->get();
         foreach ($cartProductsEmpty as $cartEmpty){
             $rating = new RatingWishlist();
             $rating->user_id = auth()->check() ? auth()->user()->id : 0;
@@ -221,7 +223,7 @@ class FrontOrderController extends Controller
 
             $cartEmpty->delete();
         }
-        return redirect('/complete')->with('success', 'Your order has been completed.');
+        return redirect('/')->with('success', 'Your review is submitted successfully.');
     }
 
     //============= Social login ====================//

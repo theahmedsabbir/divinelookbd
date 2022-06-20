@@ -153,6 +153,9 @@ Route::get('/product/wishlist', [FrontProductController::class, 'wishlist']);
 //=========== Add to cart ==============//
 
 Route::post('/add/to/card', [FrontOrderController::class, 'addToCart']);
+// Route::get('order/add-to-cart/{id}', function(){
+//     return "hi";
+// });
 Route::get('order/add-to-cart/{id}', [FrontOrderController::class, 'addToCartGet']);
 Route::post('/cart/update/{id}', [FrontOrderController::class, 'shoppingCartUpdate']);
 Route::get('/cart/product/delete/{id}', [FrontOrderController::class, 'deleteCartProduct']);

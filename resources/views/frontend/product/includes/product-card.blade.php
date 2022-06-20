@@ -1,7 +1,4 @@
-
-
-
-    <div class="product-inner equal-element">
+<div class="product-inner equal-element">
         @if ($product->type)
         <div class="product-top">
             <div class="flash">
@@ -37,15 +34,6 @@
                         >Add to cart
                         </a>
 
-                        <script>
-                            function show_animation_add_to_cart(product_id){
-
-
-                                document.querySelector('.add_to_cart_animation').style.display= 'block';
-                                window.location.href= "{{ url('order/add-to-cart/' ) }}/"+product_id;
-
-                            }
-                        </script>
                     </div>
                 </div>
             </div>
@@ -76,16 +64,25 @@
                 </div>
                 <div class="price">
                 	@if ($product->discount_price)
-                    <del>
-                        ৳{{ $product->discount_price ?? ''}}
-                    </del>
+
+                        <del>
+                            ৳{{ $product->price ?? ''}}
+                        </del>
+                        <ins>
+                            ৳{{ $product->discount_price}}
+                        </ins>
+
+
+                    @else
+
+                        <ins>
+                            ৳{{ $product->price}}
+                        </ins>
+
                 	@endif
-                    <ins>
-                        ৳{{ $product->price}}
-                    </ins>
                 </div>
-                <button class="single_add_to_cart_button button custom-btn-color" style="margin: 10px auto;"
-                    onclick="window.location.href='{{ url('/order/add-to-cart/' . $product->id) }}'"
+                <button type="button" class="single_add_to_cart_button button custom-btn-color" style="margin: 10px auto;"
+                    onclick="show_animation_add_to_cart({{$product->id}})"
                 >
                     Add to cart
                 </button>
@@ -94,9 +91,9 @@
     </div>
 
     <script>
-        function launch_toast() {
-            var x = document.getElementById("toast")
-            x.className = "show";
-            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+        function show_animation_add_to_cart(product_id){
+            document.querySelector('.add_to_cart_animation').style.display= 'block';
+            window.location.href= "{{ url('order/add-to-cart/' ) }}/"+product_id;
+
         }
     </script>
